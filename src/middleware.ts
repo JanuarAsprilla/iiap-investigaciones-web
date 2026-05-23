@@ -2,30 +2,34 @@ import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
 /**
- * Generates a per-request nonce and sets the Content-Security-Policy header.
+ * Middleware: security headers only.
  *
- * Why middleware instead of next.config.ts headers:
- *   Next.js App Router injects inline <script> tags for hydration and RSC payloads.
- *   These cannot be hashed (they change per request) so we need a per-request nonce.
- *   Next.js reads the `x-nonce` request header set here and adds `nonce="…"` to its
- *   own generated scripts automatically, so no layout changes are required.
+ * ⚠️ WHY NO NONCE HERE:
+ * This app uses static generation (○ SSG). The HTML is pre-built at build time
+ * and served as static files. A per-request nonce injected here would never
+ * match the script tags in the pre-built HTML — the browser would block them,
+ * preventing React hydration and all client-side interactivity.
  *
- * Dev vs Prod:
- *   - Dev:  'unsafe-eval' is kept for webpack source-map eval(); nonce still required.
- *   - Prod: 'strict-dynamic' propagates trust from nonced scripts to dynamically
- *           loaded children, removing the need to enumerate every CDN entry point.
+ * CSP is configured in next.config.ts where it can be applied consistently
+ * to the pre-built content. The 'unsafe-inline' allowance is required because
+ * Next.js App Router injects inline scripts for RSC payload and hydration
+ * bootstrapping that cannot be hashed at build time.
+ *
+ * If this app ever migrates to full SSR (force-dynamic), re-introduce nonces.
  */
 export function middleware(request: NextRequest) {
-  const nonce = Buffer.from(crypto.randomUUID()).toString("base64");
+  const response = NextResponse.next();
+
   const isDev = process.env.NODE_ENV === "development";
 
-  const scriptSrc = isDev
-    ? `'self' 'nonce-${nonce}' 'unsafe-eval'`
-    : `'self' 'nonce-${nonce}' 'strict-dynamic'`;
-
-  const cspHeader = [
+  const csp = [
     "default-src 'self'",
-    `script-src ${scriptSrc}`,
+    // 'unsafe-inline' required for Next.js App Router SSG:
+    //   __NEXT_DATA__, RSC bootstrap, and hydration scripts are inline.
+    // 'unsafe-eval' only in dev (webpack source maps).
+    isDev
+      ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
+      : "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline'",
     "img-src 'self' data: https:",
     "font-src 'self'",
@@ -36,17 +40,18 @@ export function middleware(request: NextRequest) {
     "base-uri 'self'",
   ].join("; ");
 
-  // Forward nonce to Server Components via request header
-  const requestHeaders = new Headers(request.headers);
-  requestHeaders.set("x-nonce", nonce);
-  requestHeaders.set("Content-Security-Policy", cspHeader);
-
-  const response = NextResponse.next({
-    request: { headers: requestHeaders },
-  });
-
-  // Apply CSP to the actual HTTP response
-  response.headers.set("Content-Security-Policy", cspHeader);
+  response.headers.set("Content-Security-Policy", csp);
+  response.headers.set("X-Frame-Options", "DENY");
+  response.headers.set("X-Content-Type-Options", "nosniff");
+  response.headers.set("Referrer-Policy", "strict-origin-when-cross-origin");
+  response.headers.set(
+    "Permissions-Policy",
+    "camera=(), microphone=(), geolocation=()"
+  );
+  response.headers.set(
+    "Strict-Transport-Security",
+    "max-age=31536000; includeSubDomains; preload"
+  );
 
   return response;
 }
@@ -54,7 +59,6 @@ export function middleware(request: NextRequest) {
 export const config = {
   matcher: [
     {
-      // Apply to all routes except static assets that don't need CSP
       source:
         "/((?!_next/static|_next/image|favicon.ico|.*\\.(?:svg|png|jpg|jpeg|gif|webp)$).*)",
       missing: [
