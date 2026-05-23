@@ -1,0 +1,664 @@
+@import "tailwindcss";
+
+/* ═══════════════════════════════════════════════════════════
+   IIAP INVESTIGACIONES — Design System v3
+   Dirección: Warm Light / Editorial Science
+   Paleta: Crema cálido + Verde bosque + Ámbar
+   Inspirado en: pagina-grupod-de-investigaciones-iiap
+═══════════════════════════════════════════════════════════ */
+
+:root {
+  /* ── Fondos ── */
+  --bg:        #F4F1EB;   /* crema cálido — fondo base */
+  --surface:   #FFFFFF;   /* blanco — tarjetas y superficies */
+  --card:      #FAFAF8;   /* blanco cálido — cards secundarias */
+
+  /* Aliases para retrocompat con componentes existentes */
+  --bg-base:    #F4F1EB;
+  --bg-surface: #FFFFFF;
+  --bg-card:    #FAFAF8;
+
+  /* ── Texto ── */
+  --text:          #1A1A1A;   /* negro casi puro */
+  --text-muted:    #5C6B7A;   /* gris azulado */
+  --text-light:    rgba(26,26,26,0.42);
+
+  /* Aliases */
+  --text-primary:   #1A1A1A;
+  --text-secondary: #5C6B7A;
+
+  /* ── Acentos principales ── */
+  --forest:    #1A5C3A;              /* verde bosque — primario */
+  --forest-m:  #2D7A52;             /* verde medio */
+  --forest-d:  #0D3B24;             /* verde oscuro */
+  --forest-lt: rgba(26,92,58,.08);  /* verde tinte */
+  --amber:     #E8960F;             /* ámbar — acento */
+  --amber-d:   #D4820D;             /* ámbar oscuro */
+  --amber-lt:  rgba(232,150,15,.12);/* ámbar tinte */
+
+  /* Aliases para componentes que usan --gold */
+  --gold:       #E8960F;
+  --gold-bright:#F0AA2A;
+  --gold-dim:   rgba(232,150,15,.12);
+
+  /* ── Bordes ── */
+  --border:        rgba(26,92,58,.12);
+  --border-subtle: rgba(26,92,58,.08);
+  --border-active: rgba(26,92,58,.35);
+
+  /* ── Sombras ── */
+  --sh-sm:  0 2px 12px rgba(26,92,58,.06);
+  --sh:     0 8px 32px rgba(26,92,58,.10);
+  --sh-lg:  0 24px 80px rgba(26,92,58,.16);
+  --sh-amb: 0 8px 32px rgba(232,150,15,.22);
+
+  /* ── Tipografía ── */
+  --font-display: var(--font-bebas), "Bebas Neue", Impact, sans-serif;
+  --font-body:    var(--font-crimson), "Crimson Text", Georgia, serif;
+  --font-ui:      var(--font-inter), system-ui, -apple-system, sans-serif;
+
+  /* ── Escala fluida ── */
+  --t-xs:   clamp(0.7rem,  0.65rem + 0.2vw, 0.8rem);
+  --t-sm:   clamp(0.85rem, 0.78rem + 0.3vw, 1rem);
+  --t-base: clamp(1rem,    0.92rem + 0.4vw, 1.125rem);
+  --t-lg:   clamp(1.125rem,1rem   + 0.5vw, 1.375rem);
+  --t-xl:   clamp(1.375rem,1.1rem + 0.8vw, 1.75rem);
+  --t-2xl:  clamp(1.75rem, 1.4rem + 1.2vw, 2.5rem);
+  --t-3xl:  clamp(2.5rem,  2rem   + 2vw,   4rem);
+  --t-4xl:  clamp(3.5rem,  2.5rem + 4vw,   6.5rem);
+  --t-hero: clamp(2.8rem,  1.5rem + 4vw,   5.5rem);
+
+  /* ── Espaciado ── */
+  --sp-xs: clamp(0.5rem,  0.4rem + 0.3vw, 0.75rem);
+  --sp-sm: clamp(0.75rem, 0.6rem + 0.5vw, 1.125rem);
+  --sp-md: clamp(1.25rem, 1rem   + 1vw,   2rem);
+  --sp-lg: clamp(2rem,    1.5rem + 2vw,   4rem);
+  --sp-xl: clamp(3.5rem,  2.5rem + 4vw,   8rem);
+
+  /* ── Radios ── */
+  --r-sm:   6px;
+  --r-md:   12px;
+  --r-lg:   16px;
+  --r-xl:   24px;
+  --r-pill: 9999px;
+
+  /* ── Curvas ── */
+  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-expo:   cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-back:   cubic-bezier(0.34, 1.56, 0.64, 1);
+  --ease-smooth: cubic-bezier(0.25, 0.1, 0.25, 1);
+
+  /* ── Duración ── */
+  --dur-fast:  120ms;
+  --dur-med:   280ms;
+  --dur-slow:  520ms;
+}
+
+/* ════════════════════════════════════════════
+   Base Reset
+════════════════════════════════════════════ */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: var(--font-ui);
+  font-size: var(--t-base);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+img, video { max-width: 100%; height: auto; display: block; }
+
+/* ════════════════════════════════════════════
+   Scrollbar
+════════════════════════════════════════════ */
+::-webkit-scrollbar       { width: 5px; }
+::-webkit-scrollbar-track { background: var(--bg); }
+::-webkit-scrollbar-thumb {
+  background: rgba(26,92,58,.25);
+  border-radius: var(--r-pill);
+}
+
+/* ════════════════════════════════════════════
+   Focus visible
+════════════════════════════════════════════ */
+:focus-visible {
+  outline: 2px solid var(--forest);
+  outline-offset: 4px;
+  border-radius: var(--r-sm);
+}
+
+/* ════════════════════════════════════════════
+   Reduced motion
+════════════════════════════════════════════ */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+}
+
+/* ════════════════════════════════════════════
+   Reveal utility
+════════════════════════════════════════════ */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.52s var(--ease-expo), transform 0.52s var(--ease-expo);
+}
+.reveal.visible { opacity: 1; transform: none; }
+
+/* ════════════════════════════════════════════
+   Gradients
+════════════════════════════════════════════ */
+/* Usado en portal cards de homepage (foto oscura → sin cambio) */
+.grad-up {
+  background: linear-gradient(to top,
+    rgba(10,40,20,.90) 0%,
+    rgba(10,40,20,.50) 40%,
+    transparent 100%);
+}
+
+/* ════════════════════════════════════════════
+   Flip Card — Warm Light
+════════════════════════════════════════════ */
+.flip-card { perspective: 1000px; cursor: pointer; }
+.flip-inner {
+  width: 100%; height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.5s var(--ease); /* Emil: 650ms drags — 500ms is the flip sweet spot */
+  position: relative; border-radius: var(--r-lg);
+  /* will-change scoped to active hover — no permanent GPU layer on 5 cards */
+}
+.flip-card:hover .flip-inner,
+.flip-card:focus-within .flip-inner {
+  transform: rotateY(180deg);
+  will-change: transform;
+}
+
+.flip-front, .flip-back {
+  position: absolute; inset: 0;
+  backface-visibility: hidden; border-radius: var(--r-lg);
+  overflow: hidden; display: flex; flex-direction: column;
+}
+.flip-front {
+  background: linear-gradient(135deg, var(--forest), var(--forest-d));
+  background-size: cover; background-position: center;
+  justify-content: flex-end;
+}
+.flip-front::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0;
+  height: 65%;
+  background: linear-gradient(to top, rgba(10,40,20,.92) 0%, transparent 100%);
+  pointer-events: none;
+}
+.flip-back {
+  transform: rotateY(180deg);
+  background: var(--surface);
+  border: 1px solid var(--border);
+  justify-content: flex-start;
+  padding: 1.75rem;
+  box-shadow: var(--sh);
+}
+
+/* ════════════════════════════════════════════
+   GC Card (image overlay card) — Warm Light
+════════════════════════════════════════════ */
+.gc-card { position: relative; overflow: hidden; cursor: pointer; }
+.gc-card img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center;
+  transition: transform 0.65s var(--ease);
+  filter: brightness(.75) saturate(.85);
+  display: block;
+}
+.gc-overlay {
+  position: absolute; inset: 0;
+  background: linear-gradient(to top, rgba(10,40,20,.90) 0%, rgba(10,40,20,.40) 55%, rgba(10,40,20,.10) 100%);
+  transition: background 0.4s var(--ease);
+}
+.gc-card::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--amber), var(--amber-d));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.4s var(--ease); z-index: 3;
+}
+/* hover rules moved into @media (hover: hover) block below (touch guard) */
+.gc-content {
+  position: absolute; bottom: 0; left: 0; right: 0;
+  padding: 1.5rem 1.75rem; z-index: 2;
+}
+.gc-cta {
+  display: inline-flex; align-items: center; gap: 6px;
+  font-family: var(--font-ui);
+  font-size: 0.65rem; font-weight: 700;
+  letter-spacing: 2px; text-transform: uppercase;
+  color: var(--amber); margin-top: 0.75rem;
+  opacity: 0; transform: translateY(6px);
+  /* Emil: 300ms hover reveal is seen dozens of times/day — 180ms feels instant */
+  transition: opacity 0.18s ease-out, transform 0.18s ease-out;
+}
+/* Emil: gate hover effects to pointer devices — touch triggers hover on tap */
+@media (hover: hover) and (pointer: fine) {
+  .gc-card:hover .gc-cta { opacity: 1; transform: translateY(0); }
+  .gc-card:hover img { transform: scale(1.06); filter: brightness(.85) saturate(1); }
+  .gc-card:hover .gc-overlay {
+    background: linear-gradient(to top, rgba(10,40,20,.96) 0%, rgba(10,40,20,.65) 55%, rgba(10,40,20,.18) 100%);
+  }
+  .gc-card:hover::before { transform: scaleX(1); }
+}
+
+/* ════════════════════════════════════════════
+   Card Modal — Warm Light
+════════════════════════════════════════════ */
+.cm-overlay {
+  display: none; position: fixed; inset: 0;
+  background: rgba(26,26,26,.72); z-index: 1100;
+  align-items: center; justify-content: center;
+  padding: 2rem; backdrop-filter: blur(12px);
+}
+.cm-overlay.open { display: flex; }
+
+/* ── Exit animation — add .closing class, remove after 220ms ── */
+@keyframes cmFadeOut {
+  to { opacity: 0; }
+}
+@keyframes cmBoxOut {
+  to { opacity: 0; transform: scale(.95) translateY(10px); }
+}
+.cm-overlay.closing {
+  display: flex;
+  animation: cmFadeOut .22s var(--ease) forwards;
+  pointer-events: none;
+}
+.cm-overlay.closing .cm-box {
+  animation: cmBoxOut .18s var(--ease) forwards;
+}
+
+.cm-box {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-xl); overflow: hidden;
+  max-width: 860px; width: 100%;
+  display: grid; grid-template-columns: 1fr 1fr;
+  box-shadow: var(--sh-lg);
+  /* Emil: ease-back spring bounce mismatches institutional tone — expo-out at 260ms is crisp */
+  animation: cmIn .26s cubic-bezier(0.16, 1, 0.3, 1);
+}
+@keyframes cmIn {
+  from { opacity: 0; transform: scale(.93) translateY(16px); }
+  to   { opacity: 1; transform: none; }
+}
+@keyframes cmFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+.cm-img { position: relative; min-height: 300px; overflow: hidden; }
+.cm-img img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.cm-img::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to right, transparent 60%, var(--surface) 100%);
+}
+.cm-body { padding: 2.5rem 2rem; display: flex; flex-direction: column; justify-content: center; }
+.cm-tag {
+  display: inline-block;
+  background: var(--forest-lt);
+  color: var(--forest);
+  font-family: var(--font-ui);
+  font-size: .65rem; font-weight: 700; letter-spacing: 2.5px; text-transform: uppercase;
+  padding: .25rem .9rem; border-radius: var(--r-pill); margin-bottom: 1rem;
+  border: 1px solid var(--border);
+}
+.cm-title {
+  font-family: var(--font-display);
+  font-size: 2.2rem; color: var(--text); letter-spacing: 1px; line-height: 1; margin-bottom: 1rem;
+}
+.cm-divider { width: 2.5rem; height: 2px; background: var(--amber); border-radius: 2px; margin-bottom: 1rem; }
+.cm-desc {
+  font-family: var(--font-body);
+  font-size: 1.05rem; color: var(--text-muted); line-height: 1.8; margin-bottom: 1.5rem;
+}
+.cm-close {
+  align-self: flex-start; font-family: var(--font-ui);
+  font-size: .68rem; font-weight: 700; letter-spacing: 1.5px; text-transform: uppercase;
+  padding: .55rem 1.4rem; border-radius: var(--r-pill);
+  background: var(--forest); color: #fff; border: none; cursor: pointer;
+  transition: background .25s, transform .25s;
+}
+.cm-close:hover { background: var(--forest-m); transform: translateY(-2px); }
+@media (max-width: 680px) {
+  .cm-box { grid-template-columns: 1fr; }
+  .cm-img { display: none; }
+  .cm-body { padding: 2rem 1.5rem; }
+}
+
+/* ════════════════════════════════════════════
+   Portal Card (homepage) — photo-based, keeps dark interior
+════════════════════════════════════════════ */
+.portal-card-wrap {
+  /* Emil: 550ms hover lift drags — 380ms is still smooth but feels responsive */
+  transition: transform 0.38s var(--ease), box-shadow 0.38s var(--ease);
+  border-radius: var(--r-xl); overflow: hidden;
+}
+.portal-card-wrap:hover {
+  transform: translateY(-8px);
+  box-shadow: var(--sh-lg);
+}
+.portal-card-wrap::before {
+  content: ''; position: absolute;
+  top: 0; left: 0; right: 0; height: 3px;
+  background: linear-gradient(to right, var(--amber), var(--amber-d));
+  transform: scaleX(0); transform-origin: left;
+  transition: transform 0.55s var(--ease);
+  z-index: 20;
+  border-radius: var(--r-xl) var(--r-xl) 0 0;
+}
+.portal-card-wrap:hover::before { transform: scaleX(1); }
+.portal-card-img {
+  transition: filter 0.55s var(--ease);
+  filter: brightness(.40) saturate(.75);
+}
+.portal-card-wrap:hover .portal-card-img { filter: brightness(.55) saturate(.90); }
+
+/* ════════════════════════════════════════════
+   HOMEPAGE — Split Layout Warm
+════════════════════════════════════════════ */
+
+/* ── Hero ── */
+.hero-section {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 55fr 45fr;
+  align-items: center;
+  background: var(--bg);
+  position: relative;
+  overflow: hidden;
+}
+@media (max-width: 900px) {
+  .hero-section {
+    grid-template-columns: 1fr;
+    min-height: auto;
+  }
+}
+
+/* Contenido izquierdo */
+.hero-inner {
+  position: relative; z-index: 10;
+  padding:
+    clamp(8rem, 14vh, 11rem)
+    clamp(1.25rem, 4vw, 3rem)
+    clamp(4rem, 7vh, 6rem)
+    clamp(1.25rem, 5vw, 5rem);
+}
+@media (max-width: 900px) {
+  .hero-inner {
+    padding: clamp(7rem, 12vh, 9rem) clamp(1.25rem, 4vw, 3rem) 3rem;
+    text-align: center;
+  }
+}
+
+/* Marco fotográfico derecho */
+.hero-frame-wrap {
+  position: relative;
+  height: 100%;
+  min-height: 100vh;
+  overflow: hidden;
+}
+.hero-frame-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(to right, var(--bg) 0%, transparent 28%),
+    linear-gradient(to bottom, var(--bg) 0%, transparent 8%, transparent 92%, var(--bg) 100%);
+  z-index: 2;
+  pointer-events: none;
+}
+.hero-frame-img {
+  width: 100%; height: 100%;
+  object-fit: cover; object-position: center 30%;
+  filter: saturate(.80) brightness(.92);
+}
+@media (max-width: 900px) {
+  .hero-frame-wrap { display: none; }
+}
+
+/* ── Eyebrow ── */
+.hero-eye {
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 700;
+  letter-spacing: .20em;
+  text-transform: uppercase;
+  color: var(--forest);
+  opacity: .70;
+  margin-bottom: 1.5rem;
+}
+
+/* ── Heading ── */
+.hero-h1 {
+  font-family: var(--font-display);
+  font-size: var(--t-hero);
+  line-height: .88;
+  letter-spacing: .01em;
+  color: var(--text);
+  margin-bottom: 2rem;
+}
+.hero-gold-word { color: var(--forest); }
+
+/* ── Body ── */
+.hero-desc {
+  font-family: var(--font-body);
+  font-size: var(--t-lg);
+  line-height: 1.75;
+  color: var(--text-muted);
+  max-width: 44ch;
+  margin-bottom: clamp(2rem, 3.5vw, 3rem);
+}
+@media (max-width: 900px) {
+  .hero-desc { max-width: 100%; margin-left: auto; margin-right: auto; }
+}
+
+/* ── CTAs ── */
+.hero-ctas { display: flex; align-items: center; gap: 1rem; flex-wrap: wrap; }
+@media (max-width: 900px) {
+  .hero-ctas { justify-content: center; }
+}
+
+.btn-prim {
+  display: inline-flex; align-items: center; gap: 9px;
+  background: var(--forest); color: #fff;
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  text-decoration: none; padding: 13px 30px; border-radius: var(--r-pill);
+  transition: background .2s, transform .2s var(--ease), box-shadow .2s;
+  cursor: pointer;
+}
+.btn-prim:hover {
+  background: var(--forest-m);
+  transform: translateY(-2px);
+  box-shadow: var(--sh-lg);
+}
+/* Emil: buttons must feel responsive to press — scale confirms the interface heard the user */
+.btn-prim:active  { transform: scale(0.97) translateY(0); transition-duration: 80ms; }
+.btn-ghost-sm {
+  display: inline-flex; align-items: center;
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+  padding: 13px 28px; border-radius: var(--r-pill);
+  border: 1px solid var(--border);
+  transition: color .2s, border-color .2s, transform .2s var(--ease);
+  cursor: pointer;
+}
+.btn-ghost-sm:hover {
+  color: var(--forest);
+  border-color: var(--border-active);
+  transform: translateY(-2px);
+}
+.btn-ghost-sm:active { transform: scale(0.97); transition-duration: 80ms; }
+
+/* ── Hero float card ── */
+.hero-float {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 1.2rem 1.8rem;
+  box-shadow: var(--sh);
+}
+
+/* ── Animaciones de entrada ── */
+@keyframes fade-up-in {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+.anim-1 { animation: fade-up-in .70s var(--ease-expo) .05s both; }
+.anim-2 { animation: fade-up-in .80s var(--ease-expo) .18s both; }
+.anim-3 { animation: fade-up-in .80s var(--ease-expo) .34s both; }
+.anim-4 { animation: fade-up-in .70s var(--ease-expo) .50s both; }
+.anim-5 { animation: fade-up-in .60s var(--ease-expo) .68s both; }
+
+/* ── Portal section (cards bajo el hero) ── */
+.portal-section {
+  padding:
+    clamp(5rem, 8vh, 8rem)
+    clamp(1.25rem, 4vw, 3rem)
+    clamp(4rem, 7vw, 7rem);
+  max-width: 1400px; margin: 0 auto;
+}
+.portal-meta { margin-bottom: clamp(2rem, 3.5vw, 3.5rem); }
+.portal-meta-title {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl);
+  letter-spacing: .03em;
+  color: var(--text);
+  margin-top: .8rem;
+}
+
+/* ── Escenario 3D cards ── */
+.cards-stage {
+  display: flex; gap: clamp(.75rem, 1.5vw, 1.5rem);
+  align-items: stretch; min-height: clamp(440px, 55vh, 620px);
+  perspective: 1800px; perspective-origin: 50% 32%;
+}
+.card-slot {
+  flex: 1 1 0; min-width: 0;
+  transform-style: preserve-3d;
+  /* Emil: 550ms for depth hover shift drags — 320ms keeps the 3D feel without lag */
+  transition: transform 0.32s var(--ease);
+  position: relative;
+}
+.card-slot[data-index="0"] { transform: rotateY(5deg)  rotateX(1deg); }
+.card-slot[data-index="1"] { transform:                rotateX(1deg); }
+.card-slot[data-index="2"] { transform: rotateY(-5deg) rotateX(1deg); }
+.card-slot:hover {
+  transform: translateZ(28px) rotateX(0) rotateY(0);
+  z-index: 10;
+}
+
+/* ── Eyebrow utility ── */
+.eyebrow {
+  font-family: var(--font-ui);
+  font-size: var(--t-xs);
+  font-weight: 600;
+  letter-spacing: .22em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+/* ── Responsive general ── */
+@media (max-width: 768px) {
+  .cards-stage {
+    flex-direction: column;
+    min-height: unset;
+    perspective: none;
+  }
+  .card-slot { transform: none !important; min-height: 280px; }
+}
+
+/* ════════════════════════════════════════════
+   Section header utility
+════════════════════════════════════════════ */
+.sec-eyebrow {
+  display: inline-flex; align-items: center; gap: .6rem;
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 700; letter-spacing: .18em; text-transform: uppercase;
+  color: var(--forest); margin-bottom: .9rem;
+}
+.sec-eyebrow::before {
+  content: ''; display: inline-block;
+  width: 24px; height: 1.5px; background: var(--forest);
+}
+.sec-h2 {
+  font-family: var(--font-display);
+  font-size: var(--t-3xl); letter-spacing: .02em;
+  color: var(--text); line-height: .95;
+}
+.sec-sub {
+  font-family: var(--font-body);
+  font-size: var(--t-base); color: var(--text-muted);
+}
+
+/* ════════════════════════════════════════════
+   Portal Card — CTA button reacts to card hover
+   (Emil: every interactive element needs considered hover states)
+════════════════════════════════════════════ */
+.portal-cta-btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 700; letter-spacing: .14em; text-transform: uppercase;
+  color: #0D3B24; background: #E8960F;
+  padding: 10px 22px; border-radius: 999px;
+  width: fit-content;
+  transition: background .2s, transform .2s var(--ease), box-shadow .2s;
+}
+.portal-card-wrap:hover .portal-cta-btn {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(232,150,15,.40);
+  background: #D4820D;
+}
+
+/* ════════════════════════════════════════════
+   SiteNav — CSS-native hover (Emil: no inline JS handlers for style)
+════════════════════════════════════════════ */
+.nav-home-link {
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  color: var(--text-muted); text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: color .2s var(--ease);
+}
+.nav-home-link:hover { color: var(--forest); }
+.nav-home-link svg { transition: transform .2s var(--ease); }
+.nav-home-link:hover svg { transform: translateX(-2px); }
+
+.nav-section-link {
+  font-family: var(--font-ui); font-size: var(--t-xs);
+  font-weight: 600; letter-spacing: .12em; text-transform: uppercase;
+  text-decoration: none; padding: 6px 14px;
+  border-radius: var(--r-pill);
+  transition: color .2s, background .2s, border-color .2s;
+  display: block;
+}
+.nav-section-link[data-active="true"] {
+  color: var(--forest); background: var(--forest-lt);
+  border: 1px solid var(--border);
+}
+.nav-section-link[data-active="false"] {
+  color: var(--text-muted); background: transparent;
+  border: 1px solid transparent;
+}
+.nav-section-link[data-active="false"]:hover {
+  color: var(--forest); background: var(--forest-lt);
+  border-color: var(--border-subtle);
+}
