@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: iiap-investigaciones-web
+    runtime: node
+    plan: free
+    region: oregon          # us-west — cambia a frankfurt si prefieres latencia EU
+    buildCommand: npm ci && npm run build
+    startCommand: npm start
+    healthCheckPath: /
+    autoDeploy: true        # redeploy automático al hacer push a main
+
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: NODE_VERSION
+        value: 20.11.0
