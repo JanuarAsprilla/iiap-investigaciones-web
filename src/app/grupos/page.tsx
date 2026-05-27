@@ -9,7 +9,6 @@ import TalentoSection       from "./_sections/TalentoSection";
 import AudiovisualSection   from "./_sections/AudiovisualSection";
 import TimelineSection      from "./_sections/TimelineSection";
 import ReconocimientoSection from "./_sections/ReconocimientoSection";
-import ComunidadSection     from "./_sections/ComunidadSection";
 
 /* Carousel background images for the hero */
 const heroBgs = [
@@ -159,7 +158,6 @@ export default function GruposPage() {
         <AudiovisualSection />
         <TimelineSection />
         <ReconocimientoSection />
-        <ComunidadSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>

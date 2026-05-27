@@ -231,47 +231,6 @@ export default function CentrosPage() {
           </div>
         </section>
 
-        {/* ── Sede Técnica Doña Josefa — GIF full-viewport ── */}
-        <section
-          aria-labelledby="sede-centros-heading"
-          style={{
-            position: "relative",
-            background: "#000",
-            minHeight: "100vh",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            overflow: "hidden",
-          }}
-        >
-          {/* GIF — natural aspect ratio, width 100%, smooth upscale */}
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src="/assets/comunes/YDRAY-YDRAY-Sede-Tecnica_02.gif"
-            alt="Vista de la Sede Técnica Doña Josefa del IIAP"
-            style={{
-              width: "100%",
-              height: "auto",
-              display: "block",
-              imageRendering: "auto",
-            }}
-          />
-
-          {/* Gradient top fade into previous section */}
-          <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, right: 0, height: "80px", background: "linear-gradient(to bottom, rgba(9,40,25,.85), transparent)", pointerEvents: "none" }} />
-
-          {/* Gradient bottom + label */}
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "35%", background: "linear-gradient(to top, rgba(0,0,0,.80) 0%, transparent 100%)", pointerEvents: "none" }} />
-          <div style={{ position: "absolute", bottom: "clamp(1.5rem,3vw,3rem)", left: 0, right: 0, zIndex: 2, textAlign: "center" }}>
-            <p style={{ fontFamily: "var(--font-ui)", fontSize: ".62rem", fontWeight: 800, letterSpacing: "4px", textTransform: "uppercase", color: "var(--amber)", marginBottom: ".5rem" }}>
-              Sede Técnica
-            </p>
-            <h2 id="sede-centros-heading" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(2.2rem,5vw,4.5rem)", color: "#fff", lineHeight: .9, letterSpacing: ".01em" }}>
-              DOÑA JOSEFA
-            </h2>
-          </div>
-        </section>
-
         {/* ── Instalaciones ── */}
         <section aria-labelledby="instalaciones-heading" style={{ padding: "clamp(4rem,7vw,7rem) clamp(1.25rem,4vw,3rem)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -281,8 +240,8 @@ export default function CentrosPage() {
               <p className="sec-sub" style={{ marginTop: ".6rem" }}>Haga clic en cada instalación para conocer más detalles</p>
             </div>
 
-            <div id="inst-grid" style={{ display: "grid", gridTemplateColumns: "repeat(3,1fr)", gap: "3px", borderRadius: "var(--r-lg)", overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
-              {instalaciones.map((inst) => (
+            <div id="inst-grid" style={{ display: "grid", gridTemplateColumns: "repeat(2,1fr)", gap: "3px", borderRadius: "var(--r-lg)", overflow: "hidden", border: "1px solid var(--border-subtle)" }}>
+              {instalaciones.filter((inst) => inst.id !== "oficinas").map((inst) => (
                 <div
                   key={inst.id}
                   className="gc-card"

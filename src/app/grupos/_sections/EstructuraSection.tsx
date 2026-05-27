@@ -20,6 +20,12 @@ const coordinadores = [
   { nombre: "Edsson Nagle Ramírez",          cargo: "Lab. de Datos",        foto: "/assets/comunes/EDSSON_NAGLE.jpeg" },
 ];
 
+const gestores = [
+  { nombre: "Gestor Subregión 1", cargo: "Gestor Subregional", foto: "/assets/comunes/DIRECTOR.jpeg" },
+  { nombre: "Gestor Subregión 2", cargo: "Gestor Subregional", foto: "/assets/comunes/DIRECTOR.jpeg" },
+  { nombre: "Gestor Subregión 3", cargo: "Gestor Subregional", foto: "/assets/comunes/DIRECTOR.jpeg" },
+];
+
 /* ── Hero Portrait Card ── */
 function OrgHeroCard({
   nombre, cargo, foto, size = "lg",
@@ -127,6 +133,17 @@ export default function EstructuraSection() {
             ))}
           </div>
 
+          <Connector />
+          <SpreadLine />
+
+          {/* ── GESTORES ── */}
+          <p className="org-level-label">Gestores de las Subregiones</p>
+          <div id="org-gestores">
+            {gestores.map((g) => (
+              <OrgSmCard key={g.nombre} {...g} />
+            ))}
+          </div>
+
         </div>
       </div>
 
@@ -162,9 +179,9 @@ export default function EstructuraSection() {
           position: absolute; inset: 0;
           background: linear-gradient(
             to bottom,
-            transparent 30%,
-            rgba(9,40,25,.65) 65%,
-            rgba(9,40,25,.95) 100%
+            transparent 45%,
+            rgba(9,40,25,.60) 72%,
+            rgba(9,40,25,.93) 100%
           );
         }
         .org-hero-info {
@@ -214,9 +231,9 @@ export default function EstructuraSection() {
           position: absolute; inset: 0;
           background: linear-gradient(
             to bottom,
-            transparent 35%,
-            rgba(9,40,25,.70) 65%,
-            rgba(9,40,25,.96) 100%
+            transparent 55%,
+            rgba(9,40,25,.65) 76%,
+            rgba(9,40,25,.95) 100%
           );
         }
         .org-sm-info {
@@ -251,15 +268,23 @@ export default function EstructuraSection() {
           background: linear-gradient(to right, transparent 5%, var(--border-active) 50%, transparent 95%);
         }
 
+        /* ── Gestores grid ── */
+        #org-gestores {
+          display: grid; grid-template-columns: repeat(3,1fr);
+          gap: 12px; width: 100%; max-width: 740px;
+        }
+
         /* ── Responsive ── */
         @media(max-width:1000px){
           #org-coords { grid-template-columns: repeat(3,1fr) !important; }
+          #org-gestores { grid-template-columns: repeat(3,1fr) !important; }
           .org-sm-card { height: 240px; }
         }
         @media(max-width:640px){
           .org-hero-lg { width: 260px; height: 320px; }
           .org-hero-md { width: 230px; height: 280px; }
           #org-coords { grid-template-columns: repeat(2,1fr) !important; }
+          #org-gestores { grid-template-columns: repeat(2,1fr) !important; }
           .org-sm-card { height: 220px; }
           .org-spread-line { width: 95%; }
         }

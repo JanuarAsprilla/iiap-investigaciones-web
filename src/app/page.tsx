@@ -25,12 +25,6 @@ const portalSections = [
   },
 ];
 
-const stats = [
-  { valor: "1993", etiqueta: "Fundación" },
-  { valor: "3",    etiqueta: "Ejes estratégicos" },
-  { valor: "18+",  etiqueta: "Investigadores" },
-];
-
 export default function HomePage() {
   return (
     <>
@@ -83,44 +77,6 @@ export default function HomePage() {
               </a>
             </div>
 
-            {/* Stats flotantes */}
-            <div
-              className="anim-5"
-              style={{
-                display: "flex",
-                gap: "2.5rem",
-                marginTop: "clamp(3rem, 5vw, 4.5rem)",
-                flexWrap: "wrap",
-              }}
-            >
-              {stats.map((stat) => (
-                <div key={stat.etiqueta}>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-display)",
-                      fontSize: "var(--t-2xl)",
-                      color: "var(--forest)",
-                      lineHeight: 1,
-                      letterSpacing: ".04em",
-                    }}
-                  >
-                    {stat.valor}
-                  </p>
-                  <p
-                    style={{
-                      fontFamily: "var(--font-ui)",
-                      fontSize: "var(--t-xs)",
-                      color: "var(--text-muted)",
-                      letterSpacing: ".16em",
-                      textTransform: "uppercase",
-                      marginTop: ".3rem",
-                    }}
-                  >
-                    {stat.etiqueta}
-                  </p>
-                </div>
-              ))}
-            </div>
           </div>
 
           {/* Columna derecha — foto */}

@@ -146,50 +146,6 @@ export default function PlaneacionPage() {
               </p>
             </div>
 
-            {/* ── RIGHT — Document covers ── */}
-            <div style={{ position: "relative", display: "flex", justifyContent: "center" }} aria-hidden="true">
-              {/* POA behind — tilted right */}
-              <div style={{
-                position: "absolute",
-                top: "1.5rem", right: "-2rem",
-                width: "78%",
-                borderRadius: "16px",
-                overflow: "hidden",
-                border: "1.5px solid rgba(232,150,15,.35)",
-                boxShadow: "0 28px 70px rgba(0,0,0,.60)",
-                transform: "rotate(5deg)",
-                background: "linear-gradient(150deg, var(--forest-m) 0%, var(--forest) 100%)",
-              }}>
-                <div style={{ padding: "2.5rem 2rem 2rem", minHeight: "220px", display: "flex", flexDirection: "column", justifyContent: "flex-end" }}>
-                  <span style={{ fontFamily: "var(--font-ui)", fontSize: ".6rem", fontWeight: 800, letterSpacing: "2.5px", textTransform: "uppercase", color: "var(--amber)", display: "block", marginBottom: ".6rem" }}>POA 2025</span>
-                  <p style={{ fontFamily: "var(--font-display)", fontSize: "1.45rem", color: "#fff", lineHeight: 1 }}>PLAN OPERATIVO<br/>ANUAL</p>
-                </div>
-              </div>
-
-              {/* PICIA front — tilted left */}
-              <div style={{
-                position: "relative",
-                width: "90%",
-                borderRadius: "16px",
-                overflow: "hidden",
-                border: "2px solid rgba(232,150,15,.65)",
-                boxShadow: "0 48px 100px rgba(0,0,0,.70), 0 0 0 1px rgba(232,150,15,.20)",
-                transform: "rotate(-4deg)",
-                zIndex: 2,
-              }}>
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
-                  src="/assets/comunes/PICIA-2023-2026.jpg"
-                  alt="Portada PICIA 2023-2026"
-                  style={{ width: "100%", display: "block", objectFit: "cover" }}
-                />
-                {/* Shimmer bar */}
-                <div style={{ position: "absolute", top: 0, left: 0, right: 0, height: "3px", background: "linear-gradient(to right, var(--amber), rgba(255,255,255,.8), var(--amber-d))", backgroundSize: "200% 100%", animation: "shimBar 3s linear infinite" }} />
-              </div>
-
-              {/* Amber halo behind cards */}
-              <div style={{ position: "absolute", inset: "-30%", background: "radial-gradient(ellipse at 60% 50%, rgba(232,150,15,.18) 0%, transparent 65%)", pointerEvents: "none", zIndex: 0 }} />
-            </div>
 
           </div>
 
