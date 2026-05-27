@@ -4,6 +4,7 @@ import { useState, useCallback, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
 import { infoCentro, instalaciones, bioespacios } from "@/data/centros";
 import type { InstalacionCentro, Bioespacio } from "@/lib/types";
+import ReconocimientoSection from "../grupos/_sections/ReconocimientoSection";
 
 /* ─────────────────────────────────────────
    Modal Instalación — Warm Light
@@ -320,6 +321,8 @@ export default function CentrosPage() {
             section[aria-labelledby="bioespacios-heading"] > div > div:last-child{grid-template-columns:1fr!important;}
           }`}</style>
         </section>
+
+        <ReconocimientoSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>

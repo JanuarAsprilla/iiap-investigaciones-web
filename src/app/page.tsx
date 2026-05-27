@@ -17,11 +17,18 @@ const portalSections = [
     imageSrc: "/assets/centros/SENDERO.jpeg",
   },
   {
+    label: "Componentes",
+    description:
+      "Cinco componentes programáticos de investigación y cuatro grupos especializados que articulan ciencia y territorio en el Pacífico.",
+    href: "/componentes",
+    imageSrc: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+  },
+  {
     label: "Grupos de Investigación",
     description:
-      "Componentes programáticos y grupos de investigación que articulan el conocimiento científico con las comunidades del Pacífico.",
+      "Equipo directivo, coordinadores de componente y gestores subregionales comprometidos con la conservación del Chocó Biogeográfico.",
     href: "/grupos",
-    imageSrc: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    imageSrc: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
   },
 ];
 
@@ -121,7 +128,7 @@ export default function HomePage() {
                 />
                 Portal de investigación
               </p>
-              <h2 className="portal-meta-title">Tres ejes estratégicos</h2>
+              <h2 className="portal-meta-title">Cuatro ejes estratégicos</h2>
             </div>
 
             {/* Escenario 3D */}

@@ -2,26 +2,20 @@
 
 import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
-import ComponentesSection   from "./_sections/ComponentesSection";
-import GruposSection        from "./_sections/GruposSection";
-import EstructuraSection    from "./_sections/EstructuraSection";
-import TalentoSection       from "./_sections/TalentoSection";
-import AudiovisualSection   from "./_sections/AudiovisualSection";
-import TimelineSection      from "./_sections/TimelineSection";
-import ReconocimientoSection from "./_sections/ReconocimientoSection";
+import ComponentesSection from "../grupos/_sections/ComponentesSection";
+import GruposSection      from "../grupos/_sections/GruposSection";
 
 /* Carousel background images for the hero */
 const heroBgs = [
   "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-  "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
   "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+  "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
   "/assets/grupos/LABORATORIO_DATOS.jpeg",
 ];
 
-export default function GruposPage() {
+export default function ComponentesPage() {
   const [bgIndex, setBgIndex] = useState(0);
 
-  /* Auto-cycle every 4 s */
   useEffect(() => {
     const id = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroBgs.length);
@@ -36,16 +30,15 @@ export default function GruposPage() {
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
         {/* ════════════════════════════════════════
-            HERO — Carousel background + Forest overlay
+            HERO — Carousel
         ════════════════════════════════════════ */}
         <section
-          aria-labelledby="grupos-heading"
+          aria-labelledby="comp-page-heading"
           style={{
             position: "relative", overflow: "hidden",
             padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)",
           }}
         >
-          {/* ── Carousel images — crossfade ── */}
           {heroBgs.map((src, i) => (
             <div
               key={src}
@@ -62,27 +55,22 @@ export default function GruposPage() {
             />
           ))}
 
-          {/* ── Dark forest overlay ── */}
           <div
             aria-hidden="true"
             style={{
               position: "absolute", inset: 0,
-              background:
-                "linear-gradient(150deg, rgba(13,59,36,.85) 0%, rgba(9,40,25,.90) 100%)",
+              background: "linear-gradient(150deg, rgba(13,59,36,.85) 0%, rgba(9,40,25,.90) 100%)",
             }}
           />
-
-          {/* ── Amber glow ── */}
           <div
             aria-hidden="true"
             style={{
               position: "absolute", inset: 0,
-              background: "radial-gradient(ellipse at 75% 50%, rgba(232,150,15,.12) 0%, transparent 55%)",
+              background: "radial-gradient(ellipse at 30% 50%, rgba(232,150,15,.12) 0%, transparent 55%)",
               pointerEvents: "none",
             }}
           />
 
-          {/* ── Content ── */}
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1400px", margin: "0 auto" }}>
             <span
               style={{
@@ -95,11 +83,11 @@ export default function GruposPage() {
                 marginBottom: "1.25rem",
               }}
             >
-              Ciencia y Comunidad
+              Ciencia del Pacífico
             </span>
 
             <h1
-              id="grupos-heading"
+              id="comp-page-heading"
               style={{
                 fontFamily: "var(--font-display)",
                 fontSize: "var(--t-4xl)",
@@ -109,9 +97,9 @@ export default function GruposPage() {
                 marginBottom: "1.25rem",
               }}
             >
-              GRUPOS DE
+              COMPONENTES Y
               <br />
-              <span style={{ color: "var(--amber)" }}>INVESTIGACIÓN</span>
+              <span style={{ color: "var(--amber)" }}>GRUPOS</span>
             </h1>
 
             <p
@@ -123,11 +111,11 @@ export default function GruposPage() {
                 marginBottom: "2rem",
               }}
             >
-              Cinco componentes programáticos y cuatro grupos que articulan el conocimiento
-              científico con las comunidades étnicas del Chocó Biogeográfico.
+              Cinco componentes programáticos y cuatro grupos de investigación que
+              articulan el conocimiento científico con las comunidades étnicas del
+              Chocó Biogeográfico.
             </p>
 
-            {/* Carousel indicator dots */}
             <div style={{ display: "flex", gap: "8px" }} aria-hidden="true">
               {heroBgs.map((_, i) => (
                 <button
@@ -150,23 +138,17 @@ export default function GruposPage() {
           </div>
         </section>
 
-        {/* ── Sections ── */}
-        <ComponentesSection
-          titulo="GRUPOS DE INVESTIGACIÓN"
-          subtitulo="Colectivos especializados que lideran la generación de conocimiento en el Pacífico colombiano"
-        />
+        {/* ── Componentes flip-cards ── */}
+        <ComponentesSection />
+
+        {/* ── Grupos de investigación ── */}
         <GruposSection />
-        <EstructuraSection />
-        <TalentoSection />
-        <AudiovisualSection />
-        <TimelineSection />
-        <ReconocimientoSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>
-              © {new Date().getFullYear()} IIAP — Grupos de Investigación
+              © {new Date().getFullYear()} IIAP — Componentes y Grupos de Investigación
             </p>
             <a href="/" style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)", textDecoration: "none" }}>
               ← Volver al portal

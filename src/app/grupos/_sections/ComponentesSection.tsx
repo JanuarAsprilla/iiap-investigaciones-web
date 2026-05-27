@@ -56,7 +56,13 @@ function FlipCard({ comp }: { comp: ComponenteInvestigacion }) {
 }
 
 /* ── Section ── */
-export default function ComponentesSection() {
+export default function ComponentesSection({
+  titulo = "COMPONENTES",
+  subtitulo = "Pase el cursor sobre cada componente para descubrir su misión científica",
+}: {
+  titulo?: string;
+  subtitulo?: string;
+}) {
   return (
     <section
       aria-labelledby="comp-heading"
@@ -66,9 +72,9 @@ export default function ComponentesSection() {
 
         {/* Header — centered */}
         <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,4vw,3.5rem)" }}>
-          <h2 id="comp-heading" className="sec-h2">COMPONENTES</h2>
+          <h2 id="comp-heading" className="sec-h2">{titulo}</h2>
           <p className="sec-sub" style={{ marginTop: ".5rem" }}>
-            Pase el cursor sobre cada componente para descubrir su misión científica
+            {subtitulo}
           </p>
         </div>
 
