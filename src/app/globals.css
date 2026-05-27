@@ -536,7 +536,7 @@ img, video { max-width: 100%; height: auto; display: block; }
     clamp(4rem, 7vw, 7rem);
   max-width: 1400px; margin: 0 auto;
 }
-.portal-meta { margin-bottom: clamp(2rem, 3.5vw, 3.5rem); }
+.portal-meta { margin-bottom: clamp(2rem, 3.5vw, 3.5rem); text-align: center; }
 .portal-meta-title {
   font-family: var(--font-display);
   font-size: var(--t-3xl);
@@ -548,7 +548,7 @@ img, video { max-width: 100%; height: auto; display: block; }
 /* ── Escenario 3D cards ── */
 .cards-stage {
   display: flex; gap: clamp(.75rem, 1.5vw, 1.5rem);
-  align-items: stretch; min-height: clamp(440px, 55vh, 620px);
+  align-items: stretch; min-height: clamp(440px, 55vh, 560px);
   perspective: 1800px; perspective-origin: 50% 32%;
 }
 .card-slot {
@@ -558,9 +558,10 @@ img, video { max-width: 100%; height: auto; display: block; }
   transition: transform 0.32s var(--ease);
   position: relative;
 }
-.card-slot[data-index="0"] { transform: rotateY(5deg)  rotateX(1deg); }
-.card-slot[data-index="1"] { transform:                rotateX(1deg); }
-.card-slot[data-index="2"] { transform: rotateY(-5deg) rotateX(1deg); }
+.card-slot[data-index="0"] { transform: rotateY(6deg)  rotateX(1deg); }
+.card-slot[data-index="1"] { transform: rotateY(2deg)  rotateX(1deg); }
+.card-slot[data-index="2"] { transform: rotateY(-2deg) rotateX(1deg); }
+.card-slot[data-index="3"] { transform: rotateY(-6deg) rotateX(1deg); }
 .card-slot:hover {
   transform: translateZ(28px) rotateX(0) rotateY(0);
   z-index: 10;

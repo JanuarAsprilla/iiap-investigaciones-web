@@ -135,4 +135,18 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
     ],
     coordinador: "Lady Yulenis Vargas Porras",
   },
+  {
+    id: "gi-05",
+    codigo: "GI-05",
+    nombre: "Biodiversidad y Recursos Naturales del Pacífico",
+    descripcion:
+      "Inventaría, caracteriza y monitorea la diversidad biológica del Chocó Biogeográfico, generando líneas base que sustentan políticas de conservación y uso sostenible de la biodiversidad.",
+    lineasTematicas: [
+      "Inventarios florísticos y faunísticos",
+      "Monitoreo de especies amenazadas",
+      "Valoración de servicios ecosistémicos",
+      "Estrategias de conservación in situ",
+    ],
+    coordinador: "Por definir",
+  },
 ];

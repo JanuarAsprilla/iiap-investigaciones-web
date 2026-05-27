@@ -5,28 +5,28 @@ const portalSections = [
   {
     label: "Planeación",
     description:
-      "Marco estratégico cuatrienal y plan operativo que guían la investigación ambiental del IIAP hacia el Chocó Biogeográfico.",
+      "Lineamientos estratégicos, plan operativo anual y programas de investigación que orientan el quehacer científico del IIAP.",
     href: "/planeacion",
     imageSrc: "/assets/comunes/YDRAY-YDRAY-Sede-Tecnica_02.gif",
   },
   {
     label: "Centros de Investigación",
     description:
-      "Infraestructura científica de campo: instalaciones, bioespacios y laboratorios para investigación en biodiversidad tropical.",
+      "Sede técnica con bioespacios, laboratorios e infraestructura de campo para la investigación en biodiversidad del Pacífico.",
     href: "/centros",
     imageSrc: "/assets/centros/SENDERO.jpeg",
   },
   {
     label: "Componentes",
     description:
-      "Cinco componentes programáticos de investigación y cuatro grupos especializados que articulan ciencia y territorio en el Pacífico.",
+      "Cuatro componentes programáticos y un Laboratorio de Datos que articulan la ciencia ambiental con el territorio y las comunidades del Pacífico.",
     href: "/componentes",
     imageSrc: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
   },
   {
     label: "Grupos de Investigación",
     description:
-      "Equipo directivo, coordinadores de componente y gestores subregionales comprometidos con la conservación del Chocó Biogeográfico.",
+      "Cinco grupos especializados que generan conocimiento desde y para las comunidades étnicas y la biodiversidad del Chocó Biogeográfico.",
     href: "/grupos",
     imageSrc: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
   },
@@ -62,7 +62,7 @@ export default function HomePage() {
             {/* Descriptor */}
             <p className="hero-desc anim-3">
               Conocimiento científico para la biodiversidad y las comunidades
-              del Chocó Biogeográfico. Tres ejes de trabajo que articulan
+              del Chocó Biogeográfico. Cuatro ejes de trabajo que articulan
               planeación, territorio y ciencia.
             </p>
 

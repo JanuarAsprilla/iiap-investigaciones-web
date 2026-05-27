@@ -2,8 +2,11 @@
 
 import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
-import ComponentesSection from "../grupos/_sections/ComponentesSection";
-import GruposSection      from "../grupos/_sections/GruposSection";
+import ComponentesSection  from "../grupos/_sections/ComponentesSection";
+import EstructuraSection   from "../grupos/_sections/EstructuraSection";
+import TalentoSection      from "../grupos/_sections/TalentoSection";
+import AudiovisualSection  from "../grupos/_sections/AudiovisualSection";
+import TimelineSection     from "../grupos/_sections/TimelineSection";
 
 /* Carousel background images for the hero */
 const heroBgs = [
@@ -97,9 +100,9 @@ export default function ComponentesPage() {
                 marginBottom: "1.25rem",
               }}
             >
-              COMPONENTES Y
+              COMPONENTES DE
               <br />
-              <span style={{ color: "var(--amber)" }}>GRUPOS</span>
+              <span style={{ color: "var(--amber)" }}>INVESTIGACIÓN</span>
             </h1>
 
             <p
@@ -111,7 +114,7 @@ export default function ComponentesPage() {
                 marginBottom: "2rem",
               }}
             >
-              Cinco componentes programáticos y cuatro grupos de investigación que
+              Cuatro componentes programáticos y un Laboratorio de Datos que
               articulan el conocimiento científico con las comunidades étnicas del
               Chocó Biogeográfico.
             </p>
@@ -141,8 +144,17 @@ export default function ComponentesPage() {
         {/* ── Componentes flip-cards ── */}
         <ComponentesSection />
 
-        {/* ── Grupos de investigación ── */}
-        <GruposSection />
+        {/* ── Equipo de investigación ── */}
+        <EstructuraSection />
+
+        {/* ── Talento humano ── */}
+        <TalentoSection />
+
+        {/* ── Audiovisual ── */}
+        <AudiovisualSection />
+
+        {/* ── Proceso de investigación ── */}
+        <TimelineSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>

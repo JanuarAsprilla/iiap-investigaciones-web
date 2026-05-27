@@ -9,6 +9,7 @@ const grupoImages: Record<string, string> = {
   "gi-02": "/assets/centros/SENDERO.jpeg",
   "gama":  "/assets/grupos/LABORATORIO_DATOS.jpeg",
   "gi-04": "/assets/centros/VIVERO.jpeg",
+  "gi-05": "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
 };
 
 function GrupoCard({ gi, onClick }: { gi: GrupoInvestigacion; onClick: () => void }) {
