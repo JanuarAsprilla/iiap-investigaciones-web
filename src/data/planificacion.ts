@@ -25,11 +25,35 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     tipo: "POA",
     icono: "📅",
   },
+  {
+    id: "penia-2021-2030",
+    titulo: "PENIA 2021–2030",
+    subtitulo: "Plan Estratégico Nacional de Investigación Ambiental",
+    anio: "2021–2030",
+    descripcion:
+      "Marco nacional que orienta la investigación ambiental en Colombia para la próxima década. Define prioridades temáticas, territorios estratégicos y lineamientos de política que el IIAP incorpora en su agenda científica para el Pacífico colombiano.",
+    url: "https://iiap.org.co",
+    fechaPublicacion: "2021-01-01",
+    tipo: "PENIA",
+    icono: "🌿",
+  },
+  {
+    id: "pedi-2016-2026",
+    titulo: "PEDI 2016–2026",
+    subtitulo: "Plan Estratégico de Desarrollo Institucional",
+    anio: "2016–2026",
+    descripcion:
+      "Plan decenal que establece la visión, misión y objetivos estratégicos del IIAP a largo plazo. Articula el fortalecimiento institucional, la gestión del conocimiento y el relacionamiento con comunidades y entidades del orden nacional e internacional.",
+    url: "https://iiap.org.co",
+    fechaPublicacion: "2016-01-01",
+    tipo: "PEDI",
+    icono: "🏛️",
+  },
 ];
 
 export const estadisticasIIAP = [
   { valor: "65+", label: "Proyectos Activos", descripcion: "En ejecución 2024-2025" },
   { valor: "18+", label: "Investigadores", descripcion: "Planta profesional" },
-  { valor: "4", label: "Grupos de Investigación", descripcion: "Reconocidos internamente" },
+  { valor: "5", label: "Grupos de Investigación", descripcion: "Reconocidos internamente" },
   { valor: "5", label: "Componentes Programáticos", descripcion: "Líneas estratégicas" },
 ];

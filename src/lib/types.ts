@@ -10,7 +10,7 @@ export interface DocumentoPlanificacion {
   descripcion: string;
   url: string;
   fechaPublicacion: string;
-  tipo: "PICIA" | "POA" | "INFORME" | "RESOLUCIÓN";
+  tipo: "PICIA" | "POA" | "PENIA" | "PEDI" | "INFORME" | "RESOLUCIÓN";
   icono: string;
 }
 
