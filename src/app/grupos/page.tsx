@@ -4,10 +4,6 @@ import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
 import ComponentesSection   from "./_sections/ComponentesSection";
 import GruposSection        from "./_sections/GruposSection";
-import EstructuraSection    from "./_sections/EstructuraSection";
-import TalentoSection       from "./_sections/TalentoSection";
-import AudiovisualSection   from "./_sections/AudiovisualSection";
-import TimelineSection      from "./_sections/TimelineSection";
 
 /* Carousel background images for the hero */
 const heroBgs = [
@@ -155,10 +151,6 @@ export default function GruposPage() {
           subtitulo="Colectivos especializados que lideran la generación de conocimiento en el Pacífico colombiano"
         />
         <GruposSection />
-        <EstructuraSection />
-        <TalentoSection />
-        <AudiovisualSection />
-        <TimelineSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
