@@ -232,6 +232,8 @@ export default function CentrosPage() {
           </div>
         </section>
 
+        <ReconocimientoSection />
+
         {/* ── Instalaciones ── */}
         <section aria-labelledby="instalaciones-heading" style={{ padding: "clamp(4rem,7vw,7rem) clamp(1.25rem,4vw,3rem)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
@@ -321,8 +323,6 @@ export default function CentrosPage() {
             section[aria-labelledby="bioespacios-heading"] > div > div:last-child{grid-template-columns:1fr!important;}
           }`}</style>
         </section>
-
-        <ReconocimientoSection />
 
         {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
