@@ -5,10 +5,11 @@ import { usePathname } from "next/navigation";
 import { useEffect, useState } from "react";
 
 const sections = [
-  { href: "/planeacion",   label: "Planeación" },
-  { href: "/centros",      label: "Centros" },
-  { href: "/componentes",  label: "Componentes" },
-  { href: "/grupos",       label: "Grupos" },
+  { href: "/planeacion",    label: "Planeación" },
+  { href: "/centros",       label: "Centros" },
+  { href: "/componentes",   label: "Componentes" },
+  { href: "/grupos",        label: "Grupos" },
+  { href: "/actualidades",  label: "Actualidades" },
 ];
 
 export default function SiteNav() {

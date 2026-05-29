@@ -18,6 +18,11 @@ import type { NextRequest } from "next/server";
  * If this app ever migrates to full SSR (force-dynamic), re-introduce nonces.
  */
 export function middleware(request: NextRequest) {
+  // Sanity Studio manages its own CSP — skip our headers there
+  if (request.nextUrl.pathname.startsWith("/studio")) {
+    return NextResponse.next();
+  }
+
   const response = NextResponse.next();
 
   const isDev = process.env.NODE_ENV === "development";
@@ -31,10 +36,12 @@ export function middleware(request: NextRequest) {
       ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
       : "script-src 'self' 'unsafe-inline'",
     "style-src 'self' 'unsafe-inline'",
-    "img-src 'self' data: https:",
+    "img-src 'self' data: https: https://cdn.sanity.io",
     "font-src 'self'",
     "frame-src https://www.youtube.com",
-    isDev ? "connect-src 'self' ws: wss:" : "connect-src 'self'",
+    isDev
+      ? "connect-src 'self' ws: wss: https://*.api.sanity.io https://cdn.sanity.io"
+      : "connect-src 'self' https://*.api.sanity.io https://cdn.sanity.io",
     "media-src 'self'",
     "object-src 'none'",
     "base-uri 'self'",
