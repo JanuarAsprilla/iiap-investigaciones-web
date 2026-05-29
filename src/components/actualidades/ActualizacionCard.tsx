@@ -3,10 +3,10 @@
 import Link from "next/link";
 
 const COMPONENTE_META: Record<string, { label: string; color: string; bg: string }> = {
-  ecosistemico:       { label: "Ecosistémico",      color: "#1a5c3a", bg: "rgba(26,92,58,.1)"  },
-  sociocultural:      { label: "Sociocultural",      color: "#c07a00", bg: "rgba(192,122,0,.1)" },
-  ambiental:          { label: "Ambiental",          color: "#1a6b8a", bg: "rgba(26,107,138,.1)"},
-  "laboratorio-datos":{ label: "Laboratorio Datos",  color: "#6b3fa0", bg: "rgba(107,63,160,.1)"},
+  ecosistemico:       { label: "Ecosistémico",      color: "var(--forest)",       bg: "var(--forest-lt)"      },
+  sociocultural:      { label: "Sociocultural",      color: "var(--amber)",        bg: "var(--gold-dim)"       },
+  ambiental:          { label: "Ambiental",          color: "var(--comp-ambiental)",bg: "var(--comp-ambiental-bg)"},
+  "laboratorio-datos":{ label: "Laboratorio Datos",  color: "var(--comp-lab)",     bg: "var(--comp-lab-bg)"    },
 };
 
 export interface Autor {
@@ -27,55 +27,62 @@ export interface ActualizacionCardData {
   autores?: Autor[];
 }
 
-export default function ActualizacionCard({ item }: { item: ActualizacionCardData }) {
+export default function ActualizacionCard({ item, featured = false }: { item: ActualizacionCardData; featured?: boolean }) {
   const meta   = COMPONENTE_META[item.componente] ?? { label: item.componente, color: "var(--forest)", bg: "rgba(26,92,58,.1)" };
   const fecha  = new Date(item.fechaPublicacion).toLocaleDateString("es-CO", {
     day: "numeric", month: "long", year: "numeric",
   });
+  const cardId = `card-${item._id}`;
 
   return (
-    <Link
-      href={`/actualidades/${item.slug}`}
-      style={{ textDecoration: "none", display: "block" }}
-    >
-      <article
-        style={{
-          background: "var(--surface)",
-          border: "1px solid var(--border-subtle)",
-          borderRadius: "var(--r-lg)",
-          overflow: "hidden",
-          display: "flex",
-          flexDirection: "column",
-          height: "100%",
-          transition: "transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s",
-          cursor: "pointer",
-        }}
-        onMouseEnter={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "translateY(-4px)";
-          (e.currentTarget as HTMLElement).style.boxShadow = "0 12px 40px rgba(0,0,0,.10)";
-          (e.currentTarget as HTMLElement).style.borderColor = meta.color + "40";
-        }}
-        onMouseLeave={(e) => {
-          (e.currentTarget as HTMLElement).style.transform = "";
-          (e.currentTarget as HTMLElement).style.boxShadow = "";
-          (e.currentTarget as HTMLElement).style.borderColor = "";
-        }}
+    <>
+      <style>{`
+        #${cardId} { transition: transform .22s var(--ease), box-shadow .22s var(--ease), border-color .22s; }
+        #${cardId}:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,.10); border-color: ${meta.color}40; }
+        #${cardId}:hover .card-img { transform: scale(1.04); }
+        #${cardId}:focus-within { outline: 2px solid ${meta.color}; outline-offset: 2px; }
+      `}</style>
+      <Link
+        href={`/actualidades/${item.slug}`}
+        style={{ textDecoration: "none", display: "block", height: "100%" }}
       >
-        {/* Image */}
-        {item.imagenPrincipal && (
-          <div style={{ position: "relative", width: "100%", paddingTop: "52%", overflow: "hidden", flexShrink: 0 }}>
-            <img
-              src={item.imagenPrincipal}
-              alt={item.titulo}
-              style={{
-                position: "absolute", inset: 0,
-                width: "100%", height: "100%",
-                objectFit: "cover",
-                transition: "transform .4s var(--ease)",
-              }}
-            />
-          </div>
-        )}
+        <article
+          id={cardId}
+          style={{
+            background: "var(--surface)",
+            border: "1px solid var(--border-subtle)",
+            borderRadius: "var(--r-lg)",
+            overflow: "hidden",
+            display: "flex",
+            flexDirection: featured ? "row" : "column",
+            height: "100%",
+            cursor: "pointer",
+          }}
+        >
+          {/* Image */}
+          {item.imagenPrincipal && (
+            <div style={{
+              position: "relative",
+              width: featured ? "clamp(240px,45%,480px)" : "100%",
+              paddingTop: featured ? 0 : "52%",
+              flexShrink: 0,
+              overflow: "hidden",
+              minHeight: featured ? "260px" : undefined,
+            }}>
+              <img
+                src={item.imagenPrincipal}
+                alt={item.titulo}
+                loading="lazy"
+                className="card-img"
+                style={{
+                  position: "absolute", inset: 0,
+                  width: "100%", height: "100%",
+                  objectFit: "cover",
+                  transition: "transform .4s var(--ease)",
+                }}
+              />
+            </div>
+          )}
 
         <div style={{ padding: "clamp(1.25rem,2vw,1.75rem)", display: "flex", flexDirection: "column", flex: 1, gap: ".75rem" }}>
           {/* Componente badge */}
@@ -141,5 +148,6 @@ export default function ActualizacionCard({ item }: { item: ActualizacionCardDat
         </div>
       </article>
     </Link>
+    </>
   );
 }

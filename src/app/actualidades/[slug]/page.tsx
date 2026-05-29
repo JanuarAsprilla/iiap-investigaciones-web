@@ -6,11 +6,27 @@ import Link from "next/link";
 
 export const revalidate = 60;
 
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const item = await client.fetch(actualizacionBySlugQuery, { slug });
+  if (!item) return { title: "Actualización — IIAP" };
+  return {
+    title: `${item.titulo} — IIAP Investigaciones`,
+    description: item.resumen,
+    openGraph: {
+      title: item.titulo,
+      description: item.resumen,
+      type: "article",
+      images: item.imagenPrincipal ? [{ url: item.imagenPrincipal }] : [],
+    },
+  };
+}
+
 const COMPONENTE_META: Record<string, { label: string; color: string; bg: string }> = {
-  ecosistemico:        { label: "Ecosistémico",      color: "#1a5c3a", bg: "rgba(26,92,58,.1)"  },
-  sociocultural:       { label: "Sociocultural",      color: "#c07a00", bg: "rgba(192,122,0,.1)" },
-  ambiental:           { label: "Ambiental",          color: "#1a6b8a", bg: "rgba(26,107,138,.1)"},
-  "laboratorio-datos": { label: "Laboratorio Datos",  color: "#6b3fa0", bg: "rgba(107,63,160,.1)"},
+  ecosistemico:        { label: "Ecosistémico",      color: "var(--forest)",        bg: "var(--forest-lt)"       },
+  sociocultural:       { label: "Sociocultural",      color: "var(--amber)",         bg: "var(--gold-dim)"        },
+  ambiental:           { label: "Ambiental",          color: "var(--comp-ambiental)",bg: "var(--comp-ambiental-bg)"},
+  "laboratorio-datos": { label: "Laboratorio Datos",  color: "var(--comp-lab)",      bg: "var(--comp-lab-bg)"     },
 };
 
 export async function generateStaticParams() {

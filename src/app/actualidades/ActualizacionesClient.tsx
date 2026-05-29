@@ -78,23 +78,27 @@ export default function ActualizacionesClient({ items }: { items: ActualizacionC
           }}
         >
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", gap: ".25rem", overflowX: "auto", padding: ".75rem 0" }}>
-            {FILTROS.map((f) => (
-              <button
-                key={f.value}
-                onClick={() => setFiltro(f.value)}
-                style={{
-                  fontFamily: "var(--font-ui)", fontSize: ".75rem", fontWeight: 700,
-                  letterSpacing: "1px", textTransform: "uppercase",
-                  padding: ".5rem 1.1rem", borderRadius: "var(--r-pill)",
-                  border: "none", cursor: "pointer", whiteSpace: "nowrap",
-                  background: filtro === f.value ? "var(--forest)" : "transparent",
-                  color: filtro === f.value ? "#fff" : "var(--text-muted)",
-                  transition: "background .18s, color .18s",
-                }}
-              >
-                {f.label}
-              </button>
-            ))}
+            {FILTROS.map((f) => {
+              const active = filtro === f.value;
+              return (
+                <button
+                  key={f.value}
+                  onClick={() => setFiltro(f.value)}
+                  aria-pressed={active}
+                  style={{
+                    fontFamily: "var(--font-ui)", fontSize: ".75rem", fontWeight: 700,
+                    letterSpacing: "1px", textTransform: "uppercase",
+                    padding: ".5rem 1.1rem", borderRadius: "var(--r-pill)",
+                    border: active ? "none" : "1px solid transparent", cursor: "pointer", whiteSpace: "nowrap",
+                    background: active ? "var(--forest)" : "transparent",
+                    color: active ? "var(--bg)" : "var(--text-muted)",
+                    transition: "background .18s, color .18s",
+                  }}
+                >
+                  {f.label}
+                </button>
+              );
+            })}
           </div>
         </nav>
 
@@ -108,15 +112,24 @@ export default function ActualizacionesClient({ items }: { items: ActualizacionC
                 </p>
               </div>
             ) : (
-              <div style={{
-                display: "grid",
-                gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
-                gap: "clamp(1rem,2vw,1.5rem)",
-              }}>
-                {visible.map((item) => (
-                  <ActualizacionCard key={item._id} item={item} />
-                ))}
-              </div>
+              <>
+                <style>{`
+                  @media (min-width: 900px) {
+                    .act-featured { grid-column: 1 / -1; }
+                  }
+                `}</style>
+                <div style={{
+                  display: "grid",
+                  gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 340px), 1fr))",
+                  gap: "clamp(1rem,2vw,1.5rem)",
+                }}>
+                  {visible.map((item, i) => (
+                    <div key={item._id} className={i === 0 ? "act-featured" : undefined}>
+                      <ActualizacionCard item={item} featured={i === 0} />
+                    </div>
+                  ))}
+                </div>
+              </>
             )}
           </div>
         </section>

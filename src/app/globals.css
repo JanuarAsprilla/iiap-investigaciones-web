@@ -36,6 +36,12 @@
   --amber-d:   #D4820D;             /* ámbar oscuro */
   --amber-lt:  rgba(232,150,15,.12);/* ámbar tinte */
 
+  /* Componentes de investigación */
+  --comp-ambiental:      #1a6b8a;
+  --comp-ambiental-bg:   rgba(26,107,138,.10);
+  --comp-lab:            #5c3d96;
+  --comp-lab-bg:         rgba(92,61,150,.10);
+
   /* Aliases para componentes que usan --gold */
   --gold:       #E8960F;
   --gold-bright:#F0AA2A;
