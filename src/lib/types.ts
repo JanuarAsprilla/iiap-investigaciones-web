@@ -87,6 +87,9 @@ export interface Investigador {
   orcid?: string;
   cvlac?: string;
   especialidad?: string;
+  bio?: string;
+  areas?: string[];
+  logros?: string[];
 }
 
 export interface EstadisticaIIAP {

@@ -121,14 +121,28 @@ export default function SiteNav() {
             </ul>
           )}
 
-          {/* ── Desktop: Inicio link ── */}
+          {/* ── Desktop: Editorial + Inicio ── */}
           {!isHome && (
-            <Link href="/" aria-label="Volver al inicio" className="nav-home-link nav-desktop">
-              <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                <path d="M1 7L7 1l6 6M2.5 5.5V12h3V8.5h3V12h3V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
-              </svg>
-              Inicio
-            </Link>
+            <div className="nav-desktop" style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
+              <a
+                href="https://iiap-investigaciones.sanity.studio"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="nav-editorial-link"
+                aria-label="Acceder al área editorial de IIAP"
+              >
+                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round">
+                  <path d="M8.5 1.5L10.5 3.5L4 10H2V8L8.5 1.5Z" />
+                </svg>
+                Editorial
+              </a>
+              <Link href="/" aria-label="Volver al inicio" className="nav-home-link">
+                <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
+                  <path d="M1 7L7 1l6 6M2.5 5.5V12h3V8.5h3V12h3V5.5" stroke="currentColor" strokeWidth="1.4" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
+                Inicio
+              </Link>
+            </div>
           )}
 
           {/* ── Mobile: hamburger button ── */}
@@ -202,6 +216,21 @@ export default function SiteNav() {
                   </svg>
                   Inicio
                 </Link>
+              </li>
+              <li style={{ paddingTop: ".25rem" }}>
+                <a
+                  href="https://iiap-investigaciones.sanity.studio"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  onClick={() => setMenuOpen(false)}
+                  className="nav-editorial-link"
+                  style={{ display: "flex", padding: "12px 16px", borderRadius: "var(--r-sm)", border: "none", background: "none" }}
+                >
+                  <svg width="12" height="12" viewBox="0 0 12 12" fill="none" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round" strokeLinejoin="round" style={{ marginRight: "6px" }}>
+                    <path d="M8.5 1.5L10.5 3.5L4 10H2V8L8.5 1.5Z" />
+                  </svg>
+                  Área Editorial
+                </a>
               </li>
             </ul>
           </div>

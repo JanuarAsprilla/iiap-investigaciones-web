@@ -10,6 +10,13 @@ export const equipo: Investigador[] = [
     cargo: "Director General",
     imagen: "/assets/investigadores/DIRECTOR.jpeg",
     especialidad: "Derecho Ambiental y Gobernanza",
+    bio: "Abogado con amplia trayectoria en gobernanza ambiental y gestión territorial. Dirige el IIAP articulando la agenda científica con las políticas de conservación del Chocó Biogeográfico y el reconocimiento de los derechos ambientales de las comunidades étnicas del Pacífico colombiano.",
+    areas: ["Derecho Ambiental", "Gobernanza Territorial", "Políticas Públicas"],
+    logros: [
+      "Reconocimiento Oficial como Centro de Investigación por Colciencias",
+      "Articulación interinstitucional con MEN, SENA y universidades de la región",
+      "Fortalecimiento del PICIA como hoja de ruta científica 2022-2031",
+    ],
   },
   {
     id: "giovanny-ramirez",
@@ -19,6 +26,13 @@ export const equipo: Investigador[] = [
     cargo: "Subdirector de Investigaciones",
     imagen: "/assets/investigadores/SUBDIRECTOR.jpeg",
     especialidad: "Ciencias Ambientales",
+    bio: "Científico ambiental con formación en ciencias naturales y gestión del conocimiento. Lidera la Subdirección de Investigaciones articulando los cuatro componentes programáticos hacia una agenda integrada para la conservación y el desarrollo sostenible del Pacífico colombiano.",
+    areas: ["Ciencias Ambientales", "Gestión del Conocimiento", "Investigación Aplicada"],
+    logros: [
+      "Coordinación del PICIA 2022-2031 en articulación con los cuatro componentes",
+      "Consolidación del Laboratorio de Datos como unidad transversal de análisis",
+      "Diseño del modelo de monitoreo ecosistémico participativo",
+    ],
   },
   // ── Coordinadores ────────────────────────────
   {
@@ -30,6 +44,13 @@ export const equipo: Investigador[] = [
     componente: "SOCIOCULTURAL",
     imagen: "/assets/investigadores/CARLOS_ARIEL.jpeg",
     especialidad: "Antropología",
+    bio: "Antropólogo especializado en etnografía de comunidades afrocolombianas e indígenas del Chocó Biogeográfico. Coordina investigaciones sobre saberes ancestrales, territorialidad étnica y dinámicas socioculturales del Pacífico, vinculando el conocimiento científico con las cosmovisiones del territorio.",
+    areas: ["Etnografía", "Comunidades Étnicas", "Saberes Ancestrales", "Territorialidad"],
+    logros: [
+      "Cartografías participativas con comunidades negras e indígenas del Pacífico",
+      "Sistematización de saberes biocultural en 12 consejos comunitarios",
+      "Co-diseño de protocolos de investigación con enfoque étnico-diferencial",
+    ],
   },
   {
     id: "lady-vargas",
@@ -40,6 +61,13 @@ export const equipo: Investigador[] = [
     componente: "AMBIENTAL",
     imagen: "/assets/investigadores/LADY_VARGAS.png",
     especialidad: "Ingeniería Ambiental",
+    bio: "Ingeniera ambiental con especialización en monitoreo de ecosistemas acuáticos y calidad del agua. Coordina los estudios sobre recursos hídricos, calidad ambiental y gestión de riesgos naturales en la región del Pacífico colombiano.",
+    areas: ["Recursos Hídricos", "Calidad Ambiental", "Ecosistemas Acuáticos", "Riesgo Natural"],
+    logros: [
+      "Red de monitoreo de calidad hídrica en cuencas prioritarias del Chocó",
+      "Diagnóstico ambiental de zonas de influencia minera en el Pacífico norte",
+      "Protocolos de respuesta ante eventos de contaminación en ríos estratégicos",
+    ],
   },
   {
     id: "moises-mosquera",
@@ -50,6 +78,13 @@ export const equipo: Investigador[] = [
     componente: "PRODUCTIVO",
     imagen: "/assets/investigadores/MOISES.jpeg",
     especialidad: "Ingeniería Agroforestal",
+    bio: "Ingeniero agroforestal con amplia experiencia en sistemas productivos sostenibles del trópico húmedo. Coordina investigaciones en seguridad alimentaria, manejo de suelos y diversificación productiva con comunidades rurales del Pacífico colombiano.",
+    areas: ["Agroforestería", "Seguridad Alimentaria", "Suelos Tropicales", "Producción Sostenible"],
+    logros: [
+      "Implementación de parcelas demostrativas agroforestales con 8 comunidades",
+      "Caracterización edafológica de suelos en áreas de manejo forestal comunitario",
+      "Guía técnica de especies forestales promisorias del Chocó Biogeográfico",
+    ],
   },
   {
     id: "zulmary-valoyez",
@@ -60,6 +95,13 @@ export const equipo: Investigador[] = [
     componente: "ECOSISTEMICO",
     imagen: "/assets/investigadores/ZULMARY.jpeg",
     especialidad: "Biología",
+    bio: "Bióloga con profunda experiencia en ecología de ecosistemas tropicales y valoración de la biodiversidad del Chocó. Coordina los estudios de flora, fauna y servicios ecosistémicos en uno de los puntos de mayor biodiversidad del planeta.",
+    areas: ["Ecología Tropical", "Biodiversidad", "Servicios Ecosistémicos", "Herpetología"],
+    logros: [
+      "Inventario florístico de 340+ especies endémicas del Chocó Biogeográfico",
+      "Monitoreo de anfibios y reptiles como indicadores de salud ecosistémica",
+      "Valoración económica de servicios ecosistémicos en áreas protegidas del Pacífico",
+    ],
   },
   {
     id: "edsson-nagle",
@@ -70,6 +112,13 @@ export const equipo: Investigador[] = [
     componente: "LABORATORIO",
     imagen: "/assets/investigadores/EDSSON_NAGLE.jpeg",
     especialidad: "Geoinformática",
+    bio: "Especialista en geoinformática y análisis de datos espaciales. Lidera el Laboratorio de Datos del IIAP, integrando tecnologías SIG, sensores remotos y ciencia de datos para el monitoreo y análisis territorial del Chocó Biogeográfico.",
+    areas: ["SIG y Teledetección", "Ciencia de Datos", "Monitoreo Territorial", "Cartografía Ambiental"],
+    logros: [
+      "Plataforma de monitoreo satelital de deforestación y cambio de cobertura",
+      "Atlas digital de ecosistemas estratégicos del Pacífico colombiano",
+      "Integración de datos de campo con análisis multitemporal de imágenes satelitales",
+    ],
   },
   // ── Investigadores ───────────────────────────
   {
