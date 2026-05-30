@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
 import { documentosPlanificacion } from "@/data/planificacion";
+
+const heroBgs = [
+  "/assets/centros/SENDERO.jpeg",
+  "/assets/centros/VIVERO.jpeg",
+  "/assets/centros/PISCITANQUES.jpeg",
+  "/assets/comunes/YDRAY-IMG_1099.jpeg",
+];
 
 /* ──────────────────────────────────────────────
    Modal — Diagrama PICIA (Warm Light)
@@ -84,6 +91,12 @@ function DiagramaModal({ onClose, closing }: { onClose: () => void; closing?: bo
 export default function PlaneacionPage() {
   const [diagramaOpen,    setDiagramaOpen]    = useState(false);
   const [diagramaClosing, setDiagramaClosing] = useState(false);
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 5000);
+    return () => clearInterval(id);
+  }, []);
 
   const closeDiagrama = () => {
     setDiagramaClosing(true);
@@ -97,15 +110,24 @@ export default function PlaneacionPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero — Editorial split ── */}
+        {/* ── Hero — Editorial split con carrusel ── */}
         <section
           aria-labelledby="plan-heading"
-          style={{
-            background: "linear-gradient(155deg, var(--forest-d) 0%, #071a0e 60%, #0d3b24 100%)",
-            padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)",
-            position: "relative", overflow: "hidden",
-          }}
+          style={{ padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)", position: "relative", overflow: "hidden" }}
         >
+          {/* Carousel layers */}
+          {heroBgs.map((src, i) => (
+            <div key={src} aria-hidden="true" style={{
+              position: "absolute", inset: 0,
+              backgroundImage: `url(${src})`,
+              backgroundSize: "cover", backgroundPosition: "center",
+              opacity: i === bgIndex ? 1 : 0,
+              transition: "opacity 1.6s ease-in-out",
+            }} />
+          ))}
+          {/* Overlay — forest dark keeps text legible */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(7,26,14,.92) 0%, rgba(13,59,36,.85) 60%, rgba(9,40,25,.90) 100%)" }} />
+
           {/* ── Subtle grid lines ── */}
           <svg aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: .06, pointerEvents: "none" }} preserveAspectRatio="xMidYMid slice">
             <defs>

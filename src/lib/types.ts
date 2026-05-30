@@ -20,6 +20,7 @@ export interface Bioespacio {
   descripcion: string;
   detalle: string;
   imagen: string;
+  galeria?: string[];
   extension?: string;
   especies?: string;
 }
@@ -30,6 +31,7 @@ export interface InstalacionCentro {
   descripcion: string;
   detalle?: string;
   imagen: string;
+  galeria?: string[];
   cantidad?: string;
   unidad?: string;
   caracteristicas?: string[];
@@ -66,6 +68,7 @@ export interface GrupoInvestigacion {
   lineasTematicas: string[];
   coordinador: string;
   imagen?: string;
+  galeria?: string[];
 }
 
 export type RolInvestigador =

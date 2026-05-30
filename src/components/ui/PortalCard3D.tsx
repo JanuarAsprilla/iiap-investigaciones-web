@@ -138,11 +138,12 @@ export default function PortalCard3D({
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(2.2rem, 4vw, 3.8rem)",
-              lineHeight: 0.95,
+              fontSize: "clamp(1.55rem, 2.2vw, 2.4rem)",
+              lineHeight: 1.0,
               color: "#F4F1EB",
-              letterSpacing: "0.03em",
+              letterSpacing: "0.04em",
               marginBottom: "1rem",
+              textAlign: "center",
             }}
           >
             {label}

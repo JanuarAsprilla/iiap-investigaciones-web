@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
 import ActualizacionCard, { ActualizacionCardData } from "@/components/actualidades/ActualizacionCard";
+
+const heroBgs = [
+  "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+  "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+  "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+  "/assets/grupos/LABORATORIO_DATOS.jpeg",
+];
 
 const FILTROS = [
   { label: "Todas",             value: "all" },
@@ -14,6 +21,12 @@ const FILTROS = [
 
 export default function ActualizacionesClient({ items }: { items: ActualizacionCardData[] }) {
   const [filtro, setFiltro] = useState<string>("all");
+  const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 5000);
+    return () => clearInterval(id);
+  }, []);
 
   const visible = filtro === "all"
     ? items
@@ -24,15 +37,27 @@ export default function ActualizacionesClient({ items }: { items: ActualizacionC
       <SiteNav />
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero ── */}
+        {/* ── Hero con carrusel ── */}
         <section
           aria-labelledby="actualidades-heading"
-          style={{
-            position: "relative", overflow: "hidden",
-            padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)",
-            background: "linear-gradient(150deg, var(--forest-d) 0%, var(--forest) 60%, rgba(26,92,58,.85) 100%)",
-          }}
+          style={{ position: "relative", overflow: "hidden", padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)" }}
         >
+          {/* Carousel layers */}
+          {heroBgs.map((src, i) => (
+            <div
+              key={src}
+              aria-hidden="true"
+              style={{
+                position: "absolute", inset: 0,
+                backgroundImage: `url(${src})`,
+                backgroundSize: "cover", backgroundPosition: "center",
+                opacity: i === bgIndex ? 1 : 0,
+                transition: "opacity 1.4s ease-in-out",
+              }}
+            />
+          ))}
+          {/* Forest overlay */}
+          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(150deg, rgba(9,40,25,.88) 0%, rgba(13,59,36,.82) 60%, rgba(26,92,58,.78) 100%)" }} />
           <div aria-hidden="true" style={{
             position: "absolute", inset: 0,
             background: "radial-gradient(ellipse at 80% 40%, rgba(232,150,15,.13) 0%, transparent 55%)",

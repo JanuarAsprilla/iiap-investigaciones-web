@@ -5,17 +5,18 @@ import SiteNav from "@/components/layout/SiteNav";
 import { infoCentro, instalaciones, bioespacios } from "@/data/centros";
 import type { InstalacionCentro, Bioespacio } from "@/lib/types";
 import ReconocimientoSection from "../grupos/_sections/ReconocimientoSection";
+import ModalGallery from "@/components/ui/ModalGallery";
 
 /* ─────────────────────────────────────────
    Modal Instalación — Warm Light
 ───────────────────────────────────────── */
 function InstalacionModal({ inst, onClose, closing }: { inst: InstalacionCentro; onClose: () => void; closing?: boolean }) {
+  const images = inst.galeria && inst.galeria.length > 0 ? inst.galeria : [inst.imagen];
   return (
     <div className={`cm-overlay${closing ? " closing" : ""}`} style={{ display: "flex" }} role="dialog" aria-modal="true" aria-label={inst.nombre} onClick={onClose} onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}>
       <div className="cm-box" onClick={(e) => e.stopPropagation()}>
         <div className="cm-img">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={inst.imagen} alt={inst.nombre} />
+          <ModalGallery images={images} alt={inst.nombre} />
         </div>
         <div className="cm-body">
           <span className="cm-tag">Instalación del Centro</span>
@@ -86,12 +87,12 @@ function InstalacionModal({ inst, onClose, closing }: { inst: InstalacionCentro;
    Modal Bioespacio — Warm Light
 ───────────────────────────────────────── */
 function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: () => void; closing?: boolean }) {
+  const images = bio.galeria && bio.galeria.length > 0 ? bio.galeria : [bio.imagen];
   return (
     <div className={`cm-overlay${closing ? " closing" : ""}`} style={{ display: "flex" }} role="dialog" aria-modal="true" aria-label={bio.nombre} onClick={onClose} onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}>
       <div className="cm-box" onClick={(e) => e.stopPropagation()}>
         <div className="cm-img">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={bio.imagen} alt={bio.nombre} />
+          <ModalGallery images={images} alt={bio.nombre} />
         </div>
         <div className="cm-body">
           <span className="cm-tag">Bioespacio de Investigación</span>

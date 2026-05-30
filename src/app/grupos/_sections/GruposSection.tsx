@@ -3,6 +3,7 @@
 import { useState, useCallback } from "react";
 import { gruposInvestigacion } from "@/data/grupos";
 import type { GrupoInvestigacion } from "@/lib/types";
+import ModalGallery from "@/components/ui/ModalGallery";
 
 const grupoImages: Record<string, string> = {
   "gi-01": "/assets/comunes/YDRAY-IMG_1099.jpeg",
@@ -44,12 +45,13 @@ function GrupoCard({ gi, onClick }: { gi: GrupoInvestigacion; onClick: () => voi
 }
 
 function GrupoModal({ gi, onClose, closing }: { gi: GrupoInvestigacion; onClose: () => void; closing?: boolean }) {
+  const mainImg = gi.imagen ?? grupoImages[gi.id] ?? "/assets/comunes/YDRAY-IMG_1099.jpeg";
+  const images = gi.galeria && gi.galeria.length > 0 ? gi.galeria : [mainImg];
   return (
     <div className={`cm-overlay${closing ? " closing" : ""}`} style={{ display: "flex" }} role="dialog" aria-modal="true" aria-label={gi.nombre} onClick={onClose} onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}>
       <div className="cm-box" onClick={(e) => e.stopPropagation()}>
         <div className="cm-img" style={{ position: "relative" }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={grupoImages[gi.id] ?? "/assets/comunes/YDRAY-IMG_1099.jpeg"} alt={gi.nombre} />
+          <ModalGallery images={images} alt={gi.nombre} />
           {/* Código badge sobre la foto */}
           <span style={{
             position: "absolute", top: "1.25rem", left: "1.25rem",
