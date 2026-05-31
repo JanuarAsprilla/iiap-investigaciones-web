@@ -92,6 +92,12 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Mapeo participativo",
     ],
     coordinador: "Carlos Ariel Rentería Jiménez",
+    imagen: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+    galeria: [
+      "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+      "/assets/centros/SENDERO.jpeg",
+    ],
   },
   {
     id: "gi-02",
@@ -106,6 +112,12 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Manejo de cuencas hidrográficas",
     ],
     coordinador: "Zulmary Valoyez Cardozo",
+    imagen: "/assets/centros/SENDERO.jpeg",
+    galeria: [
+      "/assets/centros/SENDERO.jpeg",
+      "/assets/centros/VIVERO.jpeg",
+      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    ],
   },
   {
     id: "gama",
@@ -120,6 +132,12 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Plataformas de datos geoespaciales",
     ],
     coordinador: "Edsson Nagle Ramírez",
+    imagen: "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    galeria: [
+      "/assets/grupos/LABORATORIO_DATOS.jpeg",
+      "/assets/centros/LABORATORIO.jpeg",
+      "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+    ],
   },
   {
     id: "gi-04",
@@ -134,6 +152,12 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Salvaguarda de saberes ancestrales",
     ],
     coordinador: "Lady Yulenis Vargas Porras",
+    imagen: "/assets/centros/VIVERO.jpeg",
+    galeria: [
+      "/assets/centros/VIVERO.jpeg",
+      "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+      "/assets/comunes/YDRAY-IMG_1099.jpeg",
+    ],
   },
   {
     id: "gi-05",
@@ -148,5 +172,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Estrategias de conservación in situ",
     ],
     coordinador: "Por definir",
+    imagen: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    galeria: [
+      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+      "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+      "/assets/centros/SENDERO.jpeg",
+    ],
   },
 ];
