@@ -75,6 +75,7 @@ export type RolInvestigador =
   | "director"
   | "subdirector"
   | "coordinador"
+  | "gestor"
   | "investigador"
   | "auxiliar";
 

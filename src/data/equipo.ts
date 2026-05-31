@@ -259,6 +259,33 @@ export const equipo: Investigador[] = [
   },
 ];
 
+export const gestores: import("@/lib/types").Investigador[] = [
+  {
+    id: "gestor-subregion-1",
+    nombre: "Gestor",
+    apellido: "Subregión Norte",
+    rol: "gestor",
+    cargo: "Gestor Subregional Norte",
+    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+  },
+  {
+    id: "gestor-subregion-2",
+    nombre: "Gestor",
+    apellido: "Subregión Centro",
+    rol: "gestor",
+    cargo: "Gestor Subregional Centro",
+    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+  },
+  {
+    id: "gestor-subregion-3",
+    nombre: "Gestor",
+    apellido: "Subregión Sur",
+    rol: "gestor",
+    cargo: "Gestor Subregional Sur",
+    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+  },
+];
+
 export const directivos = equipo.filter((i) =>
   ["director", "subdirector"].includes(i.rol)
 );

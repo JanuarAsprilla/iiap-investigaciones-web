@@ -143,48 +143,43 @@ export default function PlaneacionPage() {
           {/* ── Deep shadow bottom-left ── */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, width: "60%", height: "50%", background: "radial-gradient(ellipse at 0% 100%, rgba(0,0,0,.45) 0%, transparent 70%)", pointerEvents: "none" }} />
 
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "1400px", margin: "0 auto", display: "grid", gridTemplateColumns: "1fr clamp(300px,42vw,540px)", gap: "clamp(2rem,5vw,5rem)", alignItems: "center" }}>
+          <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
 
-            {/* ── LEFT — Text ── */}
-            <div>
-              {/* Eyebrow */}
-              <div style={{ display: "flex", alignItems: "center", gap: ".75rem", marginBottom: "1.5rem" }}>
-                <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
-                <span style={{ fontFamily: "var(--font-ui)", fontSize: ".65rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)" }}>
-                  Planeación Institucional
-                </span>
-              </div>
-
-              <h1 id="plan-heading" style={{ fontFamily: "var(--font-display)", fontSize: "clamp(3.5rem,7vw,7rem)", lineHeight: .87, color: "#fff", letterSpacing: "-.01em", marginBottom: "1.5rem" }}>
-                MARCO
-                <br />
-                <span style={{ color: "var(--amber)", WebkitTextStroke: "0px" }}>ESTRATÉGICO</span>
-              </h1>
-
-              <p style={{ fontFamily: "var(--font-body)", fontSize: "clamp(1rem,1.4vw,1.15rem)", color: "rgba(255,255,255,.72)", maxWidth: "52ch", lineHeight: 1.8, marginBottom: 0 }}>
-                Los documentos que orientan la investigación ambiental del IIAP: el Plan
-                Institucional Cuatrienal (PICIA) y el Plan Operativo Anual (POA), articulados
-                con el Chocó Biogeográfico como territorio de acción.
-              </p>
+            {/* Eyebrow */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: ".75rem", marginBottom: "1.75rem" }}>
+              <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
+              <span style={{ fontFamily: "var(--font-ui)", fontSize: ".65rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)" }}>
+                Planeación Institucional
+              </span>
+              <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
             </div>
 
+            <h1 id="plan-heading" style={{
+              fontFamily: "var(--font-display)",
+              fontSize: "clamp(4.5rem,10vw,9rem)",
+              lineHeight: .88, color: "#fff",
+              letterSpacing: "-.01em", marginBottom: "1.75rem",
+            }}>
+              MARCO<br />
+              <span style={{ color: "var(--amber)" }}>ESTRATÉGICO</span>
+            </h1>
 
+            <p style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "clamp(1.05rem,1.5vw,1.2rem)",
+              color: "rgba(255,255,255,.72)",
+              maxWidth: "56ch", lineHeight: 1.85, margin: "0 auto",
+            }}>
+              Los documentos que orientan la investigación ambiental del IIAP: el Plan
+              Institucional Cuatrienal (PICIA) y el Plan Operativo Anual (POA), articulados
+              con el Chocó Biogeográfico como territorio de acción.
+            </p>
           </div>
 
           {/* ── Bottom fade ── */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "120px", background: "linear-gradient(to top, var(--bg), transparent)", pointerEvents: "none" }} />
 
-          <style>{`@keyframes shimBar{0%{background-position:0%}100%{background-position:200%}}
-            @media(max-width:920px){
-              section[aria-labelledby="plan-heading"] > div[style] > div[style]{
-                grid-template-columns:1fr!important;
-              }
-              /* hide the covers column on mobile — hero stays focused on text */
-              section[aria-labelledby="plan-heading"] > div[style] > div[style] > div:last-child{
-                display:none!important;
-              }
-            }
-          `}</style>
+          <style>{`@keyframes shimBar{0%{background-position:0%}100%{background-position:200%}}`}</style>
         </section>
 
         {/* ── Documentos de Planificación ── */}

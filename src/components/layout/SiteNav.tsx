@@ -66,11 +66,11 @@ export default function SiteNav() {
   return (
     <>
       <style>{`
-        @media (max-width: 768px) {
+        @media (max-width: 1024px) {
           .nav-desktop { display: none !important; }
           .nav-burger   { display: flex !important; }
         }
-        @media (min-width: 769px) {
+        @media (min-width: 1025px) {
           .nav-desktop { display: flex; }
           .nav-burger   { display: none; }
         }

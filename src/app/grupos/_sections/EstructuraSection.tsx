@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { directivos, coordinadores } from "@/data/equipo";
+import { directivos, coordinadores, gestores } from "@/data/equipo";
 import type { Investigador } from "@/lib/types";
 import TeamMemberModal from "@/components/team/TeamMemberModal";
 
@@ -123,6 +123,24 @@ export default function EstructuraSection() {
                 </button>
               ))}
             </div>
+
+            <Connector />
+            <SpreadLine />
+
+            {/* ── GESTORES ── */}
+            <p className="org-level-label">Gestores Subregionales</p>
+            <div id="org-gestores">
+              {gestores.map((p) => (
+                <button
+                  key={p.id}
+                  className="org-card-btn"
+                  onClick={() => setSelected(p)}
+                  aria-label={`Ver perfil de ${p.nombre} ${p.apellido}`}
+                >
+                  <OrgSmCard persona={p} />
+                </button>
+              ))}
+            </div>
           </div>
         </div>
 
@@ -208,15 +226,22 @@ export default function EstructuraSection() {
             background: linear-gradient(to right, transparent 5%, var(--border-active) 50%, transparent 95%);
           }
 
+          /* ── Gestores grid ── */
+          #org-gestores {
+            display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; width: 100%; max-width: 740px;
+          }
+
           /* ── Responsive ── */
           @media(max-width:1000px){
             #org-coords { grid-template-columns: repeat(3,1fr) !important; }
+            #org-gestores { grid-template-columns: repeat(3,1fr) !important; }
             .org-sm-card { height: 240px; }
           }
           @media(max-width:640px){
             .org-hero-lg { width: 260px; height: 320px; }
             .org-hero-md { width: 230px; height: 280px; }
             #org-coords { grid-template-columns: repeat(2,1fr) !important; }
+            #org-gestores { grid-template-columns: repeat(3,1fr) !important; }
             .org-sm-card { height: 220px; }
             .org-spread-line { width: 95%; }
           }
