@@ -106,44 +106,15 @@ export default function PortalCard3D({
             padding: "clamp(1.5rem, 3vw, 2.5rem)",
           }}
         >
-          {/* Eyebrow */}
-          <p
-            style={{
-              fontFamily: "var(--font-ui)",
-              fontSize: "var(--t-xs)",
-              fontWeight: 700,
-              letterSpacing: "0.22em",
-              textTransform: "uppercase",
-              color: "#E8960F",
-              marginBottom: "0.75rem",
-              display: "flex",
-              alignItems: "center",
-              gap: "8px",
-            }}
-          >
-            <span
-              aria-hidden="true"
-              style={{
-                display: "inline-block",
-                width: "18px",
-                height: "1.5px",
-                background: "#E8960F",
-                flexShrink: 0,
-              }}
-            />
-            IIAP Investigaciones
-          </p>
-
-          {/* Título */}
+          {/* Título — eyebrow removed, heading lleva todo el peso */}
           <h2
             style={{
               fontFamily: "var(--font-display)",
-              fontSize: "clamp(1.55rem, 2.2vw, 2.4rem)",
-              lineHeight: 1.0,
+              fontSize: "clamp(2rem, 3vw, 3rem)",
+              lineHeight: 0.92,
               color: "#F4F1EB",
-              letterSpacing: "0.04em",
-              marginBottom: "1rem",
-              textAlign: "center",
+              letterSpacing: "0.03em",
+              marginBottom: "0.85rem",
             }}
           >
             {label}
@@ -153,11 +124,11 @@ export default function PortalCard3D({
           <p
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "var(--t-base)",
-              lineHeight: 1.65,
-              color: "rgba(244,241,235,0.72)",
-              marginBottom: "1.75rem",
-              maxWidth: "28ch",
+              fontSize: "clamp(0.85rem, 1.1vw, 1rem)",
+              lineHeight: 1.6,
+              color: "rgba(244,241,235,0.65)",
+              marginBottom: "1.5rem",
+              maxWidth: "26ch",
             }}
           >
             {description}
