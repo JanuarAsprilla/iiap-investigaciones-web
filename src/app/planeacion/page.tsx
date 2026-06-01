@@ -175,7 +175,7 @@ export default function PlaneacionPage() {
           </div>
 
           {/* ── Bottom fade — más largo para transición suave ── */}
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "220px", background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 20%, rgba(244,241,235,.6) 55%, transparent 100%)", pointerEvents: "none" }} />
+          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "140px", background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 30%, rgba(244,241,235,.3) 70%, transparent 100%)", pointerEvents: "none" }} />
 
           <style>{`@keyframes shimBar{0%{background-position:0%}100%{background-position:200%}}`}</style>
         </section>
