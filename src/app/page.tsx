@@ -61,14 +61,9 @@ export default function HomePage() {
 
             {/* Descriptor */}
             <p className="hero-desc anim-3">
-              En el Instituto de Investigaciones Ambientales del Pacífico - IIAP, John Von Neumann,
-              nos dedicamos a la investigación básica, experimental y aplicada. Nuestro objetivo principal 
-              es generar información y conocimiento científico y tradicional de alta calidad sobre la base 
-              natural, ambiental y social del Chocó Biogeográfico Colombiano.
-              Este trabajo es fundamental para la creación o actualización de políticas públicas que promuevan 
-              el desarrollo sostenible de la región y la protección del conocimiento ancestral.
-              Aquí podrás encontrar más sobre nuestra área de investigación.
-
+              Ciencia básica, experimental y aplicada desde el Chocó Biogeográfico.
+              Generamos conocimiento científico y tradicional para la conservación de la biodiversidad,
+              el desarrollo sostenible y las políticas públicas de la región.
             </p>
 
             {/* CTAs */}
