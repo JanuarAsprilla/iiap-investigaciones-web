@@ -40,8 +40,15 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Sanity build cache
+.sanity/
+
+# Build output
+dist/
+
 # Claude Code (archivos internos del asistente de desarrollo)
 .agents/
+.claude/
 AGENTS.md
 CLAUDE.md
 skills-lock.json
