@@ -231,7 +231,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/YIRLESA.jpeg",
+    imagen: "/assets/investigadores/YIRLESA.JPG",
   },
   {
     id: "yiskar-damian",
@@ -261,28 +261,28 @@ export const equipo: Investigador[] = [
 
 export const gestores: import("@/lib/types").Investigador[] = [
   {
-    id: "gestor-subregion-1",
-    nombre: "Gestor",
-    apellido: "Subregión Norte",
+    id: "Omar-Grueso",
+    nombre: "Omar",
+    apellido: "Grueso",
     rol: "gestor",
-    cargo: "Gestor Subregional Norte",
-    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+    cargo: "Gestor Subregional Guapi",
+    imagen: "/assets/investigadores/OMAR_GRUESO.jpg",
   },
   {
-    id: "gestor-subregion-2",
-    nombre: "Gestor",
-    apellido: "Subregión Centro",
+    id: "Jennifer-Román-Valencia",
+    nombre: "Jennifer",
+    apellido: "Román Valencia",
     rol: "gestor",
-    cargo: "Gestor Subregional Centro",
-    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+    cargo: "Gestor Subregional Buenaventura",
+    imagen: "/assets/investigadores/JENNIFER_ROMAN.jpg",
   },
   {
-    id: "gestor-subregion-3",
-    nombre: "Gestor",
-    apellido: "Subregión Sur",
+    id: "César-Antonio-Quiñones-Portocarrero",
+    nombre: "César Antonio",
+    apellido: "Quiñones Portocarrero",
     rol: "gestor",
-    cargo: "Gestor Subregional Sur",
-    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+    cargo: "Gestor Subregional Nariño",
+    imagen: "/assets/investigadores/CESAR_QUIÑONES.jpg",
   },
 ];
 
