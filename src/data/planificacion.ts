@@ -32,7 +32,7 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     anio: "2021–2030",
     descripcion:
       "Marco nacional que orienta la investigación ambiental en Colombia para la próxima década. Define prioridades temáticas, territorios estratégicos y lineamientos de política que el IIAP incorpora en su agenda científica para el Pacífico colombiano.",
-    url: "https://iiap.org.co",
+    url: "/assets/documentos/PENIA-2021-2030.pdf",
     fechaPublicacion: "2021-01-01",
     tipo: "PENIA",
     icono: "🌿",
@@ -44,7 +44,7 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     anio: "2016–2026",
     descripcion:
       "Plan decenal que establece la visión, misión y objetivos estratégicos del IIAP a largo plazo. Articula el fortalecimiento institucional, la gestión del conocimiento y el relacionamiento con comunidades y entidades del orden nacional e internacional.",
-    url: "https://iiap.org.co",
+    url: "/assets/documentos/PEDI-2016-2026.pdf",
     fechaPublicacion: "2016-01-01",
     tipo: "PEDI",
     icono: "🏛️",

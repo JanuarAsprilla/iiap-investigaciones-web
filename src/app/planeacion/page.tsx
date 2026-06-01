@@ -170,9 +170,7 @@ export default function PlaneacionPage() {
               color: "rgba(255,255,255,.72)",
               maxWidth: "56ch", lineHeight: 1.85, margin: "0 auto",
             }}>
-              Los documentos que orientan la investigación ambiental del IIAP: el Plan
-              Institucional Cuatrienal (PICIA) y el Plan Operativo Anual (POA), articulados
-              con el Chocó Biogeográfico como territorio de acción.
+              Los instrumentos que orientan la investigación ambiental en el IIAP, se articulan con los planes y políticas sectoriales, así como con los instrumentos de planificación territorial y comunitaria, fortaleciendo la gestión integral del conocimiento en el Chocó Biogeográfico.
             </p>
           </div>
 
