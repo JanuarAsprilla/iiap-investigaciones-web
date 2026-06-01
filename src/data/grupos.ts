@@ -115,8 +115,8 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
     imagen: "/assets/centros/SENDERO.jpeg",
     galeria: [
       "/assets/centros/SENDERO.jpeg",
+      "/assets/grupos/ORQUIDEA.jpeg",
       "/assets/centros/VIVERO.jpeg",
-      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
     ],
   },
   {
@@ -156,7 +156,7 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
     galeria: [
       "/assets/centros/VIVERO.jpeg",
       "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
-      "/assets/comunes/YDRAY-IMG_1099.jpeg",
+      "/assets/grupos/ABEJAS.jpeg",
     ],
   },
   {
@@ -175,8 +175,8 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
     imagen: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
     galeria: [
       "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-      "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
-      "/assets/centros/SENDERO.jpeg",
+      "/assets/grupos/SERPIENTE.jpeg",
+      "/assets/grupos/CIENAGA_TAGACHI.jpeg",
     ],
   },
 ];

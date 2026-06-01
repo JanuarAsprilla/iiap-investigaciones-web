@@ -6,7 +6,7 @@ export const infoCentro = {
   coordenadas: { lat: 5.5717, lng: -76.6269 },
   horario: "Lunes a viernes, 9:00 AM – 3:00 PM",
   descripcion:
-    "Centro de investigación y experimentación en biodiversidad del Chocó Biogeográfico. Punto estratégico para el estudio de ecosistemas húmedos tropicales, con infraestructura científica de alto nivel y espacios colaborativos para la comunidad investigadora.",
+    "Centro de investigación en biodiversidad del Chocó Biogeográfico. Es un espacio estratégico para el estudio de diversas líneas, como productivas, ambientales o ecosistémicas, cuenta con infraestructura científica certificada y espacios colaborativos para la comunidad investigadora.",
 };
 
 export const instalaciones: InstalacionCentro[] = [
@@ -40,8 +40,8 @@ export const instalaciones: InstalacionCentro[] = [
     imagen: "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
     galeria: [
       "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
+      "/assets/centros/MURAL.jpeg",
       "/assets/centros/ESPACIOS_CENTRO.jpeg",
-      "/assets/comunes/YDRAY-IMG_1099.jpeg",
     ],
     cantidad: "4",
     unidad: "Salas disponibles",
@@ -58,11 +58,11 @@ export const instalaciones: InstalacionCentro[] = [
     descripcion: "Repositorio físico y digital de investigaciones, publicaciones científicas y material de referencia.",
     detalle:
       "El Centro de Documentación custodia el patrimonio intelectual del IIAP: más de 3.000 publicaciones físicas, acceso a bases de datos científicas indexadas (Scopus, Web of Science), repositorio digital institucional y sala de consulta para investigadores y estudiantes.",
-    imagen: "/assets/centros/CENTRO_DOCUMENTACION.png",
+    imagen: "/assets/centros/CENTRO_DOCUMENTACION.jpeg",
     galeria: [
-      "/assets/centros/CENTRO_DOCUMENTACION.png",
+      "/assets/centros/CENTRO_DOCUMENTACION.jpeg",
+      "/assets/centros/MURAL.jpeg",
       "/assets/centros/ESPACIOS_CENTRO.jpeg",
-      "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
     ],
     caracteristicas: [
       "+3.000 publicaciones físicas",
@@ -96,11 +96,11 @@ export const instalaciones: InstalacionCentro[] = [
     descripcion: "Dos auditorios con capacidad para 60 y 120 personas, equipados para videoconferencias y eventos académicos.",
     detalle:
       "Los auditorios del Centro Experimental son el escenario de los principales eventos científicos del IIAP: congresos de biodiversidad, talleres con comunidades, presentación de resultados de investigación y formación de jóvenes investigadores del Chocó Biogeográfico.",
-    imagen: "/assets/comunes/YDRAY-IMG_1099.jpeg",
+    imagen: "/assets/centros/SEDE.jpeg",
     galeria: [
-      "/assets/comunes/YDRAY-IMG_1099.jpeg",
+      "/assets/centros/SEDE.jpeg",
       "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
-      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+      "/assets/centros/MURAL.jpeg",
     ],
     cantidad: "2",
     unidad: "Auditorios",
@@ -138,8 +138,8 @@ export const bioespacios: Bioespacio[] = [
     imagen: "/assets/centros/VIVERO.jpeg",
     galeria: [
       "/assets/centros/VIVERO.jpeg",
+      "/assets/centros/VIVERO_2.jpeg",
       "/assets/centros/SENDERO.jpeg",
-      "/assets/centros/vainilla.jpeg",
     ],
     especies: "Choibá, Milpesos",
   },
