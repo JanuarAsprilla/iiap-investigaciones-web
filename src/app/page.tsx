@@ -61,9 +61,14 @@ export default function HomePage() {
 
             {/* Descriptor */}
             <p className="hero-desc anim-3">
-              Conocimiento científico para la biodiversidad y las comunidades
-              del Chocó Biogeográfico. Cuatro ejes de trabajo que articulan
-              planeación, territorio y ciencia.
+              En el Instituto de Investigaciones Ambientales del Pacífico - IIAP, John Von Neumann,
+              nos dedicamos a la investigación básica, experimental y aplicada. Nuestro objetivo principal 
+              es generar información y conocimiento científico y tradicional de alta calidad sobre la base 
+              natural, ambiental y social del Chocó Biogeográfico Colombiano.
+              Este trabajo es fundamental para la creación o actualización de políticas públicas que promuevan 
+              el desarrollo sostenible de la región y la protección del conocimiento ancestral.
+              Aquí podrás encontrar más sobre nuestra área de investigación.
+
             </p>
 
             {/* CTAs */}

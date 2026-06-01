@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Bebas_Neue, Crimson_Text, Inter } from "next/font/google";
+// @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
 const bebasNeue = Bebas_Neue({
