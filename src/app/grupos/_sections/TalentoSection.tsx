@@ -123,14 +123,6 @@ export default function TalentoSection() {
             ))}
           </div>
 
-          {/* Note */}
-          <p style={{
-            fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)",
-            color: "var(--text-muted)", marginTop: "1.5rem",
-            fontStyle: "italic",
-          }}>
-            Toca el nombre de cada investigador para conocer su área de trabajo.
-          </p>
 
         </div>
       </section>

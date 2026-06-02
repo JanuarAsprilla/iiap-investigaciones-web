@@ -86,12 +86,12 @@ export default function SiteNav() {
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
           background: isScrolled
             ? "rgba(244,241,235,0.97)"
-            : "transparent",
-          backdropFilter: isScrolled ? "blur(18px) saturate(1.5)" : "none",
+            : "rgba(244,241,235,0.30)",
+          backdropFilter: isScrolled ? "blur(18px) saturate(1.5)" : "blur(12px) saturate(1.2)",
           /* Amber accent line replaces the generic green border */
           borderBottom: isScrolled
             ? "1px solid rgba(232,150,15,.22)"
-            : "none",
+            : "1px solid rgba(232,150,15,.08)",
           transition: "background .22s ease-out, border-color .22s ease-out, backdrop-filter .22s ease-out",
         }}
       >

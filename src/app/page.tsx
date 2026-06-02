@@ -66,23 +66,7 @@ export default function HomePage() {
               el desarrollo sostenible y las políticas públicas de la región.
             </p>
 
-            {/* CTAs */}
-            <div className="hero-ctas anim-4">
-              <a href="#portal" className="btn-prim">
-                Explorar portal
-                <svg width="12" height="12" viewBox="0 0 12 12" fill="none" aria-hidden="true">
-                  <path d="M2 10L10 2M10 2H4M10 2v6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                </svg>
-              </a>
-              <a
-                href="https://iiap.org.co"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-ghost-sm"
-              >
-                iiap.org.co ↗
-              </a>
-            </div>
+
 
           </div>
 
@@ -115,19 +99,6 @@ export default function HomePage() {
           >
             {/* Header */}
             <div className="portal-meta">
-              <p className="eyebrow" style={{ color: "var(--forest)" }}>
-                <span
-                  aria-hidden="true"
-                  style={{
-                    display: "inline-block",
-                    width: "24px", height: "1.5px",
-                    background: "var(--forest)",
-                    marginRight: "10px",
-                    verticalAlign: "middle",
-                  }}
-                />
-                Portal de investigación
-              </p>
               <h2 className="portal-meta-title">Cuatro ejes estratégicos</h2>
             </div>
 

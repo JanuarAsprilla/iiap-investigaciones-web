@@ -12,11 +12,11 @@ const heroBgs = [
 ];
 
 const FILTROS = [
-  { label: "Todas",             value: "all" },
-  { label: "Ecosistémico",      value: "ecosistemico" },
-  { label: "Sociocultural",     value: "sociocultural" },
-  { label: "Ambiental",         value: "ambiental" },
-  { label: "Laboratorio Datos", value: "laboratorio-datos" },
+  { label: "Todas",             value: "all",              dot: null },
+  { label: "Ecosistémico",      value: "ecosistemico",     dot: "#0B3D2C" },
+  { label: "Sociocultural",     value: "sociocultural",    dot: "#1B5E3B" },
+  { label: "Ambiental",         value: "ambiental",        dot: "#26A65B" },
+  { label: "Lab. Datos",        value: "laboratorio-datos", dot: "#1A3A5C" },
 ];
 
 export default function ActualizacionesClient({ items }: { items: ActualizacionCardData[] }) {
@@ -92,40 +92,71 @@ export default function ActualizacionesClient({ items }: { items: ActualizacionC
           </div>
         </section>
 
-        {/* ── Filtros ── */}
-        <nav
-          aria-label="Filtrar por componente"
+        {/* ── Filtros como etiquetas ── */}
+        <div
           style={{
-            background: "var(--surface)",
-            borderBottom: "1px solid var(--border-subtle)",
-            padding: "0 clamp(1.25rem,4vw,3rem)",
-            position: "sticky", top: "60px", zIndex: 10,
+            padding: "clamp(1.5rem,3vw,2.5rem) clamp(1.25rem,4vw,3rem) 0",
           }}
         >
-          <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", gap: ".25rem", overflowX: "auto", padding: ".75rem 0" }}>
-            {FILTROS.map((f) => {
-              const active = filtro === f.value;
-              return (
-                <button
-                  key={f.value}
-                  onClick={() => setFiltro(f.value)}
-                  aria-pressed={active}
-                  style={{
-                    fontFamily: "var(--font-ui)", fontSize: ".75rem", fontWeight: 700,
-                    letterSpacing: "1px", textTransform: "uppercase",
-                    padding: ".5rem 1.1rem", borderRadius: "var(--r-pill)",
-                    border: active ? "none" : "1px solid transparent", cursor: "pointer", whiteSpace: "nowrap",
-                    background: active ? "var(--forest)" : "transparent",
-                    color: active ? "var(--bg)" : "var(--text-muted)",
-                    transition: "background .18s, color .18s",
-                  }}
-                >
-                  {f.label}
-                </button>
-              );
-            })}
+          <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
+            <div style={{ display: "flex", gap: ".6rem", flexWrap: "wrap", alignItems: "center" }}>
+              <span style={{
+                fontFamily: "var(--font-ui)", fontSize: ".6rem", fontWeight: 800,
+                letterSpacing: "2px", textTransform: "uppercase",
+                color: "var(--text-muted)", marginRight: ".25rem",
+              }}>
+                Filtrar
+              </span>
+              {FILTROS.map((f) => {
+                const active = filtro === f.value;
+                return (
+                  <button
+                    key={f.value}
+                    onClick={() => setFiltro(f.value)}
+                    aria-pressed={active}
+                    style={{
+                      display: "inline-flex", alignItems: "center", gap: ".45rem",
+                      fontFamily: "var(--font-ui)", fontSize: ".72rem", fontWeight: 700,
+                      letterSpacing: ".5px",
+                      padding: ".35rem .9rem",
+                      borderRadius: "999px",
+                      border: active
+                        ? "1.5px solid var(--forest)"
+                        : "1.5px solid var(--border-subtle)",
+                      cursor: "pointer", whiteSpace: "nowrap",
+                      background: active ? "var(--forest)" : "var(--bg)",
+                      color: active ? "#fff" : "var(--text-muted)",
+                      transition: "all .18s ease",
+                      boxShadow: active ? "0 2px 8px rgba(13,59,36,.18)" : "none",
+                    }}
+                    onMouseEnter={(e) => {
+                      if (!active) {
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--forest)";
+                        (e.currentTarget as HTMLButtonElement).style.color = "var(--forest)";
+                      }
+                    }}
+                    onMouseLeave={(e) => {
+                      if (!active) {
+                        (e.currentTarget as HTMLButtonElement).style.borderColor = "var(--border-subtle)";
+                        (e.currentTarget as HTMLButtonElement).style.color = "var(--text-muted)";
+                      }
+                    }}
+                  >
+                    {f.dot && (
+                      <span style={{
+                        width: "7px", height: "7px", borderRadius: "50%",
+                        background: active ? "rgba(255,255,255,.7)" : f.dot,
+                        flexShrink: 0,
+                        transition: "background .18s",
+                      }} aria-hidden="true" />
+                    )}
+                    {f.label}
+                  </button>
+                );
+              })}
+            </div>
           </div>
-        </nav>
+        </div>
 
         {/* ── Grid ── */}
         <section style={{ padding: "clamp(3rem,5vw,5rem) clamp(1.25rem,4vw,3rem)" }}>
