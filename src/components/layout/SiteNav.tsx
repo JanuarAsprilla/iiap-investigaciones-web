@@ -84,15 +84,24 @@ export default function SiteNav() {
         role="banner"
         style={{
           position: "fixed", top: 0, left: 0, right: 0, zIndex: 100,
+          /* Tope: fondo sólido cálido para contrastar con el hero oscuro */
+          /* Scroll: vidrio Apple — transparente con blur intenso y saturación */
           background: isScrolled
-            ? "rgba(244,241,235,0.97)"
-            : "rgba(244,241,235,0.30)",
-          backdropFilter: isScrolled ? "blur(18px) saturate(1.5)" : "blur(12px) saturate(1.2)",
-          /* Amber accent line replaces the generic green border */
+            ? "rgba(244,241,235,0.72)"
+            : "rgba(244,241,235,0.96)",
+          backdropFilter: isScrolled
+            ? "blur(28px) saturate(180%) brightness(1.04)"
+            : "none",
+          WebkitBackdropFilter: isScrolled
+            ? "blur(28px) saturate(180%) brightness(1.04)"
+            : "none",
           borderBottom: isScrolled
-            ? "1px solid rgba(232,150,15,.22)"
-            : "1px solid rgba(232,150,15,.08)",
-          transition: "background .22s ease-out, border-color .22s ease-out, backdrop-filter .22s ease-out",
+            ? "1px solid rgba(232,150,15,.18)"
+            : "1px solid rgba(232,150,15,.24)",
+          boxShadow: isScrolled
+            ? "0 1px 0 rgba(0,0,0,.04), 0 4px 24px rgba(0,0,0,.06)"
+            : "0 1px 0 rgba(0,0,0,.06)",
+          transition: "background .3s ease, backdrop-filter .3s ease, border-color .3s ease, box-shadow .3s ease",
         }}
       >
         <nav
