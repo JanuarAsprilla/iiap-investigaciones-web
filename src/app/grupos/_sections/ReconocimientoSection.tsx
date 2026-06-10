@@ -1,24 +1,33 @@
-/* Reconocimiento Oficial — cinta condecorativa 3D, dos líneas en una sola dirección */
+/* Reconocimiento Oficial — cinta condecorativa 3D, pares semánticos en un solo bloque */
 "use client";
 import { useId } from "react";
 
-/* 10 items distribuidos uniformemente: pares → fila superior, impares → fila inferior
-   key=true → texto más grande y dorado brillante                                      */
-const ALL_ITEMS: { text: string; key?: boolean }[] = [
-  { text: "Reconocimiento Oficial",                                       key: true  },
-  { text: "Ministerio de Ciencia, Tecnología e Innovación",               key: true  },
-  { text: "Resolución N.° 1598",                                          key: true  },
-  { text: "Instituto de Investigaciones Ambientales del Pacífico"                    },
-  { text: "30 de agosto de 2021"                                                     },
-  { text: "John Von Neumann",                                             key: true  },
-  { text: "Centro de Investigación Certificado",                          key: true  },
-  { text: "República de Colombia"                                                    },
-  { text: "Acto Administrativo Vigente"                                              },
-  { text: "Chocó Biogeográfico",                                          key: true  },
+/*
+  Cada par { top, bot } es una unidad semántica: título arriba, descriptor abajo.
+  El bloque entero scrollea junto — nunca hay dos líneas independientes.
+*/
+const PAIRS = [
+  {
+    top: { text: "Resolución N.° 1598",                                   accent: true  },
+    bot: { text: "30 de agosto de 2021"                                                 },
+  },
+  {
+    top: { text: "Centro de Investigación Certificado",                   accent: true  },
+    bot: { text: "Acto Administrativo Vigente"                                          },
+  },
+  {
+    top: { text: "Reconocimiento Oficial",                                accent: true  },
+    bot: { text: "República de Colombia"                                                },
+  },
+  {
+    top: { text: "Ministerio de Ciencia, Tecnología e Innovación",        accent: true  },
+    bot: { text: "Instituto de Investigaciones Ambientales del Pacífico"               },
+  },
+  {
+    top: { text: "John Von Neumann",                                      accent: true  },
+    bot: { text: "Chocó Biogeográfico"                                                 },
+  },
 ];
-
-const ROW_A = ALL_ITEMS.filter((_, i) => i % 2 === 0); /* índices 0,2,4,6,8 */
-const ROW_B = ALL_ITEMS.filter((_, i) => i % 2 === 1); /* índices 1,3,5,7,9 */
 
 /* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
 const SEG = 16;
@@ -118,52 +127,14 @@ function RosetaPin({ size = 108 }: { size?: number }) {
   );
 }
 
-/* ─── Track — ambas filas usan esta función con la misma animación ───────── */
-function Track({ items }: { items: { text: string; key?: boolean }[] }) {
-  const track = [...items, ...items];
-  return (
-    <div
-      style={{ display: "flex", alignItems: "center", width: "max-content", height: "100%" }}
-      className="iiap-track"
-      onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
-      onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
-    >
-      {track.map((item, i) => (
-        <span key={i} style={{ display: "inline-flex", alignItems: "center", height: "100%" }}>
-          <span style={{
-            fontFamily:    "var(--font-ui), system-ui, sans-serif",
-            fontSize:      item.key ? "clamp(.67rem,.82vw,.80rem)" : "clamp(.57rem,.68vw,.66rem)",
-            fontWeight:    item.key ? 800 : 600,
-            letterSpacing: item.key ? "clamp(1.5px,.22vw,2.2px)" : "clamp(1px,.16vw,1.6px)",
-            textTransform: "uppercase",
-            color:         item.key ? "#FEFBEA" : "rgba(255,255,255,.76)",
-            textShadow:    item.key
-              ? "0 0 14px rgba(255,225,100,.65), 0 1px 5px rgba(0,0,0,.40)"
-              : "0 1px 3px rgba(0,0,0,.28)",
-            whiteSpace:    "nowrap",
-            padding:       "0 clamp(18px,2.4vw,32px)",
-            display:       "inline-block",
-          }}>
-            {item.text}
-          </span>
-          <span style={{
-            fontSize:   item.key ? ".56rem" : ".44rem",
-            color:      item.key ? "rgba(255,230,100,.65)" : "rgba(255,255,255,.38)",
-            flexShrink: 0,
-            lineHeight: 1,
-          }}>✦</span>
-        </span>
-      ))}
-    </div>
-  );
-}
-
 /* ─── Sección ────────────────────────────────────────────────────────────── */
 export default function ReconocimientoSection() {
   const RIBBON_H         = 108;
-  const ROW_H            = RIBBON_H / 2;
   const PIN_SIZE         = 108;
   const PIN_OVERHANG_TOP = 18;
+
+  /* Duplicar para loop seamless */
+  const track = [...PAIRS, ...PAIRS];
 
   return (
     <section
@@ -189,16 +160,76 @@ export default function ReconocimientoSection() {
         <div style={{ position: "absolute", inset: "0 0 auto 0", height: "32%", background: "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)", pointerEvents: "none", zIndex: 2 }} />
         {/* Destello diagonal */}
         <div style={{ position: "absolute", inset: 0, background: "linear-gradient(108deg, transparent 38%, rgba(255,255,255,.10) 48%, rgba(255,255,255,.05) 56%, transparent 66%)", pointerEvents: "none", zIndex: 2 }} />
-        {/* Separador central */}
-        <div style={{ position: "absolute", inset: `${ROW_H - 1}px 0 auto 0`, height: "1px", background: "rgba(0,0,0,.18)", boxShadow: "0 1px 0 rgba(255,255,255,.10)", zIndex: 3 }} />
 
-        {/* Fila A */}
-        <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <Track items={ROW_A} />
-        </div>
-        {/* Fila B */}
-        <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <Track items={ROW_B} />
+        {/* ── UN SOLO BLOQUE que scrollea — pares semánticos ── */}
+        <div
+          style={{
+            display:     "flex",
+            alignItems:  "center",
+            height:      "100%",
+            width:       "max-content",
+            animation:   "iiap-left 64s linear infinite",
+            cursor:      "default",
+          }}
+          onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
+          onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
+        >
+          {track.map((pair, i) => (
+            <span key={i} style={{ display: "inline-flex", alignItems: "center", height: "100%" }}>
+
+              {/* Par semántico: título + descriptor en columna compacta */}
+              <span style={{
+                display:       "inline-flex",
+                flexDirection: "column",
+                justifyContent:"center",
+                gap:           "2px",
+                padding:       "0 clamp(20px,2.8vw,38px)",
+              }}>
+                {/* Línea superior — título / dato clave */}
+                <span style={{
+                  fontFamily:    "var(--font-ui), system-ui, sans-serif",
+                  fontSize:      "clamp(.66rem,.80vw,.78rem)",
+                  fontWeight:    800,
+                  letterSpacing: "clamp(1.4px,.20vw,2px)",
+                  textTransform: "uppercase",
+                  color:         "#FEFBEA",
+                  textShadow:    "0 0 12px rgba(255,220,100,.60), 0 1px 4px rgba(0,0,0,.38)",
+                  whiteSpace:    "nowrap",
+                  lineHeight:    1,
+                }}>
+                  {pair.top.text}
+                </span>
+                {/* Línea inferior — contexto / descriptor */}
+                <span style={{
+                  fontFamily:    "var(--font-ui), system-ui, sans-serif",
+                  fontSize:      "clamp(.53rem,.62vw,.60rem)",
+                  fontWeight:    500,
+                  letterSpacing: "clamp(.8px,.14vw,1.4px)",
+                  textTransform: "uppercase",
+                  color:         "rgba(255,240,190,.68)",
+                  textShadow:    "0 1px 3px rgba(0,0,0,.30)",
+                  whiteSpace:    "nowrap",
+                  lineHeight:    1,
+                }}>
+                  {pair.bot.text}
+                </span>
+              </span>
+
+              {/* Separador decorativo entre pares */}
+              <span style={{
+                display:       "inline-flex",
+                flexDirection: "column",
+                alignItems:    "center",
+                gap:           "3px",
+                flexShrink:    0,
+                opacity:       .55,
+              }}>
+                <span style={{ fontSize: ".38rem", color: "#FEFBEA", lineHeight: 1 }}>◆</span>
+                <span style={{ fontSize: ".28rem", color: "rgba(255,230,140,.70)", lineHeight: 1 }}>◆</span>
+              </span>
+
+            </span>
+          ))}
         </div>
       </div>
 
@@ -208,15 +239,12 @@ export default function ReconocimientoSection() {
       </div>
 
       <style>{`
-        .iiap-track {
-          animation: iiap-left 62s linear infinite;
-        }
         @keyframes iiap-left {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
         @media (prefers-reduced-motion: reduce) {
-          .iiap-track { animation: none !important; }
+          [style*="iiap-left"] { animation: none !important; }
         }
       `}</style>
     </section>
