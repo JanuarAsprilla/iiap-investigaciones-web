@@ -188,7 +188,7 @@ export default function ReconocimientoSection() {
                 {/* Línea superior — título / dato clave */}
                 <span style={{
                   fontFamily:    "var(--font-ui), system-ui, sans-serif",
-                  fontSize:      "clamp(.66rem,.80vw,.78rem)",
+                  fontSize:      "clamp(.88rem,1.10vw,1.04rem)",
                   fontWeight:    800,
                   letterSpacing: "clamp(1.4px,.20vw,2px)",
                   textTransform: "uppercase",
@@ -202,7 +202,7 @@ export default function ReconocimientoSection() {
                 {/* Línea inferior — contexto / descriptor */}
                 <span style={{
                   fontFamily:    "var(--font-ui), system-ui, sans-serif",
-                  fontSize:      "clamp(.53rem,.62vw,.60rem)",
+                  fontSize:      "clamp(.70rem,.85vw,.80rem)",
                   fontWeight:    500,
                   letterSpacing: "clamp(.8px,.14vw,1.4px)",
                   textTransform: "uppercase",
