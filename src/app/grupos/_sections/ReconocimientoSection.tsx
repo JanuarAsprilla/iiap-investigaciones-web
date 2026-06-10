@@ -1,24 +1,24 @@
-/* Reconocimiento Oficial — cinta condecorativa 3D de doble fila */
+/* Reconocimiento Oficial — cinta condecorativa 3D, dos líneas en una sola dirección */
 "use client";
 import { useId } from "react";
 
-/* Fila superior — datos clave. key=true → texto más grande y dorado brillante */
-const ROW_A: { text: string; key?: boolean }[] = [
-  { text: "Reconocimiento Oficial",               key: true  },
-  { text: "Resolución N.° 1598",                  key: true  },
-  { text: "30 de agosto de 2021"                             },
-  { text: "Centro de Investigación Certificado",  key: true  },
-  { text: "Acto Administrativo Vigente"                      },
+/* 10 items distribuidos uniformemente: pares → fila superior, impares → fila inferior
+   key=true → texto más grande y dorado brillante                                      */
+const ALL_ITEMS: { text: string; key?: boolean }[] = [
+  { text: "Reconocimiento Oficial",                                       key: true  },
+  { text: "Ministerio de Ciencia, Tecnología e Innovación",               key: true  },
+  { text: "Resolución N.° 1598",                                          key: true  },
+  { text: "Instituto de Investigaciones Ambientales del Pacífico"                    },
+  { text: "30 de agosto de 2021"                                                     },
+  { text: "John Von Neumann",                                             key: true  },
+  { text: "Centro de Investigación Certificado",                          key: true  },
+  { text: "República de Colombia"                                                    },
+  { text: "Acto Administrativo Vigente"                                              },
+  { text: "Chocó Biogeográfico",                                          key: true  },
 ];
 
-/* Fila inferior — contexto institucional */
-const ROW_B: { text: string; key?: boolean }[] = [
-  { text: "Ministerio de Ciencia, Tecnología e Innovación",  key: true  },
-  { text: "Instituto de Investigaciones Ambientales del Pacífico"        },
-  { text: "John Von Neumann",                                key: true  },
-  { text: "República de Colombia"                                        },
-  { text: "Chocó Biogeográfico",                             key: true  },
-];
+const ROW_A = ALL_ITEMS.filter((_, i) => i % 2 === 0); /* índices 0,2,4,6,8 */
+const ROW_B = ALL_ITEMS.filter((_, i) => i % 2 === 1); /* índices 1,3,5,7,9 */
 
 /* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
 const SEG = 16;
@@ -61,7 +61,6 @@ function RosetaPin({ size = 108 }: { size?: number }) {
         </linearGradient>
       </defs>
 
-      {/* Colas */}
       {[
         { lx: cx - gap / 2 - tailW, shine: cx - gap / 2 - tailW * 0.68 },
         { lx: cx + gap / 2,         shine: cx + gap / 2 + tailW * 0.68 },
@@ -76,7 +75,6 @@ function RosetaPin({ size = 108 }: { size?: number }) {
         </g>
       ))}
 
-      {/* Segmentos plegados */}
       {Array.from({ length: SEG }).map((_, i) => {
         const a0 = ((i * 360) / SEG - 90) * (Math.PI / 180);
         const a1 = (((i+1) * 360) / SEG - 90) * (Math.PI / 180);
@@ -100,20 +98,15 @@ function RosetaPin({ size = 108 }: { size?: number }) {
         );
       })}
 
-      {/* Anillo y círculo interior */}
       <circle cx={cx} cy={cy} r={innerR+2.5} fill={`url(#${id}-ring)`} />
       <circle cx={cx} cy={cy} r={innerR+2.5} fill="none"
         stroke="rgba(80,40,0,.40)" strokeWidth="1" />
       <circle cx={cx} cy={cy} r={innerR} fill="white" />
       <circle cx={cx} cy={cy} r={innerR} fill="none"
         stroke="rgba(232,150,15,.55)" strokeWidth="1.2" />
-
-      {/* Brillo */}
       <ellipse cx={cx-size*.08} cy={cy-size*.20}
         rx={size*.20} ry={size*.08}
         fill="rgba(255,255,255,.18)" />
-
-      {/* Año */}
       <text x={cx} y={cy}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="var(--font-display)"
@@ -125,21 +118,13 @@ function RosetaPin({ size = 108 }: { size?: number }) {
   );
 }
 
-/* ─── Track scrolling ────────────────────────────────────────────────────── */
-function Track({
-  items,
-  animClass,
-  separator,
-}: {
-  items: { text: string; key?: boolean }[];
-  animClass: string;
-  separator: string;
-}) {
+/* ─── Track — ambas filas usan esta función con la misma animación ───────── */
+function Track({ items }: { items: { text: string; key?: boolean }[] }) {
   const track = [...items, ...items];
   return (
     <div
       style={{ display: "flex", alignItems: "center", width: "max-content", height: "100%" }}
-      className={animClass}
+      className="iiap-track"
       onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
       onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
     >
@@ -162,20 +147,18 @@ function Track({
             {item.text}
           </span>
           <span style={{
-            fontSize:   item.key ? ".58rem" : ".46rem",
-            color:      item.key ? "rgba(255,230,100,.70)" : "rgba(255,255,255,.40)",
+            fontSize:   item.key ? ".56rem" : ".44rem",
+            color:      item.key ? "rgba(255,230,100,.65)" : "rgba(255,255,255,.38)",
             flexShrink: 0,
             lineHeight: 1,
-          }}>
-            {separator}
-          </span>
+          }}>✦</span>
         </span>
       ))}
     </div>
   );
 }
 
-/* ─── Sección: cinta 3D condecorativa ───────────────────────────────────── */
+/* ─── Sección ────────────────────────────────────────────────────────────── */
 export default function ReconocimientoSection() {
   const RIBBON_H         = 108;
   const ROW_H            = RIBBON_H / 2;
@@ -185,20 +168,15 @@ export default function ReconocimientoSection() {
   return (
     <section
       aria-label="Reconocimiento Oficial — Resolución N.° 1598, Minciencias 2021"
-      style={{
-        position:      "relative",
-        paddingTop:    `${PIN_OVERHANG_TOP}px`,
-        paddingBottom: 0,
-        overflow:      "visible",
-      }}
+      style={{ position: "relative", paddingTop: `${PIN_OVERHANG_TOP}px`, paddingBottom: 0, overflow: "visible" }}
     >
       {/* ── Cinta 3D ── */}
       <div
         aria-hidden="true"
         style={{
-          position:   "relative",
-          height:     `${RIBBON_H}px`,
-          background: "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 20%, #D4820A 48%, #C07008 68%, #9A5405 84%, #7A3E03 100%)",
+          position:     "relative",
+          height:       `${RIBBON_H}px`,
+          background:   "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 20%, #D4820A 48%, #C07008 68%, #9A5405 84%, #7A3E03 100%)",
           borderTop:    "2px solid rgba(255,255,255,.55)",
           borderBottom: "2px solid rgba(0,0,0,.35)",
           boxShadow:    "inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.22), 0 4px 20px rgba(0,0,0,.32), 0 8px 36px rgba(0,0,0,.18)",
@@ -208,72 +186,37 @@ export default function ReconocimientoSection() {
         }}
       >
         {/* Sheen superior */}
-        <div style={{
-          position:      "absolute",
-          inset:         "0 0 auto 0",
-          height:        "32%",
-          background:    "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)",
-          pointerEvents: "none",
-          zIndex:        2,
-        }} />
-
+        <div style={{ position: "absolute", inset: "0 0 auto 0", height: "32%", background: "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)", pointerEvents: "none", zIndex: 2 }} />
         {/* Destello diagonal */}
-        <div style={{
-          position:      "absolute",
-          inset:         0,
-          background:    "linear-gradient(108deg, transparent 38%, rgba(255,255,255,.10) 48%, rgba(255,255,255,.05) 56%, transparent 66%)",
-          pointerEvents: "none",
-          zIndex:        2,
-        }} />
+        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(108deg, transparent 38%, rgba(255,255,255,.10) 48%, rgba(255,255,255,.05) 56%, transparent 66%)", pointerEvents: "none", zIndex: 2 }} />
+        {/* Separador central */}
+        <div style={{ position: "absolute", inset: `${ROW_H - 1}px 0 auto 0`, height: "1px", background: "rgba(0,0,0,.18)", boxShadow: "0 1px 0 rgba(255,255,255,.10)", zIndex: 3 }} />
 
-        {/* Línea divisoria entre filas */}
-        <div style={{
-          position:   "absolute",
-          inset:      `${ROW_H - 1}px 0 auto 0`,
-          height:     "1px",
-          background: "rgba(0,0,0,.18)",
-          boxShadow:  "0 1px 0 rgba(255,255,255,.10)",
-          zIndex:     3,
-        }} />
-
-        {/* Fila A — scrollea hacia la izquierda */}
+        {/* Fila A */}
         <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <Track items={ROW_A} animClass="iiap-track-a" separator="✦" />
+          <Track items={ROW_A} />
         </div>
-
-        {/* Fila B — scrollea hacia la derecha */}
+        {/* Fila B */}
         <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
-          <Track items={ROW_B} animClass="iiap-track-b" separator="◆" />
+          <Track items={ROW_B} />
         </div>
       </div>
 
       {/* ── Roseta/pin ── */}
-      <div style={{
-        position: "absolute",
-        right:    "clamp(20px,4%,64px)",
-        top:      `-${PIN_OVERHANG_TOP}px`,
-        zIndex:   10,
-      }}>
+      <div style={{ position: "absolute", right: "clamp(20px,4%,64px)", top: `-${PIN_OVERHANG_TOP}px`, zIndex: 10 }}>
         <RosetaPin size={PIN_SIZE} />
       </div>
 
       <style>{`
-        .iiap-track-a {
-          animation: iiap-left 58s linear infinite;
-        }
-        .iiap-track-b {
-          animation: iiap-right 70s linear infinite;
+        .iiap-track {
+          animation: iiap-left 62s linear infinite;
         }
         @keyframes iiap-left {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
-        @keyframes iiap-right {
-          from { transform: translateX(-50%); }
-          to   { transform: translateX(0); }
-        }
         @media (prefers-reduced-motion: reduce) {
-          .iiap-track-a, .iiap-track-b { animation: none !important; }
+          .iiap-track { animation: none !important; }
         }
       `}</style>
     </section>
