@@ -1,25 +1,29 @@
-/* Reconocimiento Oficial — cinta marquee infinita con roseta/pin lateral */
+/* Reconocimiento Oficial — cinta condecorativa 3D de doble fila */
 "use client";
 import { useId } from "react";
 
-/* Hechos clave que scrollean en la cinta */
-const ITEMS = [
-  "Reconocimiento Oficial",
-  "Resolución N.° 1598",
-  "30 de agosto de 2021",
-  "Ministerio de Ciencia, Tecnología e Innovación",
-  "Centro de Investigación Certificado",
-  "Instituto de Investigaciones Ambientales del Pacífico",
-  "John Von Neumann",
-  "República de Colombia",
-  "Chocó Biogeográfico",
-  "Acto Administrativo Vigente",
+/* Fila superior — datos clave. key=true → texto más grande y dorado brillante */
+const ROW_A: { text: string; key?: boolean }[] = [
+  { text: "Reconocimiento Oficial",               key: true  },
+  { text: "Resolución N.° 1598",                  key: true  },
+  { text: "30 de agosto de 2021"                             },
+  { text: "Centro de Investigación Certificado",  key: true  },
+  { text: "Acto Administrativo Vigente"                      },
+];
+
+/* Fila inferior — contexto institucional */
+const ROW_B: { text: string; key?: boolean }[] = [
+  { text: "Ministerio de Ciencia, Tecnología e Innovación",  key: true  },
+  { text: "Instituto de Investigaciones Ambientales del Pacífico"        },
+  { text: "John Von Neumann",                                key: true  },
+  { text: "República de Colombia"                                        },
+  { text: "Chocó Biogeográfico",                             key: true  },
 ];
 
 /* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
 const SEG = 16;
 
-function RosetaPin({ size = 96 }: { size?: number }) {
+function RosetaPin({ size = 108 }: { size?: number }) {
   const id     = useId().replace(/:/g, "");
   const cx     = size / 2;
   const cy     = size / 2;
@@ -37,7 +41,7 @@ function RosetaPin({ size = 96 }: { size?: number }) {
       height={size + tailH}
       viewBox={`0 0 ${size} ${size + tailH}`}
       aria-hidden="true"
-      style={{ display: "block", filter: "drop-shadow(0 4px 14px rgba(0,0,0,.50))" }}
+      style={{ display: "block", filter: "drop-shadow(0 5px 18px rgba(0,0,0,.55))" }}
     >
       <defs>
         <radialGradient id={`${id}-s`} cx="42%" cy="28%" r="68%">
@@ -121,107 +125,155 @@ function RosetaPin({ size = 96 }: { size?: number }) {
   );
 }
 
-/* ─── Sección: cinta marquee ─────────────────────────────────────────────── */
+/* ─── Track scrolling ────────────────────────────────────────────────────── */
+function Track({
+  items,
+  animClass,
+  separator,
+}: {
+  items: { text: string; key?: boolean }[];
+  animClass: string;
+  separator: string;
+}) {
+  const track = [...items, ...items];
+  return (
+    <div
+      style={{ display: "flex", alignItems: "center", width: "max-content", height: "100%" }}
+      className={animClass}
+      onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
+      onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
+    >
+      {track.map((item, i) => (
+        <span key={i} style={{ display: "inline-flex", alignItems: "center", height: "100%" }}>
+          <span style={{
+            fontFamily:    "var(--font-ui), system-ui, sans-serif",
+            fontSize:      item.key ? "clamp(.67rem,.82vw,.80rem)" : "clamp(.57rem,.68vw,.66rem)",
+            fontWeight:    item.key ? 800 : 600,
+            letterSpacing: item.key ? "clamp(1.5px,.22vw,2.2px)" : "clamp(1px,.16vw,1.6px)",
+            textTransform: "uppercase",
+            color:         item.key ? "#FEFBEA" : "rgba(255,255,255,.76)",
+            textShadow:    item.key
+              ? "0 0 14px rgba(255,225,100,.65), 0 1px 5px rgba(0,0,0,.40)"
+              : "0 1px 3px rgba(0,0,0,.28)",
+            whiteSpace:    "nowrap",
+            padding:       "0 clamp(18px,2.4vw,32px)",
+            display:       "inline-block",
+          }}>
+            {item.text}
+          </span>
+          <span style={{
+            fontSize:   item.key ? ".58rem" : ".46rem",
+            color:      item.key ? "rgba(255,230,100,.70)" : "rgba(255,255,255,.40)",
+            flexShrink: 0,
+            lineHeight: 1,
+          }}>
+            {separator}
+          </span>
+        </span>
+      ))}
+    </div>
+  );
+}
+
+/* ─── Sección: cinta 3D condecorativa ───────────────────────────────────── */
 export default function ReconocimientoSection() {
-  /* Duplicamos los items para que el loop sea seamless */
-  const track = [...ITEMS, ...ITEMS];
-  const RIBBON_H = 46; /* px — altura de la cinta */
-  const PIN_SIZE  = 96;
-  const PIN_OVERHANG_TOP = 14; /* cuántos px sobresale el pin por arriba */
+  const RIBBON_H         = 108;
+  const ROW_H            = RIBBON_H / 2;
+  const PIN_SIZE         = 108;
+  const PIN_OVERHANG_TOP = 18;
 
   return (
     <section
       aria-label="Reconocimiento Oficial — Resolución N.° 1598, Minciencias 2021"
       style={{
-        position: "relative",
-        /* Espacio para el pin que sobresale arriba y las colas abajo */
+        position:      "relative",
         paddingTop:    `${PIN_OVERHANG_TOP}px`,
         paddingBottom: 0,
-        overflow: "visible",
+        overflow:      "visible",
       }}
     >
-      {/* ── Cinta amber ── */}
+      {/* ── Cinta 3D ── */}
       <div
         aria-hidden="true"
         style={{
-          position: "relative",
-          height: `${RIBBON_H}px`,
-          background: "linear-gradient(to bottom, #FBE070 0%, #E8960F 22%, #C47A0C 68%, #8A5205 100%)",
-          borderTop:    "1px solid rgba(255,255,255,.28)",
-          borderBottom: "1px solid rgba(0,0,0,.18)",
-          boxShadow: "0 2px 10px rgba(0,0,0,.22), inset 0 1px 0 rgba(255,255,255,.20)",
-          overflow: "hidden",
-          /* Fade en los bordes laterales */
-          WebkitMaskImage:
-            "linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%)",
-          maskImage:
-            "linear-gradient(to right, transparent 0%, black 6%, black 88%, transparent 100%)",
+          position:   "relative",
+          height:     `${RIBBON_H}px`,
+          background: "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 20%, #D4820A 48%, #C07008 68%, #9A5405 84%, #7A3E03 100%)",
+          borderTop:    "2px solid rgba(255,255,255,.55)",
+          borderBottom: "2px solid rgba(0,0,0,.35)",
+          boxShadow:    "inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.22), 0 4px 20px rgba(0,0,0,.32), 0 8px 36px rgba(0,0,0,.18)",
+          overflow:        "hidden",
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 4%, black 88%, transparent 100%)",
+          maskImage:       "linear-gradient(to right, transparent 0%, black 4%, black 88%, transparent 100%)",
         }}
       >
-        {/* Brillo satinado */}
+        {/* Sheen superior */}
         <div style={{
-          position: "absolute", inset: "0 0 auto 0",
-          height: "40%",
-          background: "linear-gradient(to bottom, rgba(255,255,255,.18) 0%, transparent 100%)",
+          position:      "absolute",
+          inset:         "0 0 auto 0",
+          height:        "32%",
+          background:    "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)",
           pointerEvents: "none",
+          zIndex:        2,
         }} />
 
-        {/* Track infinito — se pausa con hover */}
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            height: "100%",
-            width: "max-content",
-            animation: "iiap-ticker 62s linear infinite",
-            cursor: "default",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
-          onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
-        >
-          {track.map((text, i) => (
-            <span key={i} style={{ display: "inline-flex", alignItems: "center" }}>
-              <span style={{
-                fontFamily: "var(--font-ui), system-ui, sans-serif",
-                fontSize: "clamp(.55rem,.7vw,.68rem)",
-                fontWeight: 700,
-                letterSpacing: "clamp(1.5px,.25vw,2.5px)",
-                textTransform: "uppercase",
-                color: "rgba(255,255,255,.96)",
-                textShadow: "0 1px 3px rgba(0,0,0,.25)",
-                whiteSpace: "nowrap",
-                padding: "0 clamp(18px,2.5vw,32px)",
-              }}>
-                {text}
-              </span>
-              {/* Separador diamante */}
-              <span style={{
-                fontSize: "clamp(.45rem,.55vw,.52rem)",
-                color: "rgba(255,255,255,.60)",
-                flexShrink: 0,
-              }}>◆</span>
-            </span>
-          ))}
+        {/* Destello diagonal */}
+        <div style={{
+          position:      "absolute",
+          inset:         0,
+          background:    "linear-gradient(108deg, transparent 38%, rgba(255,255,255,.10) 48%, rgba(255,255,255,.05) 56%, transparent 66%)",
+          pointerEvents: "none",
+          zIndex:        2,
+        }} />
+
+        {/* Línea divisoria entre filas */}
+        <div style={{
+          position:   "absolute",
+          inset:      `${ROW_H - 1}px 0 auto 0`,
+          height:     "1px",
+          background: "rgba(0,0,0,.18)",
+          boxShadow:  "0 1px 0 rgba(255,255,255,.10)",
+          zIndex:     3,
+        }} />
+
+        {/* Fila A — scrollea hacia la izquierda */}
+        <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
+          <Track items={ROW_A} animClass="iiap-track-a" separator="✦" />
+        </div>
+
+        {/* Fila B — scrollea hacia la derecha */}
+        <div style={{ height: `${ROW_H}px`, display: "flex", alignItems: "center", overflow: "hidden" }}>
+          <Track items={ROW_B} animClass="iiap-track-b" separator="◆" />
         </div>
       </div>
 
-      {/* ── Roseta/pin — anclada en el extremo derecho ── */}
+      {/* ── Roseta/pin ── */}
       <div style={{
         position: "absolute",
-        right: "clamp(20px,4%,64px)",
-        top:   `-${PIN_OVERHANG_TOP}px`,
-        zIndex: 10,
+        right:    "clamp(20px,4%,64px)",
+        top:      `-${PIN_OVERHANG_TOP}px`,
+        zIndex:   10,
       }}>
         <RosetaPin size={PIN_SIZE} />
       </div>
 
       <style>{`
-        @keyframes iiap-ticker {
+        .iiap-track-a {
+          animation: iiap-left 58s linear infinite;
+        }
+        .iiap-track-b {
+          animation: iiap-right 70s linear infinite;
+        }
+        @keyframes iiap-left {
           from { transform: translateX(0); }
           to   { transform: translateX(-50%); }
         }
+        @keyframes iiap-right {
+          from { transform: translateX(-50%); }
+          to   { transform: translateX(0); }
+        }
         @media (prefers-reduced-motion: reduce) {
-          @keyframes iiap-ticker { from, to { transform: translateX(0); } }
+          .iiap-track-a, .iiap-track-b { animation: none !important; }
         }
       `}</style>
     </section>
