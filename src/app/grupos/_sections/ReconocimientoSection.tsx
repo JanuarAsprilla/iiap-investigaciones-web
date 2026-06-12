@@ -1,38 +1,11 @@
-/* Reconocimiento Oficial — cinta condecorativa 3D, pares semánticos en un solo bloque */
+/* Reconocimiento Oficial — cinta estática tipo diploma, columnas de info */
 "use client";
 import { useId } from "react";
-
-/*
-  Cada par { top, bot } es una unidad semántica: título arriba, descriptor abajo.
-  El bloque entero scrollea junto — nunca hay dos líneas independientes.
-*/
-const PAIRS = [
-  {
-    top: { text: "Resolución N.° 1598",                                   accent: true  },
-    bot: { text: "30 de agosto de 2021"                                                 },
-  },
-  {
-    top: { text: "Centro de Investigación Certificado",                   accent: true  },
-    bot: { text: "Acto Administrativo Vigente"                                          },
-  },
-  {
-    top: { text: "Reconocimiento Oficial",                                accent: true  },
-    bot: { text: "República de Colombia"                                                },
-  },
-  {
-    top: { text: "Ministerio de Ciencia, Tecnología e Innovación",        accent: true  },
-    bot: { text: "Instituto de Investigaciones Ambientales del Pacífico"               },
-  },
-  {
-    top: { text: "John Von Neumann",                                      accent: true  },
-    bot: { text: "Chocó Biogeográfico"                                                 },
-  },
-];
 
 /* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
 const SEG = 16;
 
-function RosetaPin({ size = 108 }: { size?: number }) {
+function RosetaPin({ size = 92 }: { size?: number }) {
   const id     = useId().replace(/:/g, "");
   const cx     = size / 2;
   const cy     = size / 2;
@@ -127,124 +100,150 @@ function RosetaPin({ size = 108 }: { size?: number }) {
   );
 }
 
+/* ─── Separador vertical ─────────────────────────────────────────────────── */
+function Divider() {
+  return (
+    <div aria-hidden="true" className="rnk-div" style={{
+      width:      "1px",
+      alignSelf:  "stretch",
+      background: "rgba(255,255,255,.28)",
+      flexShrink: 0,
+      margin:     "6px 0",
+    }} />
+  );
+}
+
 /* ─── Sección ────────────────────────────────────────────────────────────── */
 export default function ReconocimientoSection() {
-  const RIBBON_H         = 108;
-  const PIN_SIZE         = 108;
-  const PIN_OVERHANG_TOP = 18;
+  const PIN_SIZE         = 92;
+  const PIN_OVERHANG_TOP = 14;
 
-  /* Duplicar para loop seamless */
-  const track = [...PAIRS, ...PAIRS];
+  /* Estilos tipográficos compartidos */
+  const T: Record<string, React.CSSProperties> = {
+    heading: {
+      fontFamily:    "var(--font-ui), system-ui, sans-serif",
+      fontSize:      "clamp(.78rem,.96vw,.92rem)",
+      fontWeight:    800,
+      letterSpacing: "clamp(1.2px,.18vw,1.8px)",
+      textTransform: "uppercase",
+      color:         "#FFFFFF",
+      textShadow:    "0 1px 4px rgba(0,0,0,.35)",
+      lineHeight:    1.1,
+      margin:        0,
+    },
+    sub: {
+      fontFamily:    "var(--font-ui), system-ui, sans-serif",
+      fontSize:      "clamp(.62rem,.74vw,.70rem)",
+      fontWeight:    500,
+      letterSpacing: "clamp(.6px,.10vw,1px)",
+      textTransform: "uppercase",
+      color:         "rgba(255,255,255,.82)",
+      textShadow:    "0 1px 3px rgba(0,0,0,.28)",
+      lineHeight:    1.2,
+      margin:        "3px 0 0",
+    },
+    headingLg: {
+      fontFamily:    "var(--font-ui), system-ui, sans-serif",
+      fontSize:      "clamp(.88rem,1.08vw,1.04rem)",
+      fontWeight:    800,
+      letterSpacing: "clamp(1.4px,.20vw,2px)",
+      textTransform: "uppercase",
+      color:         "#FFFFFF",
+      textShadow:    "0 1px 5px rgba(0,0,0,.38)",
+      lineHeight:    1.1,
+      margin:        0,
+    },
+    body: {
+      fontFamily:    "var(--font-ui), system-ui, sans-serif",
+      fontSize:      "clamp(.72rem,.88vw,.84rem)",
+      fontWeight:    600,
+      letterSpacing: "clamp(.5px,.08vw,.8px)",
+      color:         "rgba(255,255,255,.90)",
+      textShadow:    "0 1px 3px rgba(0,0,0,.28)",
+      lineHeight:    1.3,
+      margin:        "5px 0 0",
+    },
+  };
 
   return (
     <section
       aria-label="Reconocimiento Oficial — Resolución N.° 1598, Minciencias 2021"
-      style={{ position: "relative", paddingTop: `${PIN_OVERHANG_TOP}px`, paddingBottom: 0, overflow: "visible" }}
+      style={{ position: "relative", paddingTop: `${PIN_OVERHANG_TOP}px`, overflow: "visible" }}
     >
-      {/* ── Cinta 3D ── */}
-      <div
-        aria-hidden="true"
-        style={{
-          position:     "relative",
-          height:       `${RIBBON_H}px`,
-          background:   "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 20%, #D4820A 48%, #C07008 68%, #9A5405 84%, #7A3E03 100%)",
-          borderTop:    "2px solid rgba(255,255,255,.55)",
-          borderBottom: "2px solid rgba(0,0,0,.35)",
-          boxShadow:    "inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.22), 0 4px 20px rgba(0,0,0,.32), 0 8px 36px rgba(0,0,0,.18)",
-          overflow:        "hidden",
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 4%, black 88%, transparent 100%)",
-          maskImage:       "linear-gradient(to right, transparent 0%, black 4%, black 88%, transparent 100%)",
-        }}
-      >
+      {/* ── Cinta 3D estática ── */}
+      <div className="rnk-body" style={{
+        position:     "relative",
+        background:   "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 18%, #D4820A 46%, #C07008 66%, #9A5405 83%, #7A3E03 100%)",
+        borderTop:    "2px solid rgba(255,255,255,.55)",
+        borderBottom: "2px solid rgba(0,0,0,.35)",
+        boxShadow:    "inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.22), 0 4px 20px rgba(0,0,0,.32), 0 8px 36px rgba(0,0,0,.18)",
+        display:      "flex",
+        alignItems:   "center",
+        gap:          "clamp(16px,2.6vw,40px)",
+        padding:      "clamp(12px,1.6vw,18px) clamp(80px,8vw,120px) clamp(12px,1.6vw,18px) clamp(16px,2.8vw,40px)",
+        overflow:     "hidden",
+      }}>
+
         {/* Sheen superior */}
-        <div style={{ position: "absolute", inset: "0 0 auto 0", height: "32%", background: "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)", pointerEvents: "none", zIndex: 2 }} />
+        <div aria-hidden="true" style={{
+          position:      "absolute",
+          inset:         "0 0 auto 0",
+          height:        "34%",
+          background:    "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)",
+          pointerEvents: "none",
+        }} />
         {/* Destello diagonal */}
-        <div style={{ position: "absolute", inset: 0, background: "linear-gradient(108deg, transparent 38%, rgba(255,255,255,.10) 48%, rgba(255,255,255,.05) 56%, transparent 66%)", pointerEvents: "none", zIndex: 2 }} />
+        <div aria-hidden="true" style={{
+          position:      "absolute",
+          inset:         0,
+          background:    "linear-gradient(108deg, transparent 36%, rgba(255,255,255,.09) 46%, rgba(255,255,255,.04) 54%, transparent 64%)",
+          pointerEvents: "none",
+        }} />
 
-        {/* ── UN SOLO BLOQUE que scrollea — pares semánticos ── */}
-        <div
-          style={{
-            display:     "flex",
-            alignItems:  "center",
-            height:      "100%",
-            width:       "max-content",
-            animation:   "iiap-left 64s linear infinite",
-            cursor:      "default",
-          }}
-          onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
-          onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
-        >
-          {track.map((pair, i) => (
-            <span key={i} style={{ display: "inline-flex", alignItems: "center", height: "100%" }}>
-
-              {/* Par semántico: título + descriptor en columna compacta */}
-              <span style={{
-                display:       "inline-flex",
-                flexDirection: "column",
-                justifyContent:"center",
-                gap:           "2px",
-                padding:       "0 clamp(20px,2.8vw,38px)",
-              }}>
-                {/* Línea superior — título / dato clave */}
-                <span style={{
-                  fontFamily:    "var(--font-ui), system-ui, sans-serif",
-                  fontSize:      "clamp(.88rem,1.10vw,1.04rem)",
-                  fontWeight:    800,
-                  letterSpacing: "clamp(1.4px,.20vw,2px)",
-                  textTransform: "uppercase",
-                  color:         "#FEFBEA",
-                  textShadow:    "0 0 12px rgba(255,220,100,.60), 0 1px 4px rgba(0,0,0,.38)",
-                  whiteSpace:    "nowrap",
-                  lineHeight:    1,
-                }}>
-                  {pair.top.text}
-                </span>
-                {/* Línea inferior — contexto / descriptor */}
-                <span style={{
-                  fontFamily:    "var(--font-ui), system-ui, sans-serif",
-                  fontSize:      "clamp(.70rem,.85vw,.80rem)",
-                  fontWeight:    500,
-                  letterSpacing: "clamp(.8px,.14vw,1.4px)",
-                  textTransform: "uppercase",
-                  color:         "rgba(255,240,190,.68)",
-                  textShadow:    "0 1px 3px rgba(0,0,0,.30)",
-                  whiteSpace:    "nowrap",
-                  lineHeight:    1,
-                }}>
-                  {pair.bot.text}
-                </span>
-              </span>
-
-              {/* Separador decorativo entre pares */}
-              <span style={{
-                display:       "inline-flex",
-                flexDirection: "column",
-                alignItems:    "center",
-                gap:           "3px",
-                flexShrink:    0,
-                opacity:       .55,
-              }}>
-                <span style={{ fontSize: ".38rem", color: "#FEFBEA", lineHeight: 1 }}>◆</span>
-                <span style={{ fontSize: ".28rem", color: "rgba(255,230,140,.70)", lineHeight: 1 }}>◆</span>
-              </span>
-
-            </span>
-          ))}
+        {/* ── Bloque izquierdo: dos pares apilados ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px,1.1vw,13px)", flexShrink: 0, zIndex: 1 }}>
+          <div>
+            <p style={T.heading}>Centro de Investigación Certificado</p>
+            <p style={T.sub}>Acto administrativo vigente</p>
+          </div>
+          <div>
+            <p style={T.heading}>Resolución N.°&nbsp;1598</p>
+            <p style={T.sub}>30 de agosto del 2021</p>
+          </div>
         </div>
+
+        <Divider />
+
+        {/* ── Bloque central ── */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "3px", flex: 1, zIndex: 1 }}>
+          <div>
+            <p style={T.headingLg}>Reconocimiento Oficial</p>
+            <p style={T.sub}>República de Colombia</p>
+          </div>
+          <p style={T.body}>Ministerio de Ciencia, Tecnología e Innovación</p>
+        </div>
+
       </div>
 
       {/* ── Roseta/pin ── */}
-      <div style={{ position: "absolute", right: "clamp(20px,4%,64px)", top: `-${PIN_OVERHANG_TOP}px`, zIndex: 10 }}>
+      <div style={{
+        position: "absolute",
+        right:    "clamp(16px,3.2%,52px)",
+        top:      `-${PIN_OVERHANG_TOP}px`,
+        zIndex:   10,
+      }}>
         <RosetaPin size={PIN_SIZE} />
       </div>
 
+      {/* Responsive: en mobile apilar bloques */}
       <style>{`
-        @keyframes iiap-left {
-          from { transform: translateX(0); }
-          to   { transform: translateX(-50%); }
-        }
-        @media (prefers-reduced-motion: reduce) {
-          [style*="iiap-left"] { animation: none !important; }
+        @media (max-width: 600px) {
+          .rnk-body {
+            flex-direction: column !important;
+            gap: 10px !important;
+            padding-right: clamp(16px,5vw,28px) !important;
+          }
+          .rnk-div { display: none !important; }
         }
       `}</style>
     </section>
