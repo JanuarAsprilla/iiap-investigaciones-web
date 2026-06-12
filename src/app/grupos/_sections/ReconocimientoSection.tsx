@@ -1,67 +1,96 @@
-/* Reconocimiento Oficial — cinta estática tipo diploma, columnas de info */
+/* Reconocimiento Oficial
+   Cinta 3D infinita — segmentos semánticos, pin que llena la altura */
 "use client";
 import { useId } from "react";
 
-/* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
-const SEG = 16;
+/* Segmentos que scrollean. sub → descriptor debajo del título. */
+const SEGMENTS: { heading: string; sub?: string }[] = [
+  { heading: "Centro de Investigación Certificado", sub: "Acto administrativo vigente"               },
+  { heading: "Resolución N.° 1598",                 sub: "30 de agosto del 2021"                    },
+  { heading: "Reconocimiento Oficial",              sub: "República de Colombia"                    },
+  { heading: "Ministerio de Ciencia",               sub: "Tecnología e Innovación"                  },
+  { heading: "John Von Neumann",                    sub: "Chocó Biogeográfico"                       },
+  { heading: "Inst. de Investigaciones Ambientales del Pacífico",
+                                                    sub: "Acto Administrativo Vigente"              },
+];
 
-function RosetaPin({ size = 92 }: { size?: number }) {
+/* ─── Geometría global ───────────────────────────────────────────────────── */
+const RIBBON_H         = 96;   /* altura de la cinta en px                   */
+const PIN_SIZE         = 108;  /* roseta: outerR × 2 ≈ 96px = llena RIBBON_H */
+const PIN_OVERHANG_TOP = 6;    /* px que el disco sobresale por arriba        */
+
+/* ─── Roseta / Pin ───────────────────────────────────────────────────────── */
+const SEG_COUNT = 16;
+
+function RosetaPin() {
   const id     = useId().replace(/:/g, "");
-  const cx     = size / 2;
-  const cy     = size / 2;
-  const outerR = size * 0.445;
-  const innerR = size * 0.260;
-  const tailW  = size * 0.148;
-  const tailH  = size * 0.50;
-  const gap    = size * 0.036;
-  const notch  = size * 0.11;
-  const tailY  = cy + size * 0.195;
+  const s      = PIN_SIZE;
+  const cx     = s / 2;
+  const cy     = s / 2;
+  const outerR = s * 0.445;
+  const innerR = s * 0.260;
+  const tailW  = s * 0.148;
+  const tailH  = s * 0.52;
+  const gap    = s * 0.036;
+  const notch  = s * 0.11;
+  const tailY  = cy + s * 0.195;
 
   return (
     <svg
-      width={size}
-      height={size + tailH}
-      viewBox={`0 0 ${size} ${size + tailH}`}
+      width={s}
+      height={s + tailH}
+      viewBox={`0 0 ${s} ${s + tailH}`}
       aria-hidden="true"
-      style={{ display: "block", filter: "drop-shadow(0 5px 18px rgba(0,0,0,.55))" }}
+      style={{
+        display: "block",
+        filter: "drop-shadow(0 6px 22px rgba(0,0,0,.60)) drop-shadow(0 2px 6px rgba(0,0,0,.35))",
+      }}
     >
       <defs>
-        <radialGradient id={`${id}-s`} cx="42%" cy="28%" r="68%">
-          <stop offset="0%"   stopColor="#F9DC6A" />
-          <stop offset="48%"  stopColor="#E8960F" />
-          <stop offset="100%" stopColor="#A05C08" />
+        <radialGradient id={`${id}-s`} cx="40%" cy="26%" r="70%">
+          <stop offset="0%"   stopColor="#FDE97A" />
+          <stop offset="42%"  stopColor="#E8960F" />
+          <stop offset="100%" stopColor="#9A5208" />
         </radialGradient>
-        <radialGradient id={`${id}-ring`} cx="38%" cy="30%" r="65%">
-          <stop offset="0%"   stopColor="#F0C040" />
-          <stop offset="60%"  stopColor="#C07A0C" />
-          <stop offset="100%" stopColor="#7A4A05" />
+        <radialGradient id={`${id}-ring`} cx="36%" cy="28%" r="66%">
+          <stop offset="0%"   stopColor="#F2C843" />
+          <stop offset="55%"  stopColor="#C07A0C" />
+          <stop offset="100%" stopColor="#744808" />
         </radialGradient>
         <linearGradient id={`${id}-t`} x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%"   stopColor="#9A5E06" />
+          <stop offset="0%"   stopColor="#8A5006" />
           <stop offset="50%"  stopColor="#E8960F" />
-          <stop offset="100%" stopColor="#9A5E06" />
+          <stop offset="100%" stopColor="#8A5006" />
         </linearGradient>
+        {/* Brillo extra sobre los segmentos */}
+        <radialGradient id={`${id}-shine`} cx="38%" cy="24%" r="55%">
+          <stop offset="0%"   stopColor="rgba(255,255,255,.30)" />
+          <stop offset="100%" stopColor="rgba(255,255,255,0)"   />
+        </radialGradient>
       </defs>
 
+      {/* Colas */}
       {[
-        { lx: cx - gap / 2 - tailW, shine: cx - gap / 2 - tailW * 0.68 },
-        { lx: cx + gap / 2,         shine: cx + gap / 2 + tailW * 0.68 },
+        { lx: cx - gap / 2 - tailW, shine: cx - gap / 2 - tailW * 0.65 },
+        { lx: cx + gap / 2,         shine: cx + gap / 2 + tailW * 0.65 },
       ].map(({ lx, shine }, i) => (
         <g key={i}>
           <polygon
             points={`${lx},${tailY} ${lx+tailW},${tailY} ${lx+tailW},${tailY+tailH} ${lx+tailW/2},${tailY+tailH-notch} ${lx},${tailY+tailH}`}
             fill={`url(#${id}-t)`}
           />
-          <line x1={shine} y1={tailY+4} x2={shine} y2={tailY+tailH*.82}
-            stroke="rgba(255,255,255,.22)" strokeWidth="1.2" />
+          {/* Brillo de la cola */}
+          <line x1={shine} y1={tailY+5} x2={shine} y2={tailY+tailH*.80}
+            stroke="rgba(255,255,255,.26)" strokeWidth="1.4" />
         </g>
       ))}
 
-      {Array.from({ length: SEG }).map((_, i) => {
-        const a0 = ((i * 360) / SEG - 90) * (Math.PI / 180);
-        const a1 = (((i+1) * 360) / SEG - 90) * (Math.PI / 180);
+      {/* Segmentos de la roseta */}
+      {Array.from({ length: SEG_COUNT }).map((_, i) => {
+        const a0 = ((i * 360) / SEG_COUNT - 90) * (Math.PI / 180);
+        const a1 = (((i+1) * 360) / SEG_COUNT - 90) * (Math.PI / 180);
         const am = (a0 + a1) / 2;
-        const fR = innerR + (outerR - innerR) * 0.36;
+        const fR = innerR + (outerR - innerR) * 0.34;
         const pts = [
           `${cx+innerR*Math.cos(a0)},${cy+innerR*Math.sin(a0)}`,
           `${cx+outerR*Math.cos(a0)},${cy+outerR*Math.sin(a0)}`,
@@ -71,28 +100,41 @@ function RosetaPin({ size = 92 }: { size?: number }) {
         return (
           <g key={i}>
             <polygon points={pts} fill={`url(#${id}-s)`} />
+            {/* Costura entre segmentos */}
             <line
               x1={cx+fR*Math.cos(am)} y1={cy+fR*Math.sin(am)}
               x2={cx+outerR*Math.cos(am)} y2={cy+outerR*Math.sin(am)}
-              stroke="rgba(0,0,0,.16)" strokeWidth=".9"
+              stroke="rgba(0,0,0,.18)" strokeWidth="1"
             />
           </g>
         );
       })}
 
-      <circle cx={cx} cy={cy} r={innerR+2.5} fill={`url(#${id}-ring)`} />
-      <circle cx={cx} cy={cy} r={innerR+2.5} fill="none"
-        stroke="rgba(80,40,0,.40)" strokeWidth="1" />
-      <circle cx={cx} cy={cy} r={innerR} fill="white" />
-      <circle cx={cx} cy={cy} r={innerR} fill="none"
-        stroke="rgba(232,150,15,.55)" strokeWidth="1.2" />
-      <ellipse cx={cx-size*.08} cy={cy-size*.20}
-        rx={size*.20} ry={size*.08}
-        fill="rgba(255,255,255,.18)" />
-      <text x={cx} y={cy}
+      {/* Capa de brillo sobre la roseta */}
+      <circle cx={cx} cy={cy} r={outerR} fill={`url(#${id}-shine)`} />
+
+      {/* Anillo dorado */}
+      <circle cx={cx} cy={cy} r={innerR + 3}   fill={`url(#${id}-ring)`} />
+      <circle cx={cx} cy={cy} r={innerR + 3}   fill="none"
+        stroke="rgba(60,30,0,.45)" strokeWidth="1.2" />
+
+      {/* Disco blanco central */}
+      <circle cx={cx} cy={cy} r={innerR}       fill="white" />
+      <circle cx={cx} cy={cy} r={innerR}       fill="none"
+        stroke="rgba(220,140,10,.60)" strokeWidth="1.4" />
+
+      {/* Brillo del disco */}
+      <ellipse cx={cx - s*.07} cy={cy - s*.19}
+        rx={s*.18} ry={s*.07}
+        fill="rgba(255,255,255,.22)" />
+
+      {/* Año */}
+      <text
+        x={cx} y={cy}
         textAnchor="middle" dominantBaseline="middle"
         fontFamily="var(--font-display)"
-        fontSize={size * 0.17}
+        fontSize={s * 0.19}
+        fontWeight="800"
         fill="#0D3B24"
         letterSpacing="1"
       >2021</text>
@@ -100,150 +142,183 @@ function RosetaPin({ size = 92 }: { size?: number }) {
   );
 }
 
-/* ─── Separador vertical ─────────────────────────────────────────────────── */
-function Divider() {
-  return (
-    <div aria-hidden="true" className="rnk-div" style={{
-      width:      "1px",
-      alignSelf:  "stretch",
-      background: "rgba(255,255,255,.28)",
-      flexShrink: 0,
-      margin:     "6px 0",
-    }} />
-  );
-}
-
 /* ─── Sección ────────────────────────────────────────────────────────────── */
 export default function ReconocimientoSection() {
-  const PIN_SIZE         = 92;
-  const PIN_OVERHANG_TOP = 14;
-
-  /* Estilos tipográficos compartidos */
-  const T: Record<string, React.CSSProperties> = {
-    heading: {
-      fontFamily:    "var(--font-ui), system-ui, sans-serif",
-      fontSize:      "clamp(.78rem,.96vw,.92rem)",
-      fontWeight:    800,
-      letterSpacing: "clamp(1.2px,.18vw,1.8px)",
-      textTransform: "uppercase",
-      color:         "#FFFFFF",
-      textShadow:    "0 1px 4px rgba(0,0,0,.35)",
-      lineHeight:    1.1,
-      margin:        0,
-    },
-    sub: {
-      fontFamily:    "var(--font-ui), system-ui, sans-serif",
-      fontSize:      "clamp(.62rem,.74vw,.70rem)",
-      fontWeight:    500,
-      letterSpacing: "clamp(.6px,.10vw,1px)",
-      textTransform: "uppercase",
-      color:         "rgba(255,255,255,.82)",
-      textShadow:    "0 1px 3px rgba(0,0,0,.28)",
-      lineHeight:    1.2,
-      margin:        "3px 0 0",
-    },
-    headingLg: {
-      fontFamily:    "var(--font-ui), system-ui, sans-serif",
-      fontSize:      "clamp(.88rem,1.08vw,1.04rem)",
-      fontWeight:    800,
-      letterSpacing: "clamp(1.4px,.20vw,2px)",
-      textTransform: "uppercase",
-      color:         "#FFFFFF",
-      textShadow:    "0 1px 5px rgba(0,0,0,.38)",
-      lineHeight:    1.1,
-      margin:        0,
-    },
-    body: {
-      fontFamily:    "var(--font-ui), system-ui, sans-serif",
-      fontSize:      "clamp(.72rem,.88vw,.84rem)",
-      fontWeight:    600,
-      letterSpacing: "clamp(.5px,.08vw,.8px)",
-      color:         "rgba(255,255,255,.90)",
-      textShadow:    "0 1px 3px rgba(0,0,0,.28)",
-      lineHeight:    1.3,
-      margin:        "5px 0 0",
-    },
-  };
+  const track = [...SEGMENTS, ...SEGMENTS]; /* duplicar para loop seamless */
 
   return (
     <section
       aria-label="Reconocimiento Oficial — Resolución N.° 1598, Minciencias 2021"
-      style={{ position: "relative", paddingTop: `${PIN_OVERHANG_TOP}px`, overflow: "visible" }}
+      style={{
+        position:      "relative",
+        paddingTop:    `${PIN_OVERHANG_TOP}px`,
+        paddingBottom: 0,
+        overflow:      "visible",
+      }}
     >
-      {/* ── Cinta 3D estática ── */}
-      <div className="rnk-body" style={{
-        position:     "relative",
-        background:   "linear-gradient(to bottom, #FEF5B0 0%, #F7C535 5%, #E8960F 18%, #D4820A 46%, #C07008 66%, #9A5405 83%, #7A3E03 100%)",
-        borderTop:    "2px solid rgba(255,255,255,.55)",
-        borderBottom: "2px solid rgba(0,0,0,.35)",
-        boxShadow:    "inset 0 1px 0 rgba(255,255,255,.30), inset 0 -1px 0 rgba(0,0,0,.22), 0 4px 20px rgba(0,0,0,.32), 0 8px 36px rgba(0,0,0,.18)",
-        display:      "flex",
-        alignItems:   "center",
-        gap:          "clamp(16px,2.6vw,40px)",
-        padding:      "clamp(12px,1.6vw,18px) clamp(80px,8vw,120px) clamp(12px,1.6vw,18px) clamp(16px,2.8vw,40px)",
-        overflow:     "hidden",
-      }}>
+      {/* ══ CINTA 3D ══════════════════════════════════════════════════════ */}
+      <div
+        aria-hidden="true"
+        style={{
+          position:     "relative",
+          height:       `${RIBBON_H}px`,
 
-        {/* Sheen superior */}
-        <div aria-hidden="true" style={{
+          /* Gradiente metálico 3D de 8 paradas */
+          background: [
+            "linear-gradient(to bottom,",
+            "  #FFF4A8 0%,",     /* borde superior: casi blanco */
+            "  #F9D535 4%,",     /* highlight brillante          */
+            "  #EFA012 16%,",    /* cara superior                */
+            "  #E08C0D 32%,",    /* cuerpo principal             */
+            "  #D07C08 52%,",    /* centro                       */
+            "  #B86806 70%,",    /* cara inferior                */
+            "  #8C4B04 86%,",    /* sombra                       */
+            "  #6C3602 100%",    /* borde inferior: muy oscuro   */
+            ")",
+          ].join(""),
+
+          /* Biseles y sombras profundas */
+          borderTop:    "3px solid rgba(255,255,255,.62)",
+          borderBottom: "3px solid rgba(0,0,0,.40)",
+          boxShadow: [
+            "inset 0  2px 0 rgba(255,255,255,.36),",
+            "inset 0 -2px 0 rgba(0,0,0,.28),",
+            "0 5px 24px rgba(0,0,0,.38),",
+            "0 12px 48px rgba(0,0,0,.22),",
+            "0 2px  8px rgba(0,0,0,.28)",
+          ].join(""),
+
+          overflow:        "hidden",
+          /* Fade lateral: deja zona derecha sólida para el pin */
+          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 92%)",
+          maskImage:       "linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 92%)",
+        }}
+      >
+        {/* Sheen superior — simula la cara iluminada */}
+        <div style={{
           position:      "absolute",
           inset:         "0 0 auto 0",
-          height:        "34%",
-          background:    "linear-gradient(to bottom, rgba(255,255,255,.22) 0%, transparent 100%)",
+          height:        "36%",
+          background:    "linear-gradient(to bottom, rgba(255,255,255,.26) 0%, rgba(255,255,255,.06) 60%, transparent 100%)",
           pointerEvents: "none",
+          zIndex:        2,
         }} />
-        {/* Destello diagonal */}
-        <div aria-hidden="true" style={{
+
+        {/* Destello diagonal — luz rasante sobre la superficie */}
+        <div style={{
           position:      "absolute",
           inset:         0,
-          background:    "linear-gradient(108deg, transparent 36%, rgba(255,255,255,.09) 46%, rgba(255,255,255,.04) 54%, transparent 64%)",
+          background:    "linear-gradient(112deg, transparent 30%, rgba(255,255,255,.12) 44%, rgba(255,255,255,.06) 54%, transparent 68%)",
           pointerEvents: "none",
+          zIndex:        2,
         }} />
 
-        {/* ── Bloque izquierdo: dos pares apilados ── */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "clamp(8px,1.1vw,13px)", flexShrink: 0, zIndex: 1 }}>
-          <div>
-            <p style={T.heading}>Centro de Investigación Certificado</p>
-            <p style={T.sub}>Acto administrativo vigente</p>
-          </div>
-          <div>
-            <p style={T.heading}>Resolución N.°&nbsp;1598</p>
-            <p style={T.sub}>30 de agosto del 2021</p>
-          </div>
+        {/* Línea de sombra inferior interna */}
+        <div style={{
+          position:      "absolute",
+          inset:         "auto 0 4px 0",
+          height:        "1px",
+          background:    "rgba(0,0,0,.14)",
+          pointerEvents: "none",
+          zIndex:        2,
+        }} />
+
+        {/* ── TRACK INFINITO ── */}
+        <div
+          style={{
+            display:     "flex",
+            alignItems:  "center",
+            height:      "100%",
+            width:       "max-content",
+            animation:   "iiap-ticker 52s linear infinite",
+            cursor:      "default",
+            zIndex:      1,
+            position:    "relative",
+          }}
+          onMouseEnter={e => (e.currentTarget.style.animationPlayState = "paused")}
+          onMouseLeave={e => (e.currentTarget.style.animationPlayState = "running")}
+        >
+          {track.map((seg, i) => (
+            <span key={i} style={{ display: "inline-flex", alignItems: "center", height: "100%" }}>
+
+              {/* Bloque semántico: título + descriptor */}
+              <span style={{
+                display:        "inline-flex",
+                flexDirection:  "column",
+                justifyContent: "center",
+                gap:            "5px",
+                padding:        "0 clamp(24px, 3.2vw, 48px)",
+              }}>
+                {/* Título principal */}
+                <span style={{
+                  fontFamily:    "var(--font-ui), system-ui, sans-serif",
+                  fontSize:      "clamp(1.0rem, 1.18vw, 1.12rem)",
+                  fontWeight:    800,
+                  letterSpacing: "clamp(1.2px, .18vw, 2px)",
+                  textTransform: "uppercase",
+                  color:         "#FFFFFF",
+                  textShadow:    "0 0 18px rgba(255,220,80,.50), 0 1px 6px rgba(0,0,0,.48)",
+                  whiteSpace:    "nowrap",
+                  lineHeight:    1,
+                }}>
+                  {seg.heading}
+                </span>
+
+                {/* Descriptor / subtítulo */}
+                {seg.sub && (
+                  <span style={{
+                    fontFamily:    "var(--font-ui), system-ui, sans-serif",
+                    fontSize:      "clamp(.72rem, .86vw, .82rem)",
+                    fontWeight:    500,
+                    letterSpacing: "clamp(.6px, .10vw, 1.1px)",
+                    textTransform: "uppercase",
+                    color:         "rgba(255,248,210,.84)",
+                    textShadow:    "0 1px 4px rgba(0,0,0,.40)",
+                    whiteSpace:    "nowrap",
+                    lineHeight:    1,
+                  }}>
+                    {seg.sub}
+                  </span>
+                )}
+              </span>
+
+              {/* Separador decorativo doble ◆ */}
+              <span style={{
+                display:        "inline-flex",
+                flexDirection:  "column",
+                alignItems:     "center",
+                gap:            "4px",
+                flexShrink:     0,
+                paddingRight:   "2px",
+                opacity:        .60,
+              }}>
+                <span style={{ fontSize: ".52rem", color: "#FEFBEA", lineHeight: 1 }}>◆</span>
+                <span style={{ fontSize: ".34rem", color: "rgba(255,230,140,.70)", lineHeight: 1 }}>◆</span>
+              </span>
+
+            </span>
+          ))}
         </div>
-
-        <Divider />
-
-        {/* ── Bloque central ── */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "3px", flex: 1, zIndex: 1 }}>
-          <div>
-            <p style={T.headingLg}>Reconocimiento Oficial</p>
-            <p style={T.sub}>República de Colombia</p>
-          </div>
-          <p style={T.body}>Ministerio de Ciencia, Tecnología e Innovación</p>
-        </div>
-
       </div>
 
-      {/* ── Roseta/pin ── */}
+      {/* ══ ROSETA — llena exactamente la altura de la cinta ══════════════ */}
       <div style={{
-        position: "absolute",
-        right:    "clamp(16px,3.2%,52px)",
-        top:      `-${PIN_OVERHANG_TOP}px`,
-        zIndex:   10,
+        position:   "absolute",
+        right:      "clamp(12px, 2.8%, 48px)",
+        top:        `-${PIN_OVERHANG_TOP}px`,
+        zIndex:     10,
+        lineHeight: 0,
       }}>
-        <RosetaPin size={PIN_SIZE} />
+        <RosetaPin />
       </div>
 
-      {/* Responsive: en mobile apilar bloques */}
       <style>{`
-        @media (max-width: 600px) {
-          .rnk-body {
-            flex-direction: column !important;
-            gap: 10px !important;
-            padding-right: clamp(16px,5vw,28px) !important;
-          }
-          .rnk-div { display: none !important; }
+        @keyframes iiap-ticker {
+          from { transform: translateX(0); }
+          to   { transform: translateX(-50%); }
+        }
+        @media (prefers-reduced-motion: reduce) {
+          @keyframes iiap-ticker { from, to { transform: translateX(0); } }
         }
       `}</style>
     </section>
