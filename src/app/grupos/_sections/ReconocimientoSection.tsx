@@ -177,7 +177,7 @@ export default function ReconocimientoSection() {
             ")",
           ].join(""),
 
-          /* Biseles y sombras profundas */
+          /* Biseles — se desvanecen con la máscara en los bordes verticales */
           borderTop:    "3px solid rgba(255,255,255,.62)",
           borderBottom: "3px solid rgba(0,0,0,.40)",
           boxShadow: [
@@ -189,9 +189,22 @@ export default function ReconocimientoSection() {
           ].join(""),
 
           overflow:        "hidden",
-          /* Fade lateral: deja zona derecha sólida para el pin */
-          WebkitMaskImage: "linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 92%)",
-          maskImage:       "linear-gradient(to right, transparent 0%, black 5%, black 85%, transparent 92%)",
+          /*
+            Máscara 2D: intersección de fade horizontal (izq/der) y
+            fade vertical (top/bot) → la cinta emerge del fondo de la página
+            top/bottom: 0%→18% fade-in, 82%→100% fade-out
+            left/right: 0%→5% fade-in, 85%→92% fade-out (reserva espacio al pin)
+          */
+          WebkitMaskImage: [
+            "linear-gradient(to right,  transparent 0%, black  5%, black 85%, transparent 92%)",
+            "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+          ].join(", "),
+          maskImage: [
+            "linear-gradient(to right,  transparent 0%, black  5%, black 85%, transparent 92%)",
+            "linear-gradient(to bottom, transparent 0%, black 18%, black 82%, transparent 100%)",
+          ].join(", "),
+          WebkitMaskComposite: "destination-in",
+          maskComposite:       "intersect",
         }}
       >
         {/* Sheen superior — simula la cara iluminada */}
