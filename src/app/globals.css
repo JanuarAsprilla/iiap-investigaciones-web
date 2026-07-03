@@ -150,7 +150,41 @@ img, video { max-width: 100%; height: auto; display: block; }
    Reduced motion
 ════════════════════════════════════════════ */
 @media (prefers-reduced-motion: reduce) {
-  * { animation-duration: 0.01ms !important; transition-duration: 0.01ms !important; }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ════════════════════════════════════════════
+   Skip link — accesibilidad de teclado
+   Oculto hasta recibir foco; salta al <main id="main-content">.
+════════════════════════════════════════════ */
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 1000;
+  transform: translateY(-120%);
+  padding: 0.75rem 1.25rem;
+  background: var(--forest, #0B3D2C);
+  color: #fff;
+  font-family: var(--font-ui, system-ui), sans-serif;
+  font-size: 0.9rem;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  border-radius: 0 0 0.5rem 0;
+  text-decoration: none;
+  transition: transform 0.18s ease-out;
+}
+.skip-link:focus {
+  transform: translateY(0);
+  outline: 3px solid var(--amber, #E8960F);
+  outline-offset: 2px;
 }
 
 /* ════════════════════════════════════════════

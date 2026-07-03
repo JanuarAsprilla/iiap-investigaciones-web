@@ -1,5 +1,6 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Crimson_Text, Inter } from "next/font/google";
+import { SITE_URL, SITE_NAME } from "@/lib/site";
 // @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -25,9 +26,14 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "Subdirección de Investigaciones — IIAP",
+  metadataBase: new URL(SITE_URL),
+  title: {
+    default: SITE_NAME,
+    template: "%s — IIAP",
+  },
   description:
     "Plataforma unificada de la Subdirección de Investigaciones del Instituto de Investigaciones Ambientales del Pacífico (IIAP). Planificación, Centros y Grupos de Investigación del Chocó Biogeográfico.",
+  applicationName: SITE_NAME,
   keywords: [
     "IIAP",
     "investigación ambiental",
@@ -37,14 +43,57 @@ export const metadata: Metadata = {
     "geoinformática",
     "PICIA",
   ],
-  authors: [{ name: "IIAP — Institut de Investigaciones Ambientales del Pacífico" }],
+  authors: [
+    { name: "IIAP — Instituto de Investigaciones Ambientales del Pacífico" },
+  ],
+  creator: "IIAP",
+  publisher: "IIAP",
+  alternates: {
+    canonical: "/",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  icons: {
+    icon: "/favicon.ico",
+    apple: "/assets/logo-iiap.png",
+  },
   openGraph: {
-    title: "Subdirección de Investigaciones — IIAP",
+    title: SITE_NAME,
     description:
       "Conocimiento científico al servicio de la biodiversidad del Chocó Biogeográfico.",
+    url: SITE_URL,
+    siteName: SITE_NAME,
     locale: "es_CO",
     type: "website",
+    images: [
+      {
+        url: "/assets/logo-iiap.png",
+        width: 512,
+        height: 512,
+        alt: "Instituto de Investigaciones Ambientales del Pacífico (IIAP)",
+      },
+    ],
   },
+  twitter: {
+    card: "summary_large_image",
+    title: SITE_NAME,
+    description:
+      "Conocimiento científico al servicio de la biodiversidad del Chocó Biogeográfico.",
+    images: ["/assets/logo-iiap.png"],
+  },
+};
+
+export const viewport: Viewport = {
+  themeColor: "#0B3D2C",
+  colorScheme: "light",
 };
 
 export default function RootLayout({
@@ -57,7 +106,12 @@ export default function RootLayout({
       lang="es"
       className={`${bebasNeue.variable} ${crimsonText.variable} ${inter.variable}`}
     >
-      <body className="min-h-screen antialiased">{children}</body>
+      <body className="min-h-screen antialiased">
+        <a href="#main-content" className="skip-link">
+          Saltar al contenido
+        </a>
+        {children}
+      </body>
     </html>
   );
 }
