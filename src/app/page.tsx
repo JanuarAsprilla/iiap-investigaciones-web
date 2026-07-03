@@ -5,21 +5,21 @@ const portalSections = [
   {
     label: "Planeación",
     description:
-      "Lineamientos estratégicos, plan operativo anual y programas de investigación que orientan el quehacer científico del IIAP.",
+      "El IIAP orienta su gestión mediante instrumentos como el POA, PICIA, PENIA y el Plan Estratégico, articulados con políticas nacionales y territoriales para el desarrollo sostenible del Chocó Biogeográfico.",
     href: "/planeacion",
     imageSrc: "/assets/comunes/YDRAY-YDRAY-Sede-Tecnica_02.gif",
   },
   {
     label: "Centros de Investigación",
     description:
-      "Sede técnica con bioespacios, laboratorios e infraestructura de campo para la investigación en biodiversidad del Pacífico.",
+      "Sede de investigación básica y aplicada, con bioespacios, laboratorios e infraestructura para la investigación desarrollada en el Chocó Biogeográfico.",
     href: "/centros",
     imageSrc: "/assets/centros/SENDERO.jpeg",
   },
   {
     label: "Componentes",
     description:
-      "Cuatro componentes programáticos y un Laboratorio de Datos que articulan la ciencia ambiental con el territorio y las comunidades del Pacífico.",
+      "Cuatro componentes programáticos y un Laboratorio de Datos que articulan la ciencia ambiental con el territorio y las comunidades del Chocó Biogeográfico.",
     href: "/componentes",
     imageSrc: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
   },

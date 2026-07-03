@@ -6,52 +6,10 @@ export const infoCentro = {
   coordenadas: { lat: 5.5717, lng: -76.6269 },
   horario: "Lunes a viernes, 9:00 AM – 3:00 PM",
   descripcion:
-    "Centro de investigación en biodiversidad del Chocó Biogeográfico. Es un espacio estratégico para el estudio de diversas líneas, como productivas, ambientales o ecosistémicas, cuenta con infraestructura científica certificada y espacios colaborativos para la comunidad investigadora.",
+    "El Centro de investigación del Chocó Biogeográfico. Es un espacio estratégico para el estudio de diversas líneas, como productivas, ambientales o ecosistémicas, cuenta con infraestructura científica certificada, bioespacios de investigación y espacios colaborativos para la comunidad investigadora.",
 };
 
 export const instalaciones: InstalacionCentro[] = [
-  {
-    id: "oficinas",
-    nombre: "Oficinas Individuales",
-    descripcion: "Espacios privados de trabajo equipados para investigadores residentes y visitantes.",
-    detalle:
-      "Cada oficina individual está diseñada para el trabajo científico de alta concentración. Cuentan con escritorio amplio, estantería modular, conexión de red de alta velocidad y condiciones de climatización estable para el manejo de equipos de cómputo y muestras biológicas.",
-    imagen: "/assets/centros/ESPACIOS_CENTRO.jpeg",
-    galeria: [
-      "/assets/centros/ESPACIOS_CENTRO.jpeg",
-      "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
-      "/assets/centros/LABORATORIO.jpeg",
-    ],
-    cantidad: "24",
-    unidad: "Oficinas disponibles",
-    caracteristicas: [
-      "Acceso a red LAN y WiFi institucional",
-      "Climatización controlada",
-      "Almacenamiento seguro para muestras",
-      "Disponibles para investigadores visitantes",
-    ],
-  },
-  {
-    id: "salas",
-    nombre: "Salas Colaborativas",
-    descripcion: "Espacios de trabajo en equipo con capacidad para 10 personas cada una.",
-    detalle:
-      "Las salas colaborativas están concebidas para el trabajo interdisciplinario y la co-creación científica. Equipadas con pantallas interactivas, pizarras de vidrio y mobiliario flexible que se adapta a reuniones de trabajo, talleres participativos y sesiones de diseño de proyectos.",
-    imagen: "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
-    galeria: [
-      "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
-      "/assets/centros/MURAL.jpeg",
-      "/assets/centros/ESPACIOS_CENTRO.jpeg",
-    ],
-    cantidad: "4",
-    unidad: "Salas disponibles",
-    caracteristicas: [
-      "Pantallas interactivas 65\"",
-      "Videoconferencia integrada",
-      "Capacidad de 10 personas c/u",
-      "Mobiliario modular reconfigurable",
-    ],
-  },
   {
     id: "documentacion",
     nombre: "Centro de Documentación",
@@ -91,6 +49,54 @@ export const instalaciones: InstalacionCentro[] = [
     ],
   },
   {
+    id: "lab-robinson",
+    nombre: "Laboratorio de Robinsón",
+    descripcion:
+      "Laboratorio especializado del Centro de Investigación del Chocó Biogeográfico. Descripción oficial en actualización.",
+    imagen: "/assets/centros/LABORATORIO.jpeg",
+    galeria: [
+      "/assets/centros/LABORATORIO.jpeg",
+      "/assets/grupos/LABORATORIO_DATOS.jpeg",
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+    ],
+  },
+  {
+    id: "lab-erick",
+    nombre: "Laboratorio de Erick",
+    descripcion:
+      "Laboratorio especializado del Centro de Investigación del Chocó Biogeográfico. Descripción oficial en actualización.",
+    imagen: "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    galeria: [
+      "/assets/grupos/LABORATORIO_DATOS.jpeg",
+      "/assets/centros/LABORATORIO.jpeg",
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+    ],
+  },
+  {
+    id: "lab-mirla",
+    nombre: "Laboratorio Mirla",
+    descripcion:
+      "Laboratorio especializado del Centro de Investigación del Chocó Biogeográfico. Descripción oficial en actualización.",
+    imagen: "/assets/centros/ESPACIOS_CENTRO.jpeg",
+    galeria: [
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+      "/assets/centros/LABORATORIO.jpeg",
+      "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    ],
+  },
+  {
+    id: "lab-luisjavier",
+    nombre: "Laboratorio Luis Javier",
+    descripcion:
+      "Laboratorio especializado del Centro de Investigación del Chocó Biogeográfico. Descripción oficial en actualización.",
+    imagen: "/assets/centros/LABORATORIO.jpeg",
+    galeria: [
+      "/assets/centros/LABORATORIO.jpeg",
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+      "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    ],
+  },
+  {
     id: "auditorios",
     nombre: "Auditorios",
     descripcion: "Dos auditorios con capacidad para 60 y 120 personas, equipados para videoconferencias y eventos académicos.",
@@ -109,6 +115,48 @@ export const instalaciones: InstalacionCentro[] = [
       "Auditorio secundario — 60 personas",
       "Sistema de videoconferencia HD",
       "Cabina de traducción simultánea",
+    ],
+  },
+  {
+    id: "salas",
+    nombre: "Salas Colaborativas",
+    descripcion: "Espacios de trabajo en equipo con capacidad para 10 personas cada una.",
+    detalle:
+      "Las salas colaborativas están concebidas para el trabajo interdisciplinario y la co-creación científica. Equipadas con pantallas interactivas, pizarras de vidrio y mobiliario flexible que se adapta a reuniones de trabajo, talleres participativos y sesiones de diseño de proyectos.",
+    imagen: "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
+    galeria: [
+      "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
+      "/assets/centros/MURAL.jpeg",
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+    ],
+    cantidad: "4",
+    unidad: "Salas disponibles",
+    caracteristicas: [
+      "Pantallas interactivas 65\"",
+      "Videoconferencia integrada",
+      "Capacidad de 10 personas c/u",
+      "Mobiliario modular reconfigurable",
+    ],
+  },
+  {
+    id: "oficinas",
+    nombre: "Oficinas Individuales",
+    descripcion: "Espacios privados de trabajo equipados para investigadores residentes y visitantes.",
+    detalle:
+      "Cada oficina individual está diseñada para el trabajo científico de alta concentración. Cuentan con escritorio amplio, estantería modular, conexión de red de alta velocidad y condiciones de climatización estable para el manejo de equipos de cómputo y muestras biológicas.",
+    imagen: "/assets/centros/ESPACIOS_CENTRO.jpeg",
+    galeria: [
+      "/assets/centros/ESPACIOS_CENTRO.jpeg",
+      "/assets/centros/ESPACIOS_AUDIOVISUALES.jpeg",
+      "/assets/centros/LABORATORIO.jpeg",
+    ],
+    cantidad: "24",
+    unidad: "Oficinas disponibles",
+    caracteristicas: [
+      "Acceso a red LAN y WiFi institucional",
+      "Climatización controlada",
+      "Almacenamiento seguro para muestras",
+      "Disponibles para investigadores visitantes",
     ],
   },
 ];

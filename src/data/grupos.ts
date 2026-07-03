@@ -21,7 +21,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
     nombre: "Componente Ambiental",
     tipo: "AMBIENTAL",
     descripcion:
-      "Monitoreo y análisis de la calidad ambiental del Pacífico colombiano: agua, suelo, aire y biodiversidad. Genera alertas tempranas y datos para política ambiental.",
+      "Produce información sobre la calidad, uso y dinámicas ecológicas del suelo y el agua, con énfasis en los sistemas hídricos del Chocó Biogeográfico, generando insumos para la gestión ambiental frente a disturbios naturales y antrópicos.",
     lineas: [
       "Calidad del agua en cuencas hidrográficas",
       "Monitoreo de contaminación por minería",
@@ -36,7 +36,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
     nombre: "Componente Productivo",
     tipo: "PRODUCTIVO",
     descripcion:
-      "Desarrolla y evalúa alternativas productivas sostenibles para comunidades rurales e indígenas, articulando investigación científica con aplicación comunitaria.",
+      "Investigación participativa que fortalece los sistemas productivos tradicionales y la seguridad alimentaria del Chocó Biogeográfico, promoviendo bioeconomía, negocios verdes y modelos agroecológicos resilientes al cambio climático.",
     lineas: [
       "Sistemas agroforestales tropicales",
       "Acuicultura de especies nativas",
@@ -51,7 +51,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
     nombre: "Componente Ecosistémico",
     tipo: "ECOSISTEMICO",
     descripcion:
-      "Estudio integral de los ecosistemas del Chocó Biogeográfico: estructura, función y servicios ecosistémicos. Referente nacional en biodiversidad húmedo tropical.",
+      "Genera conocimiento sobre los ecosistemas estratégicos y la biodiversidad del Chocó Biogeográfico mediante investigación básica y experimental, evaluando su conservación y funcionalidad ecológica frente a la presión antrópica.",
     lineas: [
       "Inventarios de biodiversidad",
       "Restauración ecológica",
