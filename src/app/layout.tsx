@@ -1,6 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Bebas_Neue, Crimson_Text, Inter } from "next/font/google";
-import { SITE_URL, SITE_NAME } from "@/lib/site";
+import { SITE_URL, SITE_NAME, IS_INDEXABLE } from "@/lib/site";
 // @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -51,16 +51,20 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "/",
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      "max-image-preview": "large",
-      "max-snippet": -1,
-    },
-  },
+  // Indexable solo en la producción real (NEXT_PUBLIC_ALLOW_INDEXING=true).
+  // En el preview de Render queda noindex/nofollow para no filtrarse a buscadores.
+  robots: IS_INDEXABLE
+    ? {
+        index: true,
+        follow: true,
+        googleBot: {
+          index: true,
+          follow: true,
+          "max-image-preview": "large",
+          "max-snippet": -1,
+        },
+      }
+    : { index: false, follow: false },
   icons: {
     icon: "/favicon.ico",
     apple: "/assets/logo-iiap.png",
