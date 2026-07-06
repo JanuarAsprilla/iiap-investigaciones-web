@@ -7,28 +7,28 @@ const portalSections = [
     description:
       "El IIAP orienta su gestión mediante instrumentos como el POA, PICIA, PENIA y el Plan Estratégico, articulados con políticas nacionales y territoriales para el desarrollo sostenible del Chocó Biogeográfico.",
     href: "/planeacion",
-    imageSrc: "/assets/comunes/YDRAY-YDRAY-Sede-Tecnica_02.gif",
+    imageSrc: "/assets/comunes/sede-tecnica.gif",
   },
   {
     label: "Centros de Investigación",
     description:
       "Sede de investigación básica y aplicada, con bioespacios, laboratorios e infraestructura para la investigación desarrollada en el Chocó Biogeográfico.",
     href: "/centros",
-    imageSrc: "/assets/centros/SENDERO.jpeg",
+    imageSrc: "/assets/centros/sendero.webp",
   },
   {
     label: "Componentes",
     description:
       "Cuatro componentes programáticos y un Laboratorio de Datos que articulan la ciencia ambiental con el territorio y las comunidades del Chocó Biogeográfico.",
     href: "/componentes",
-    imageSrc: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    imageSrc: "/assets/grupos/componente-ecosistemico.webp",
   },
   {
     label: "Grupos de Investigación",
     description:
       "Cinco grupos especializados que generan conocimiento desde y para las comunidades étnicas y la biodiversidad del Chocó Biogeográfico.",
     href: "/grupos",
-    imageSrc: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+    imageSrc: "/assets/grupos/componente-sociocultural.webp",
   },
 ];
 
@@ -74,7 +74,7 @@ export default function HomePage() {
           <div className="hero-frame-wrap" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/assets/comunes/YDRAY-YDRAY-Sede-Tecnica_02.gif"
+              src="/assets/comunes/sede-tecnica.gif"
               alt=""
               className="hero-frame-img"
               fetchPriority="high"

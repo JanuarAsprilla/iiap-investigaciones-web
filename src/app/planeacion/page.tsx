@@ -5,10 +5,10 @@ import SiteNav from "@/components/layout/SiteNav";
 import { documentosPlanificacion } from "@/data/planificacion";
 
 const heroBgs = [
-  "/assets/centros/SENDERO.jpeg",
-  "/assets/centros/VIVERO.jpeg",
-  "/assets/centros/PISCITANQUES.jpeg",
-  "/assets/comunes/YDRAY-IMG_1099.jpeg",
+  "/assets/centros/sendero.webp",
+  "/assets/centros/vivero.webp",
+  "/assets/centros/piscitanques.webp",
+  "/assets/comunes/sede-aerea.webp",
 ];
 
 /* ──────────────────────────────────────────────
@@ -53,7 +53,7 @@ function DiagramaModal({ onClose, closing }: { onClose: () => void; closing?: bo
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
-          src="/assets/comunes/DIAGRAMA_PICIA.png"
+          src="/assets/comunes/diagrama-picia.webp"
           alt="Diagrama PICIA 2023-2026"
           style={{ width: "100%", height: "auto", borderRadius: "16px", display: "block", border: "1px solid var(--border)" }}
         />
@@ -245,7 +245,7 @@ export default function PlaneacionPage() {
                       <>
                         {/* eslint-disable-next-line @next/next/no-img-element */}
                         <img
-                          src="/assets/comunes/PICIA-2023-2026.jpg"
+                          src="/assets/comunes/picia-2023-2026.webp"
                           alt=""
                           aria-hidden="true"
                           style={{
@@ -478,7 +478,7 @@ export default function PlaneacionPage() {
               >
                 {/* eslint-disable-next-line @next/next/no-img-element */}
                 <img
-                  src="/assets/comunes/DIAGRAMA_PICIA.png"
+                  src="/assets/comunes/diagrama-picia.webp"
                   alt="Diagrama de la estructura programática del PICIA 2023-2026"
                   style={{
                     width: "100%",

@@ -5,10 +5,10 @@ import SiteNav from "@/components/layout/SiteNav";
 import ActualizacionCard, { ActualizacionCardData } from "@/components/actualidades/ActualizacionCard";
 
 const heroBgs = [
-  "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-  "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
-  "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
-  "/assets/grupos/LABORATORIO_DATOS.jpeg",
+  "/assets/grupos/componente-ecosistemico.webp",
+  "/assets/grupos/componente-sociocultural.webp",
+  "/assets/grupos/componente-ambiental.webp",
+  "/assets/grupos/laboratorio-datos.webp",
 ];
 
 const FILTROS = [

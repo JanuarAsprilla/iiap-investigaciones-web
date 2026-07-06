@@ -10,10 +10,10 @@ import TimelineSection     from "../grupos/_sections/TimelineSection";
 
 /* Carousel background images for the hero */
 const heroBgs = [
-  "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-  "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
-  "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
-  "/assets/grupos/LABORATORIO_DATOS.jpeg",
+  "/assets/grupos/componente-ecosistemico.webp",
+  "/assets/grupos/componente-ambiental.webp",
+  "/assets/grupos/componente-sociocultural.webp",
+  "/assets/grupos/laboratorio-datos.webp",
 ];
 
 export default function ComponentesPage() {

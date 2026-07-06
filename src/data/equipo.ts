@@ -8,7 +8,7 @@ export const equipo: Investigador[] = [
     apellido: "Klinger Brahan",
     rol: "director",
     cargo: "Director General",
-    imagen: "/assets/investigadores/DIRECTOR.jpeg",
+    imagen: "/assets/investigadores/director.webp",
     especialidad: "Derecho Ambiental y Gobernanza",
     bio: "Abogado con amplia trayectoria en gobernanza ambiental y gestión territorial. Dirige el IIAP articulando la agenda científica con las políticas de conservación del Chocó Biogeográfico y el reconocimiento de los derechos ambientales de las comunidades étnicas del Pacífico colombiano.",
     areas: ["Derecho Ambiental", "Gobernanza Territorial", "Políticas Públicas"],
@@ -24,7 +24,7 @@ export const equipo: Investigador[] = [
     apellido: "Ramírez",
     rol: "subdirector",
     cargo: "Subdirector de Investigaciones",
-    imagen: "/assets/investigadores/SUBDIRECTOR.jpeg",
+    imagen: "/assets/investigadores/subdirector.webp",
     especialidad: "Ciencias Ambientales",
     bio: "Científico ambiental con formación en ciencias naturales y gestión del conocimiento. Lidera la Subdirección de Investigaciones articulando los cuatro componentes programáticos hacia una agenda integrada para la conservación y el desarrollo sostenible del Pacífico colombiano.",
     areas: ["Ciencias Ambientales", "Gestión del Conocimiento", "Investigación Aplicada"],
@@ -42,7 +42,7 @@ export const equipo: Investigador[] = [
     rol: "coordinador",
     cargo: "Coordinador Componente Sociocultural",
     componente: "SOCIOCULTURAL",
-    imagen: "/assets/investigadores/CARLOS_ARIEL.jpeg",
+    imagen: "/assets/investigadores/carlos-ariel.webp",
     especialidad: "Antropología",
     bio: "Antropólogo especializado en etnografía de comunidades afrocolombianas e indígenas del Chocó Biogeográfico. Coordina investigaciones sobre saberes ancestrales, territorialidad étnica y dinámicas socioculturales del Pacífico, vinculando el conocimiento científico con las cosmovisiones del territorio.",
     areas: ["Etnografía", "Comunidades Étnicas", "Saberes Ancestrales", "Territorialidad"],
@@ -59,7 +59,7 @@ export const equipo: Investigador[] = [
     rol: "coordinador",
     cargo: "Coordinadora Componente Ambiental",
     componente: "AMBIENTAL",
-    imagen: "/assets/investigadores/LADY_VARGAS.png",
+    imagen: "/assets/investigadores/lady-vargas.webp",
     especialidad: "Ingeniería Ambiental",
     bio: "Ingeniera ambiental con especialización en monitoreo de ecosistemas acuáticos y calidad del agua. Coordina los estudios sobre recursos hídricos, calidad ambiental y gestión de riesgos naturales en la región del Pacífico colombiano.",
     areas: ["Recursos Hídricos", "Calidad Ambiental", "Ecosistemas Acuáticos", "Riesgo Natural"],
@@ -76,7 +76,7 @@ export const equipo: Investigador[] = [
     rol: "coordinador",
     cargo: "Coordinador Componente Productivo",
     componente: "PRODUCTIVO",
-    imagen: "/assets/investigadores/MOISES.jpeg",
+    imagen: "/assets/investigadores/moises.webp",
     especialidad: "Ingeniería Agroforestal",
     bio: "Ingeniero agroforestal con amplia experiencia en sistemas productivos sostenibles del trópico húmedo. Coordina investigaciones en seguridad alimentaria, manejo de suelos y diversificación productiva con comunidades rurales del Pacífico colombiano.",
     areas: ["Agroforestería", "Seguridad Alimentaria", "Suelos Tropicales", "Producción Sostenible"],
@@ -93,7 +93,7 @@ export const equipo: Investigador[] = [
     rol: "coordinador",
     cargo: "Coordinadora Componente Ecosistémico",
     componente: "ECOSISTEMICO",
-    imagen: "/assets/investigadores/ZULMARY.jpeg",
+    imagen: "/assets/investigadores/zulmary.webp",
     especialidad: "Biología",
     bio: "Bióloga con profunda experiencia en ecología de ecosistemas tropicales y valoración de la biodiversidad del Chocó. Coordina los estudios de flora, fauna y servicios ecosistémicos en uno de los puntos de mayor biodiversidad del planeta.",
     areas: ["Ecología Tropical", "Biodiversidad", "Servicios Ecosistémicos", "Herpetología"],
@@ -110,7 +110,7 @@ export const equipo: Investigador[] = [
     rol: "coordinador",
     cargo: "Coordinador Laboratorio de Datos",
     componente: "LABORATORIO",
-    imagen: "/assets/investigadores/EDSSON_NAGLE.jpeg",
+    imagen: "/assets/investigadores/edsson-nagle.webp",
     especialidad: "Geoinformática",
     bio: "Especialista en geoinformática y análisis de datos espaciales. Lidera el Laboratorio de Datos del IIAP, integrando tecnologías SIG, sensores remotos y ciencia de datos para el monitoreo y análisis territorial del Chocó Biogeográfico.",
     areas: ["SIG y Teledetección", "Ciencia de Datos", "Monitoreo Territorial", "Cartografía Ambiental"],
@@ -127,7 +127,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/ROBINSON.jpeg",
+    imagen: "/assets/investigadores/robinson.webp",
   },
   {
     id: "mirla",
@@ -135,7 +135,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/MIRLA.jpeg",
+    imagen: "/assets/investigadores/mirla.webp",
   },
   {
     id: "silvio",
@@ -143,7 +143,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/SILVIO.jpeg",
+    imagen: "/assets/investigadores/silvio.webp",
   },
   {
     id: "yohanita",
@@ -151,7 +151,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/YOHANITA.jpeg",
+    imagen: "/assets/investigadores/yohanita.webp",
   },
   {
     id: "wilber",
@@ -159,7 +159,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/WILBER.JPG",
+    imagen: "/assets/investigadores/wilber.webp",
   },
   {
     id: "wilman",
@@ -167,7 +167,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/WILMAN.jpeg",
+    imagen: "/assets/investigadores/wilman.webp",
   },
   {
     id: "pedro",
@@ -175,7 +175,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/PEDRO.jpeg",
+    imagen: "/assets/investigadores/pedro.webp",
   },
   {
     id: "ana",
@@ -183,7 +183,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/ANA.jpeg",
+    imagen: "/assets/investigadores/ana.webp",
   },
   {
     id: "reimer",
@@ -191,7 +191,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/REIMER.jpeg",
+    imagen: "/assets/investigadores/reimer.webp",
   },
   {
     id: "eladio",
@@ -199,7 +199,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/ELADIO.jpeg",
+    imagen: "/assets/investigadores/eladio.webp",
   },
   {
     id: "erick-yair",
@@ -207,7 +207,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/ERICK_YAIR.jpeg",
+    imagen: "/assets/investigadores/erick-yair.webp",
   },
   {
     id: "luis-javier",
@@ -215,7 +215,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/LUIS_JAVIER.jpeg",
+    imagen: "/assets/investigadores/luis-javier.webp",
   },
   {
     id: "nelcy",
@@ -223,7 +223,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/NELCY.jpeg",
+    imagen: "/assets/investigadores/nelcy.webp",
   },
   {
     id: "yirlesa",
@@ -231,7 +231,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/YIRLESA.JPG",
+    imagen: "/assets/investigadores/yirlesa.webp",
   },
   {
     id: "yiskar-damian",
@@ -239,7 +239,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/YISKAR_DAMIAN.jpeg",
+    imagen: "/assets/investigadores/yiskar-damian.webp",
   },
   {
     id: "zoraida",
@@ -247,7 +247,7 @@ export const equipo: Investigador[] = [
     apellido: "",
     rol: "investigador",
     cargo: "Investigadora",
-    imagen: "/assets/investigadores/ZORAIDA.JPG",
+    imagen: "/assets/investigadores/zoraida.webp",
   },
   {
     id: "jovanny-pino",
@@ -255,7 +255,7 @@ export const equipo: Investigador[] = [
     apellido: "Pino",
     rol: "investigador",
     cargo: "Investigador",
-    imagen: "/assets/investigadores/JOVANNY_PINO.jpeg",
+    imagen: "/assets/investigadores/jovanny-pino.webp",
   },
 ];
 
@@ -266,7 +266,7 @@ export const gestores: import("@/lib/types").Investigador[] = [
     apellido: "Grueso",
     rol: "gestor",
     cargo: "Gestor Subregional Guapi",
-    imagen: "/assets/investigadores/OMAR_GRUESO.jpg",
+    imagen: "/assets/investigadores/omar-grueso.webp",
   },
   {
     id: "Jennifer-Román-Valencia",
@@ -274,7 +274,7 @@ export const gestores: import("@/lib/types").Investigador[] = [
     apellido: "Román Valencia",
     rol: "gestor",
     cargo: "Gestor Subregional Buenaventura",
-    imagen: "/assets/investigadores/JENNIFER_ROMAN.jpg",
+    imagen: "/assets/investigadores/jennifer-roman.webp",
   },
   {
     id: "César-Antonio-Quiñones-Portocarrero",
@@ -282,7 +282,7 @@ export const gestores: import("@/lib/types").Investigador[] = [
     apellido: "Quiñones Portocarrero",
     rol: "gestor",
     cargo: "Gestor Subregional Nariño",
-    imagen: "/assets/investigadores/CESAR_QUIÑONES.jpg",
+    imagen: "/assets/investigadores/cesar-quinones.webp",
   },
 ];
 

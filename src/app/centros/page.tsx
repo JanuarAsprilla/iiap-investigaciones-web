@@ -159,10 +159,10 @@ function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: 
    Page
 ───────────────────────────────────────── */
 const heroBgs = [
-  "/assets/centros/SENDERO.jpeg",
-  "/assets/centros/VIVERO.jpeg",
-  "/assets/centros/LABORATORIO.jpeg",
-  "/assets/centros/PISCITANQUES.jpeg",
+  "/assets/centros/sendero.webp",
+  "/assets/centros/vivero.webp",
+  "/assets/centros/laboratorio.webp",
+  "/assets/centros/piscitanques.webp",
 ];
 
 export default function CentrosPage() {

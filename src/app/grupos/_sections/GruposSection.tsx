@@ -6,11 +6,11 @@ import type { GrupoInvestigacion } from "@/lib/types";
 import ModalGallery from "@/components/ui/ModalGallery";
 
 const grupoImages: Record<string, string> = {
-  "gi-01": "/assets/comunes/YDRAY-IMG_1099.jpeg",
-  "gi-02": "/assets/centros/SENDERO.jpeg",
-  "gama":  "/assets/grupos/LABORATORIO_DATOS.jpeg",
-  "gi-04": "/assets/centros/VIVERO.jpeg",
-  "gi-05": "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+  "gi-01": "/assets/comunes/sede-aerea.webp",
+  "gi-02": "/assets/centros/sendero.webp",
+  "gama":  "/assets/grupos/laboratorio-datos.webp",
+  "gi-04": "/assets/centros/vivero.webp",
+  "gi-05": "/assets/grupos/componente-ecosistemico.webp",
 };
 
 function GrupoCard({ gi, onClick }: { gi: GrupoInvestigacion; onClick: () => void }) {
@@ -24,7 +24,7 @@ function GrupoCard({ gi, onClick }: { gi: GrupoInvestigacion; onClick: () => voi
       onKeyDown={(e) => (e.key === "Enter" || e.key === " ") && (e.preventDefault(), onClick())}
     >
       {/* eslint-disable-next-line @next/next/no-img-element */}
-      <img src={grupoImages[gi.id] ?? "/assets/comunes/YDRAY-IMG_1099.jpeg"} alt={gi.nombre} loading="lazy" />
+      <img src={grupoImages[gi.id] ?? "/assets/comunes/sede-aerea.webp"} alt={gi.nombre} loading="lazy" />
       <div className="gc-overlay" />
       <div className="gc-content">
         <span style={{ fontFamily: "var(--font-ui)", fontSize: ".58rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)", display: "block", marginBottom: ".4rem" }}>
@@ -45,7 +45,7 @@ function GrupoCard({ gi, onClick }: { gi: GrupoInvestigacion; onClick: () => voi
 }
 
 function GrupoModal({ gi, onClose, closing }: { gi: GrupoInvestigacion; onClose: () => void; closing?: boolean }) {
-  const mainImg = gi.imagen ?? grupoImages[gi.id] ?? "/assets/comunes/YDRAY-IMG_1099.jpeg";
+  const mainImg = gi.imagen ?? grupoImages[gi.id] ?? "/assets/comunes/sede-aerea.webp";
   const images = gi.galeria && gi.galeria.length > 0 ? gi.galeria : [mainImg];
   return (
     <div className={`cm-overlay${closing ? " closing" : ""}`} style={{ display: "flex" }} role="dialog" aria-modal="true" aria-label={gi.nombre} onClick={onClose} onKeyDown={(e) => { if (e.key === "Escape") onClose(); }}>

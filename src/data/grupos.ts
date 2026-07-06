@@ -13,7 +13,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
       "Sistemas de producción tradicional",
       "Derechos bioculturales",
     ],
-    imagen: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+    imagen: "/assets/grupos/componente-sociocultural.webp",
     color: "#1B5E3B",
   },
   {
@@ -28,7 +28,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
       "Evaluación de impactos ambientales",
       "Indicadores de salud ecosistémica",
     ],
-    imagen: "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+    imagen: "/assets/grupos/componente-ambiental.webp",
     color: "#26A65B",
   },
   {
@@ -43,7 +43,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
       "Biotecnología aplicada",
       "Cadenas de valor sostenibles",
     ],
-    imagen: "/assets/centros/vainilla.jpeg",
+    imagen: "/assets/centros/vainilla.webp",
     color: "#E07B2A",
   },
   {
@@ -58,7 +58,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
       "Servicios ecosistémicos y carbono",
       "Conectividad biológica",
     ],
-    imagen: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    imagen: "/assets/grupos/componente-ecosistemico.webp",
     color: "#0B3D2C",
   },
   {
@@ -73,7 +73,7 @@ export const componentesInvestigacion: ComponenteInvestigacion[] = [
       "Modelado ambiental predictivo",
       "Plataformas de datos abiertos",
     ],
-    imagen: "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    imagen: "/assets/grupos/laboratorio-datos.webp",
     color: "#1A3A5C",
   },
 ];
@@ -92,11 +92,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Mapeo participativo",
     ],
     coordinador: "Carlos Ariel Rentería Jiménez",
-    imagen: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+    imagen: "/assets/grupos/componente-sociocultural.webp",
     galeria: [
-      "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
-      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-      "/assets/centros/SENDERO.jpeg",
+      "/assets/grupos/componente-sociocultural.webp",
+      "/assets/grupos/componente-ecosistemico.webp",
+      "/assets/centros/sendero.webp",
     ],
   },
   {
@@ -112,11 +112,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Manejo de cuencas hidrográficas",
     ],
     coordinador: "Zulmary Valoyez Cardozo",
-    imagen: "/assets/centros/SENDERO.jpeg",
+    imagen: "/assets/centros/sendero.webp",
     galeria: [
-      "/assets/centros/SENDERO.jpeg",
-      "/assets/grupos/ORQUIDEA.jpeg",
-      "/assets/centros/VIVERO.jpeg",
+      "/assets/centros/sendero.webp",
+      "/assets/grupos/orquidea.webp",
+      "/assets/centros/vivero.webp",
     ],
   },
   {
@@ -132,11 +132,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Plataformas de datos geoespaciales",
     ],
     coordinador: "Edsson Nagle Ramírez",
-    imagen: "/assets/grupos/LABORATORIO_DATOS.jpeg",
+    imagen: "/assets/grupos/laboratorio-datos.webp",
     galeria: [
-      "/assets/grupos/LABORATORIO_DATOS.jpeg",
-      "/assets/centros/LABORATORIO.jpeg",
-      "/assets/grupos/COMPONENTE_AMBIENTAL.jpeg",
+      "/assets/grupos/laboratorio-datos.webp",
+      "/assets/centros/laboratorio.webp",
+      "/assets/grupos/componente-ambiental.webp",
     ],
   },
   {
@@ -152,11 +152,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Salvaguarda de saberes ancestrales",
     ],
     coordinador: "Lady Yulenis Vargas Porras",
-    imagen: "/assets/centros/VIVERO.jpeg",
+    imagen: "/assets/centros/vivero.webp",
     galeria: [
-      "/assets/centros/VIVERO.jpeg",
-      "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
-      "/assets/grupos/ABEJAS.jpeg",
+      "/assets/centros/vivero.webp",
+      "/assets/grupos/componente-sociocultural.webp",
+      "/assets/grupos/abejas.webp",
     ],
   },
   {
@@ -172,11 +172,11 @@ export const gruposInvestigacion: GrupoInvestigacion[] = [
       "Estrategias de conservación in situ",
     ],
     coordinador: "Por definir",
-    imagen: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    imagen: "/assets/grupos/componente-ecosistemico.webp",
     galeria: [
-      "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
-      "/assets/grupos/SERPIENTE.jpeg",
-      "/assets/grupos/CIENAGA_TAGACHI.jpeg",
+      "/assets/grupos/componente-ecosistemico.webp",
+      "/assets/grupos/serpiente.webp",
+      "/assets/grupos/cienaga-tagachi.webp",
     ],
   },
 ];

@@ -24,7 +24,7 @@ const pasos = [
     desc: "Levantamiento de información primaria con comunidades y ecosistemas del Chocó Biogeográfico mediante trabajo de campo participativo.",
     detalle:
       "Nuestros equipos se sumergen en el territorio: comunidades afro, indígenas y campesinas del Pacífico colombiano. Identificamos problemáticas ambientales, sociales y productivas de forma conjunta antes de diseñar cualquier intervención científica.",
-    img: "/assets/comunes/YDRAY-IMG_1099.jpeg",
+    img: "/assets/comunes/sede-aerea.webp",
     tag: "Trabajo de Campo",
   },
   {
@@ -33,7 +33,7 @@ const pasos = [
     desc: "Formulación de proyectos de investigación con enfoque intercultural, integrando saberes ancestrales y metodología científica.",
     detalle:
       "Traducimos el diagnóstico en preguntas de investigación con rigor científico e interculturalidad. Construimos marcos metodológicos que dialogan entre el conocimiento académico y el saber comunitario del Pacífico.",
-    img: "/assets/grupos/COMPONENTE_SOCIOCULTURAL.jpeg",
+    img: "/assets/grupos/componente-sociocultural.webp",
     tag: "Diseño Metodológico",
   },
   {
@@ -42,7 +42,7 @@ const pasos = [
     desc: "Recolección sistemática de datos biológicos, sociales y ambientales en áreas estratégicas del Pacífico colombiano.",
     detalle:
       "Expediciones científicas a ecosistemas críticos: bosques húmedos, ríos, comunidades rurales. Recolectamos especímenes, datos cuantitativos y cualitativos con protocolos estandarizados y participación comunitaria activa.",
-    img: "/assets/centros/SENDERO.jpeg",
+    img: "/assets/centros/sendero.webp",
     tag: "Recolección de Datos",
   },
   {
@@ -50,8 +50,8 @@ const pasos = [
     titulo: "Análisis y Publicación",
     desc: "Procesamiento de datos, generación de conocimiento científico y publicación en revistas indexadas y documentos de política pública.",
     detalle:
-      "En el Laboratorio HPC del Centro Experimental procesamos grandes volúmenes de datos geoespaciales, biológicos y sociales. Los resultados se publican en revistas indexadas Scopus y se convierten en insumo para política pública ambiental.",
-    img: "/assets/centros/LABORATORIO.jpeg",
+      "En el Laboratorio de Datos del Centro Experimental procesamos grandes volúmenes de datos geoespaciales, biológicos y sociales. Los resultados se publican en revistas indexadas Scopus y se convierten en insumo para política pública ambiental.",
+    img: "/assets/centros/laboratorio.webp",
     tag: "Generación de Conocimiento",
   },
   {
@@ -60,7 +60,7 @@ const pasos = [
     desc: "Devolución del conocimiento a las comunidades, formulación de política pública y apropiación social de la ciencia en el Pacífico.",
     detalle:
       "El ciclo se cierra donde empezó: en el territorio. Devolvemos el conocimiento a las comunidades en formatos accesibles, apoyamos la formulación de ordenanzas y políticas ambientales, y sembramos capacidades científicas locales para el futuro.",
-    img: "/assets/grupos/COMPONENTE_ECOSISTEMICO.jpeg",
+    img: "/assets/grupos/componente-ecosistemico.webp",
     tag: "Impacto Social",
   },
 ];
