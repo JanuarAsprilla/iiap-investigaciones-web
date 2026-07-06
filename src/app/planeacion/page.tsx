@@ -14,8 +14,10 @@ const heroBgs = [
 /* ──────────────────────────────────────────────
    Modal — Diagrama PICIA (Warm Light)
 ─────────────────────────────────────────────── */
-/* Safe URL helper — only allow https: origins */
+/* Safe URL helper — allow local /docs/*.pdf paths and https: origins */
 function safePdfUrl(raw: string): string {
+  // Same-origin local PDF (e.g. /docs/PICIA-2023-2026.pdf) — sin traversal
+  if (/^\/docs\/[\w.-]+\.pdf$/i.test(raw)) return raw;
   try {
     const parsed = new URL(raw);
     return parsed.protocol === "https:" ? raw : "#";
@@ -322,6 +324,7 @@ export default function PlaneacionPage() {
                     </p>
                     <a
                       href={safePdfUrl(doc.url)}
+                      download
                       target="_blank"
                       rel="noopener noreferrer"
                       style={{
