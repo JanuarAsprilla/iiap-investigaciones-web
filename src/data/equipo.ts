@@ -282,7 +282,16 @@ export const gestores: import("@/lib/types").Investigador[] = [
     apellido: "Quiñones Portocarrero",
     rol: "gestor",
     cargo: "Gestor Subregional Nariño",
+
     imagen: "/assets/investigadores/cesar-quinones.webp",
+  },
+  {
+    id: "fairi",
+    nombre: "Fairi",
+    apellido: "",
+    rol: "investigador",
+    cargo: "Investigadora",
+    imagen: "/assets/investigadores/fairi.webp",
   },
 ];
 
