@@ -754,10 +754,10 @@ img, video { max-width: 100%; height: auto; display: block; }
   position: absolute; inset: 0;
   background: linear-gradient(
     to top,
-    rgba(13,59,36,.92) 0%,
-    rgba(13,59,36,.45) 45%,
-    rgba(13,59,36,.10) 70%,
-    transparent 100%
+    rgba(13,59,36,.90) 0%,
+    rgba(13,59,36,.55) 22%,
+    rgba(13,59,36,.12) 42%,
+    transparent 60%
   );
   transition: opacity .3s var(--ease);
 }

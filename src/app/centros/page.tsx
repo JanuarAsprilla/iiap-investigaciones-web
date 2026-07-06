@@ -159,10 +159,19 @@ function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: 
    Page
 ───────────────────────────────────────── */
 const heroBgs = [
-  "/assets/centros/sendero.webp",
-  "/assets/centros/vivero.webp",
+  "/assets/bioespacios/piscitanques/piscitanques-1.webp",
+  "/assets/bioespacios/sendero/sendero-1.webp",
   "/assets/centros/laboratorio.webp",
-  "/assets/centros/piscitanques.webp",
+  "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
+];
+
+/* Biodiversidad — fauna del Chocó Biogeográfico (registros de campo y fototrampeo) */
+const faunaGaleria = [
+  { src: "/assets/bioespacios/fauna/fauna-1.webp", cat: "Anfibios",     label: "Ranas endémicas del bosque húmedo" },
+  { src: "/assets/bioespacios/fauna/fauna-3.webp", cat: "Avifauna",     label: "Aves del dosel tropical" },
+  { src: "/assets/bioespacios/fauna/fauna-2.webp", cat: "Herpetofauna", label: "Diversidad de anfibios" },
+  { src: "/assets/bioespacios/fauna/fauna-5.webp", cat: "Artrópodos",   label: "Araña de seda dorada" },
+  { src: "/assets/bioespacios/fauna/fauna-4.webp", cat: "Mamíferos",    label: "Fototrampeo nocturno" },
 ];
 
 export default function CentrosPage() {
@@ -323,6 +332,60 @@ export default function CentrosPage() {
           <style>{`@media(max-width:640px){
             section[aria-labelledby="bioespacios-heading"] > div > div:last-child{grid-template-columns:1fr!important;}
           }`}</style>
+        </section>
+
+        {/* ── Biodiversidad (Fauna) ── */}
+        <section aria-labelledby="fauna-heading" style={{ padding: "0 clamp(1.25rem,4vw,3rem) clamp(5rem,8vw,8rem)", borderTop: "1px solid var(--border-subtle)", background: "var(--bg)" }}>
+          <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
+            <div style={{ padding: "clamp(3rem,5vw,5rem) 0 clamp(2rem,3.5vw,3.5rem)", textAlign: "center" }}>
+              <p className="sec-eyebrow">Vida que investigamos</p>
+              <h2 id="fauna-heading" className="sec-h2">
+                BIODIVERSIDAD<br /><span style={{ color: "var(--forest)" }}>DEL CHOCÓ</span>
+              </h2>
+              <p className="sec-sub" style={{ marginTop: ".6rem", maxWidth: "62ch", margin: "0 auto" }}>
+                Registros de campo y fototrampeo de la fauna que habita los bioespacios del Centro
+              </p>
+            </div>
+
+            <div className="fauna-bento">
+              {faunaGaleria.map((f, i) => (
+                <figure key={f.src} className={`gc-card fauna-item${i === 0 ? " fauna-feature" : ""}`} style={{ margin: 0 }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={f.src} alt={`${f.cat} — ${f.label}`} loading="lazy" />
+                  <div className="gc-overlay" />
+                  <figcaption className="gc-content">
+                    <span style={{ fontFamily: "var(--font-ui)", fontSize: ".6rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)", display: "block", marginBottom: ".35rem" }}>
+                      {f.cat}
+                    </span>
+                    <p style={{ fontFamily: "var(--font-display)", fontSize: i === 0 ? "clamp(1.3rem,2vw,1.7rem)" : "clamp(1rem,1.4vw,1.25rem)", color: "#fff", letterSpacing: ".04em", lineHeight: 1.1, margin: 0 }}>
+                      {f.label}
+                    </p>
+                  </figcaption>
+                </figure>
+              ))}
+            </div>
+          </div>
+          <style>{`
+            .fauna-bento{
+              display:grid;
+              grid-template-columns:repeat(4,1fr);
+              grid-auto-rows:200px;
+              gap:3px;
+              border-radius:var(--r-lg);
+              overflow:hidden;
+              border:1px solid var(--border-subtle);
+            }
+            .fauna-item{cursor:default;}
+            .fauna-feature{grid-column:span 2;grid-row:span 2;}
+            @media(max-width:820px){
+              .fauna-bento{grid-template-columns:repeat(2,1fr);grid-auto-rows:180px;}
+              .fauna-feature{grid-column:span 2;grid-row:span 1;}
+            }
+            @media(max-width:520px){
+              .fauna-bento{grid-template-columns:1fr;}
+              .fauna-feature{grid-column:span 1;}
+            }
+          `}</style>
         </section>
 
         {/* ── Footer ── */}

@@ -178,11 +178,13 @@ export const bioespacios: Bioespacio[] = [
     descripcion: "Madre Agua",
     detalle:
       "Recorrido interpretativo de 260 metros a través de ecosistemas de bosque húmedo tropical. Estación de monitoreo de fauna y flora con puntos de observación científica y educativa.",
-    imagen: "/assets/centros/sendero.webp",
+    imagen: "/assets/bioespacios/sendero/sendero-1.webp",
     galeria: [
-      "/assets/centros/sendero.webp",
-      "/assets/centros/vivero.webp",
-      "/assets/centros/espacios-centro.webp",
+      "/assets/bioespacios/sendero/sendero-1.webp",
+      "/assets/bioespacios/sendero/sendero-2.webp",
+      "/assets/bioespacios/sendero/sendero-3.webp",
+      "/assets/bioespacios/sendero/sendero-4.webp",
+      "/assets/bioespacios/sendero/sendero-5.webp",
     ],
     extension: "260 metros",
     especies: "Flora y fauna nativa del Chocó",
@@ -193,11 +195,13 @@ export const bioespacios: Bioespacio[] = [
     descripcion: "Especies maderables nativas",
     detalle:
       "Producción y experimentación con especies forestales emblemáticas del Pacífico: choibá (Dipteryx oleifera) y milpesos (Oenocarpus bataua). Centro de propagación para restauración ecológica.",
-    imagen: "/assets/centros/vivero.webp",
+    imagen: "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
     galeria: [
-      "/assets/centros/vivero.webp",
-      "/assets/centros/vivero-2.webp",
-      "/assets/centros/sendero.webp",
+      "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
+      "/assets/bioespacios/vivero-experimental/vivero-experimental-2.webp",
+      "/assets/bioespacios/vivero-experimental/vivero-experimental-3.webp",
+      "/assets/bioespacios/vivero-experimental/vivero-experimental-4.webp",
+      "/assets/bioespacios/vivero-experimental/vivero-experimental-5.webp",
     ],
     especies: "Choibá, Milpesos",
   },
@@ -207,11 +211,11 @@ export const bioespacios: Bioespacio[] = [
     descripcion: "Cultivo experimental",
     detalle:
       "Espacio de investigación aplicada sobre el cultivo de vainilla (Vanilla planifolia) como alternativa productiva sostenible para comunidades del Chocó Biogeográfico.",
-    imagen: "/assets/centros/vainilla.webp",
+    imagen: "/assets/bioespacios/vivero-vainilla/vivero-vainilla-1.webp",
     galeria: [
-      "/assets/centros/vainilla.webp",
-      "/assets/centros/vivero.webp",
-      "/assets/centros/sendero.webp",
+      "/assets/bioespacios/vivero-vainilla/vivero-vainilla-1.webp",
+      "/assets/bioespacios/vivero-vainilla/vivero-vainilla-2.webp",
+      "/assets/bioespacios/vivero-vainilla/vivero-vainilla-3.webp",
     ],
     especies: "Vanilla planifolia",
   },
@@ -221,11 +225,12 @@ export const bioespacios: Bioespacio[] = [
     descripcion: "Acuicultura experimental",
     detalle:
       "Sistema de estanques con geomembranas para investigación en acuicultura de especies nativas. Evalúa alternativas productivas acuícolas adaptadas a las condiciones del Pacífico colombiano.",
-    imagen: "/assets/centros/piscitanques.webp",
+    imagen: "/assets/bioespacios/piscitanques/piscitanques-1.webp",
     galeria: [
-      "/assets/centros/piscitanques.webp",
-      "/assets/centros/vivero.webp",
-      "/assets/centros/sendero.webp",
+      "/assets/bioespacios/piscitanques/piscitanques-1.webp",
+      "/assets/bioespacios/piscitanques/piscitanques-2.webp",
+      "/assets/bioespacios/piscitanques/piscitanques-3.webp",
+      "/assets/bioespacios/piscitanques/piscitanques-4.webp",
     ],
   },
   {
@@ -234,11 +239,11 @@ export const bioespacios: Bioespacio[] = [
     descripcion: "Ecosistema vivo",
     detalle:
       "Extensión de bosque húmedo tropical que sirve como laboratorio a cielo abierto. Parcelas permanentes de monitoreo de carbono, biodiversidad y dinámica de comunidades vegetales.",
-    imagen: "/assets/centros/espacios-centro.webp",
+    imagen: "/assets/bioespacios/laboratorio-bosque/laboratorio-bosque-1.webp",
     galeria: [
-      "/assets/centros/espacios-centro.webp",
-      "/assets/centros/sendero.webp",
-      "/assets/centros/vivero.webp",
+      "/assets/bioespacios/laboratorio-bosque/laboratorio-bosque-1.webp",
+      "/assets/bioespacios/laboratorio-bosque/laboratorio-bosque-2.webp",
+      "/assets/bioespacios/laboratorio-bosque/laboratorio-bosque-3.webp",
     ],
   },
 ];
