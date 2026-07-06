@@ -12,6 +12,8 @@ export interface DocumentoPlanificacion {
   fechaPublicacion: string;
   tipo: "PICIA" | "POA" | "PENIA" | "PEDI" | "INFORME" | "RESOLUCIÓN";
   icono: string;
+  /** Portada del documento usada como fondo de la tarjeta */
+  imagen: string;
 }
 
 export interface Bioespacio {

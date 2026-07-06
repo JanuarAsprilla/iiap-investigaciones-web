@@ -8,22 +8,24 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     anio: "2023–2026",
     descripcion:
       "Marco estratégico cuatrienal que orienta la investigación ambiental del IIAP hacia la democratización del conocimiento y la gobernanza del Chocó Biogeográfico. Define prioridades, metas y lineamientos para generar herramientas basadas en evidencia para políticas públicas sectoriales y nacionales.",
-    url: "https://iiap.org.co/files/9d7802655d4a0d39dbf70ce51af27673",
+    url: "/docs/PICIA-2023-2026.pdf",
     fechaPublicacion: "2025-08-20",
     tipo: "PICIA",
     icono: "📋",
+    imagen: "/assets/planeacion/picia-2023-2026.webp",
   },
   {
-    id: "poa-2025",
-    titulo: "POA 2025",
+    id: "poa-2026",
+    titulo: "POA 2026",
     subtitulo: "Plan Operativo Anual",
-    anio: "2025",
+    anio: "2026",
     descripcion:
       "Planificación operativa anual que articula la estructura organizacional, juntas de gobernanza, equipos de investigación y alianzas con comunidades étnicas del Pacífico colombiano. Instrumento de gestión que operacionaliza los objetivos del PICIA para el año vigente.",
-    url: "https://iiap.org.co/files/9146c816aee24b8b0ac670f147aeff46",
+    url: "/docs/POA_2026.pdf",
     fechaPublicacion: "2025-08-20",
     tipo: "POA",
     icono: "📅",
+    imagen: "/assets/planeacion/poa-2026.webp",
   },
   {
     id: "penia-2021-2030",
@@ -32,10 +34,11 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     anio: "2021–2030",
     descripcion:
       "Marco nacional que orienta la investigación ambiental en Colombia para la próxima década. Define prioridades temáticas, territorios estratégicos y lineamientos de política que el IIAP incorpora en su agenda científica para el Pacífico colombiano.",
-    url: "/assets/documentos/penia-2021-2030.pdf",
+    url: "/docs/penia-2021-2030.pdf",
     fechaPublicacion: "2021-01-01",
     tipo: "PENIA",
     icono: "🌿",
+    imagen: "/assets/planeacion/penia-2021-2030.webp",
   },
   {
     id: "pedi-2016-2026",
@@ -44,10 +47,11 @@ export const documentosPlanificacion: DocumentoPlanificacion[] = [
     anio: "2016–2026",
     descripcion:
       "Plan decenal que establece la visión, misión y objetivos estratégicos del IIAP a largo plazo. Articula el fortalecimiento institucional, la gestión del conocimiento y el relacionamiento con comunidades y entidades del orden nacional e internacional.",
-    url: "/assets/documentos/pedi-2016-2026.pdf",
+    url: "/docs/pedi-2016-2026.pdf",
     fechaPublicacion: "2016-01-01",
     tipo: "PEDI",
     icono: "🏛️",
+    imagen: "/assets/planeacion/pedi-2016-2026.webp",
   },
 ];
 

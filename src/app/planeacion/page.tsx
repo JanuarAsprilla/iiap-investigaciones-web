@@ -5,10 +5,10 @@ import SiteNav from "@/components/layout/SiteNav";
 import { documentosPlanificacion } from "@/data/planificacion";
 
 const heroBgs = [
-  "/assets/centros/sendero.webp",
-  "/assets/centros/vivero.webp",
-  "/assets/centros/piscitanques.webp",
-  "/assets/comunes/sede-aerea.webp",
+  "/assets/planeacion/pedi-2016-2026.webp",
+  "/assets/planeacion/picia-2023-2026.webp",
+  "/assets/planeacion/penia-2021-2030.webp",
+  "/assets/planeacion/poa-2026.webp",
 ];
 
 /* ──────────────────────────────────────────────
@@ -226,46 +226,40 @@ export default function PlaneacionPage() {
                     el.style.borderColor = "var(--border-subtle)";
                   }}
                 >
-                  {/* Visual header — PICIA: portada real / POA: forest gradient */}
+                  {/* Visual header — portada real del documento como fondo */}
                   <div
                     style={{
                       position: "relative",
-                      height: doc.tipo === "PICIA" ? "280px" : "220px",
+                      height: "280px",
                       overflow: "hidden",
                       display: "flex",
-                      alignItems: doc.tipo === "PICIA" ? "flex-end" : "center",
+                      alignItems: "flex-end",
                       justifyContent: "center",
-                      background: doc.tipo === "PICIA"
-                        ? "var(--forest-d)"
-                        : "linear-gradient(150deg, var(--forest-m) 0%, var(--forest) 100%)",
+                      background: "var(--forest-d)",
                     }}
                   >
-                    {/* PICIA — portada como fondo */}
-                    {doc.tipo === "PICIA" && (
-                      <>
-                        {/* eslint-disable-next-line @next/next/no-img-element */}
-                        <img
-                          src="/assets/comunes/picia-2023-2026.webp"
-                          alt=""
-                          aria-hidden="true"
-                          style={{
-                            position: "absolute", inset: 0,
-                            width: "100%", height: "100%",
-                            objectFit: "cover",
-                            objectPosition: "center top",
-                          }}
-                        />
-                        {/* Gradient overlay for legibility */}
-                        <div
-                          aria-hidden="true"
-                          style={{
-                            position: "absolute", inset: 0,
-                            background:
-                              "linear-gradient(to bottom, rgba(9,40,25,.10) 0%, rgba(9,40,25,.55) 55%, rgba(9,40,25,.92) 100%)",
-                          }}
-                        />
-                      </>
-                    )}
+                    {/* Portada del documento como fondo */}
+                    {/* eslint-disable-next-line @next/next/no-img-element */}
+                    <img
+                      src={doc.imagen}
+                      alt=""
+                      aria-hidden="true"
+                      style={{
+                        position: "absolute", inset: 0,
+                        width: "100%", height: "100%",
+                        objectFit: "cover",
+                        objectPosition: "center top",
+                      }}
+                    />
+                    {/* Gradient overlay for legibility */}
+                    <div
+                      aria-hidden="true"
+                      style={{
+                        position: "absolute", inset: 0,
+                        background:
+                          "linear-gradient(to bottom, rgba(9,40,25,.10) 0%, rgba(9,40,25,.55) 55%, rgba(9,40,25,.92) 100%)",
+                      }}
+                    />
 
                     {/* Amber shimmer bar */}
                     <div
@@ -280,34 +274,11 @@ export default function PlaneacionPage() {
                       }}
                     />
 
-                    {/* POA — ghost type watermark */}
-                    {doc.tipo !== "PICIA" && (
-                      <p
-                        aria-hidden="true"
-                        style={{
-                          fontFamily: "var(--font-display)",
-                          fontSize: "clamp(5rem,12vw,9rem)",
-                          color: "rgba(255,255,255,.07)",
-                          lineHeight: 1,
-                          letterSpacing: "-2px",
-                          position: "absolute",
-                          inset: 0,
-                          display: "flex",
-                          alignItems: "center",
-                          justifyContent: "center",
-                          pointerEvents: "none",
-                          userSelect: "none",
-                        }}
-                      >
-                        {doc.tipo}
-                      </p>
-                    )}
-
                     {/* Card visual content */}
                     <div
                       style={{
                         textAlign: "center",
-                        padding: doc.tipo === "PICIA" ? "1.5rem 2rem" : "2rem",
+                        padding: "1.5rem 2rem",
                         position: "relative", zIndex: 1,
                         width: "100%",
                       }}

@@ -7,7 +7,7 @@ const portalSections = [
     description:
       "El IIAP orienta su gestión mediante instrumentos como el POA, PICIA, PENIA y el Plan Estratégico, articulados con políticas nacionales y territoriales para el desarrollo sostenible del Chocó Biogeográfico.",
     href: "/planeacion",
-    imageSrc: "/assets/comunes/sede-tecnica.gif",
+    imageSrc: "/assets/planeacion/planeacion.webp",
   },
   {
     label: "Centros de Investigación",
