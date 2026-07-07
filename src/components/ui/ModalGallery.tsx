@@ -41,7 +41,7 @@ export default function ModalGallery({ images, alt }: Props) {
         <video
           key={current}
           src={current}
-          autoPlay muted playsInline
+          autoPlay muted playsInline loop controls
           style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
         />
       ) : (

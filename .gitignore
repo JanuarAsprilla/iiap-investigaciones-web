@@ -48,6 +48,11 @@ next-env.d.ts
 # Build output
 dist/
 
+# Fuentes de video crudas (originales pesados). Solo se versionan los MP4 web finales.
+public/assets/videos/*.mov
+public/assets/videos/*.MOV
+public/assets/videos/YDRAY-Tanques.mp4
+
 # Claude Code (archivos internos del asistente de desarrollo)
 .agents/
 .claude/

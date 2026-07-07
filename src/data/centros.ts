@@ -181,6 +181,9 @@ export const bioespacios: Bioespacio[] = [
     imagen: "/assets/bioespacios/sendero/sendero-1.webp",
     galeria: [
       "/assets/bioespacios/sendero/sendero-1.webp",
+      "/assets/videos/sendero-1.mp4",
+      "/assets/videos/sendero-2.mp4",
+      "/assets/videos/sendero-3.mp4",
       "/assets/bioespacios/sendero/sendero-2.webp",
       "/assets/bioespacios/sendero/sendero-3.webp",
       "/assets/bioespacios/sendero/sendero-4.webp",
@@ -198,6 +201,9 @@ export const bioespacios: Bioespacio[] = [
     imagen: "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
     galeria: [
       "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
+      "/assets/videos/vivero-experimental-1.mp4",
+      "/assets/videos/vivero-experimental-2.mp4",
+      "/assets/videos/vivero-experimental-3.mp4",
       "/assets/bioespacios/vivero-experimental/vivero-experimental-2.webp",
       "/assets/bioespacios/vivero-experimental/vivero-experimental-3.webp",
       "/assets/bioespacios/vivero-experimental/vivero-experimental-4.webp",
@@ -214,6 +220,11 @@ export const bioespacios: Bioespacio[] = [
     imagen: "/assets/bioespacios/vivero-vainilla/vivero-vainilla-1.webp",
     galeria: [
       "/assets/bioespacios/vivero-vainilla/vivero-vainilla-1.webp",
+      "/assets/videos/vivero-vainilla-1.mp4",
+      "/assets/videos/vivero-vainilla-2.mp4",
+      "/assets/videos/vivero-vainilla-3.mp4",
+      "/assets/videos/vivero-vainilla-4.mp4",
+      "/assets/videos/vivero-vainilla-5.mp4",
       "/assets/bioespacios/vivero-vainilla/vivero-vainilla-2.webp",
       "/assets/bioespacios/vivero-vainilla/vivero-vainilla-3.webp",
     ],
@@ -228,6 +239,7 @@ export const bioespacios: Bioespacio[] = [
     imagen: "/assets/bioespacios/piscitanques/piscitanques-1.webp",
     galeria: [
       "/assets/bioespacios/piscitanques/piscitanques-1.webp",
+      "/assets/videos/piscitanques-1.mp4",
       "/assets/bioespacios/piscitanques/piscitanques-2.webp",
       "/assets/bioespacios/piscitanques/piscitanques-3.webp",
       "/assets/bioespacios/piscitanques/piscitanques-4.webp",
