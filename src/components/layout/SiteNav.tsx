@@ -97,9 +97,11 @@ export default function SiteNav() {
   return (
     <>
       <style>{`
-        /* ── Reserva de la columna del riel (solo escritorio) ── */
+        /* ── Riel de vidrio flotante (solo escritorio). Se reserva una franja
+              a la izquierda para que el vidrio flote SIN tapar el contenido:
+              el texto empieza después del riel. ── */
         @media (min-width: 1025px) {
-          #main-content { padding-left: 80px; }
+          #main-content { padding-left: 120px; }
           .sb-rail { display: flex; }
           .sb-fab  { display: none; }
         }
@@ -108,31 +110,32 @@ export default function SiteNav() {
           .sb-fab  { display: inline-flex; }
         }
 
-        /* ── Ítems del riel ── */
+        /* ── Ítems del riel: en reposo SIN fondo (transparentes, sin contorno)
+              para que no se note ninguna caja ni diferencia de color; dejan ver
+              el lienzo general. El verde solo aparece en hover / módulo activo,
+              y envuelve icono Y texto por completo. ── */
         .sb-item {
           display: flex; flex-direction: column; align-items: center; gap: 6px;
-          width: 66px; padding: 10px 2px 9px; border-radius: var(--r-md);
+          width: 84px; padding: 11px 6px 10px; border-radius: var(--r-md);
           text-decoration: none; color: var(--text-muted);
           font-family: var(--font-ui); position: relative; cursor: pointer;
-          transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
+          background: transparent;
+          transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
         }
         .sb-item:hover { background: var(--forest-lt); color: var(--forest); }
         .sb-item:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
-        .sb-item[data-active="true"] {
-          background: var(--forest-lt); color: var(--forest);
-          box-shadow: inset 0 0 0 1px rgba(26,92,58,.14);
-        }
+        .sb-item[data-active="true"] { background: var(--forest-lt); color: var(--forest); }
         .sb-item[data-active="true"]::after {
-          content: ""; position: absolute; top: 8px; right: 10px;
+          content: ""; position: absolute; top: 9px; right: 11px;
           width: 5px; height: 5px; border-radius: 50%;
           background: var(--amber); box-shadow: 0 0 7px rgba(232,150,15,.6);
         }
         .sb-item svg { width: 22px; height: 22px; }
-        /* Icono activo con un leve trazo más marcado para jerarquía */
         .sb-item[data-active="true"] svg { stroke-width: 1.7; }
         .sb-label {
-          font-size: .5625rem; font-weight: 700; letter-spacing: .04em;
+          font-size: .5rem; font-weight: 700; letter-spacing: .03em;
           text-transform: uppercase; line-height: 1.1; text-align: center;
+          white-space: nowrap;
         }
 
         /* ── Cajón móvil ── */
@@ -177,16 +180,21 @@ export default function SiteNav() {
         className="sb-rail"
         aria-label="Navegación de módulos"
         style={{
-          position: "fixed", top: 0, left: 0, bottom: 0, zIndex: 100,
-          width: "80px",
+          position: "fixed", left: "14px", top: "50%", transform: "translateY(-50%)", zIndex: 100,
+          maxHeight: "calc(100vh - 28px)",
           flexDirection: "column", alignItems: "center", justifyContent: "center",
-          padding: "18px 0",
-          background: "transparent",
+          padding: "10px 8px",
+          /* Vidrio esmerilado: translúcido + blur que deja ver el sitio detrás */
+          background: "rgba(244,241,235,0.5)",
+          backdropFilter: "blur(20px) saturate(180%)",
+          WebkitBackdropFilter: "blur(20px) saturate(180%)",
+          border: "1px solid rgba(255,255,255,0.4)",
+          borderRadius: "26px",
+          boxShadow: "0 16px 48px rgba(13,59,36,.16), inset 0 1px 0 rgba(255,255,255,.5)",
         }}
       >
-        {/* Bloque único: módulos + editorial. Sin panel de fondo: los botones
-            flotan sobre el lienzo. */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "4px", alignItems: "center", width: "100%", maxHeight: "100%", overflowY: "auto" }}>
+        {/* Bloque único: módulos + editorial, flotando dentro del vidrio */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignItems: "center", width: "100%", maxHeight: "100%", overflowY: "auto" }}>
           {MODULOS.map(({ href, label, Icon }) => {
             const active = isActive(pathname, href);
             return (
