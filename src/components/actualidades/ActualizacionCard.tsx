@@ -43,7 +43,7 @@ export default function ActualizacionCard({ item, featured = false }: { item: Ac
         #${cardId}:focus-within { outline: 2px solid ${meta.color}; outline-offset: 2px; }
       `}</style>
       <Link
-        href={`/actualidades/${item.slug}`}
+        href={`/actualidades?slug=${item.slug}`}
         style={{ textDecoration: "none", display: "block", height: "100%" }}
       >
         <article

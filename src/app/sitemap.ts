@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { CANONICAL_BASE, SITE_ROUTES } from "@/lib/site";
 
+// Se genera como archivo estático (compatible con el bundle export `out/`).
+export const dynamic = "force-static";
+
 export default function sitemap(): MetadataRoute.Sitemap {
   const lastModified = new Date();
 

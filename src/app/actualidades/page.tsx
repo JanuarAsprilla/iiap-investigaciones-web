@@ -1,9 +1,6 @@
 import type { Metadata } from "next";
-import { client } from "@/sanity/client";
-import { actualizacionesQuery } from "@/sanity/lib/queries";
-import ActualizacionesClient from "./ActualizacionesClient";
-
-export const revalidate = 60;
+import { Suspense } from "react";
+import ActualidadesApp from "./ActualidadesApp";
 
 export const metadata: Metadata = {
   title: "Actualidades — IIAP Investigaciones",
@@ -15,7 +12,19 @@ export const metadata: Metadata = {
   },
 };
 
-export default async function ActualizacionesPage() {
-  const items = await client.fetch(actualizacionesQuery);
-  return <ActualizacionesClient items={items} />;
+/**
+ * Página de Actualidades: shell estático.
+ *
+ * El contenido (listado y detalle) se carga EN EL NAVEGADOR desde Sanity, para
+ * que las novedades aparezcan en vivo sin recompilar el sitio. El detalle de
+ * cada artículo se resuelve por el parámetro `?slug=` sobre esta misma ruta,
+ * de modo que un solo archivo estático sirve cualquier artículo (presente o
+ * futuro). `useSearchParams` exige un límite de Suspense.
+ */
+export default function ActualizacionesPage() {
+  return (
+    <Suspense fallback={null}>
+      <ActualidadesApp />
+    </Suspense>
+  );
 }

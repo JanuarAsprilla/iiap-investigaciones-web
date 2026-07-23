@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
 import ActualizacionCard, { ActualizacionCardData } from "@/components/actualidades/ActualizacionCard";
+import { browserClient } from "@/sanity/browser";
+import { actualizacionesQuery } from "@/sanity/lib/queries";
 
 const heroBgs = [
   "/assets/grupos/componente-ecosistemico.webp",
@@ -19,9 +21,28 @@ const FILTROS = [
   { label: "Lab. Datos",        value: "laboratorio-datos", dot: "#1A3A5C" },
 ];
 
-export default function ActualizacionesClient({ items }: { items: ActualizacionCardData[] }) {
+export default function ActualizacionesClient() {
+  const [items, setItems] = useState<ActualizacionCardData[]>([]);
+  const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState<string>("all");
   const [bgIndex, setBgIndex] = useState(0);
+
+  useEffect(() => {
+    let active = true;
+    browserClient
+      .fetch<ActualizacionCardData[]>(actualizacionesQuery)
+      .then((data) => {
+        if (!active) return;
+        setItems(data ?? []);
+        setLoading(false);
+      })
+      .catch(() => {
+        if (active) setLoading(false);
+      });
+    return () => {
+      active = false;
+    };
+  }, []);
 
   useEffect(() => {
     const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 5000);
@@ -161,7 +182,13 @@ export default function ActualizacionesClient({ items }: { items: ActualizacionC
         {/* ── Grid ── */}
         <section style={{ padding: "clamp(3rem,5vw,5rem) clamp(1.25rem,4vw,3rem)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
-            {visible.length === 0 ? (
+            {loading ? (
+              <div style={{ textAlign: "center", padding: "5rem 0" }}>
+                <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--t-lg)", color: "var(--text-muted)" }}>
+                  Cargando actualidades…
+                </p>
+              </div>
+            ) : visible.length === 0 ? (
               <div style={{ textAlign: "center", padding: "5rem 0" }}>
                 <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--t-lg)", color: "var(--text-muted)" }}>
                   No hay actualizaciones publicadas aún en este componente.

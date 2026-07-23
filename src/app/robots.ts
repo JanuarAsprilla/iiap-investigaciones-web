@@ -1,6 +1,9 @@
 import type { MetadataRoute } from "next";
 import { SITE_URL, CANONICAL_BASE, IS_INDEXABLE } from "@/lib/site";
 
+// Se genera como archivo estático (compatible con el bundle export `out/`).
+export const dynamic = "force-static";
+
 export default function robots(): MetadataRoute.Robots {
   // Entorno no productivo (p. ej. el preview de Render): bloquea todo rastreo.
   if (!IS_INDEXABLE) {

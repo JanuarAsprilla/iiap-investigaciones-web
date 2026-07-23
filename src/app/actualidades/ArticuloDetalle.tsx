@@ -1,26 +1,11 @@
-import { client } from "@/sanity/client";
-import { actualizacionBySlugQuery, slugsQuery } from "@/sanity/lib/queries";
+"use client";
+
+import { useEffect, useState } from "react";
 import { PortableText } from "@portabletext/react";
 import SiteNav from "@/components/layout/SiteNav";
 import Link from "next/link";
-
-export const revalidate = 60;
-
-export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const item = await client.fetch(actualizacionBySlugQuery, { slug });
-  if (!item) return { title: "Actualización — IIAP" };
-  return {
-    title: `${item.titulo} — IIAP Investigaciones`,
-    description: item.resumen,
-    openGraph: {
-      title: item.titulo,
-      description: item.resumen,
-      type: "article",
-      images: item.imagenPrincipal ? [{ url: item.imagenPrincipal }] : [],
-    },
-  };
-}
+import { browserClient } from "@/sanity/browser";
+import { actualizacionBySlugQuery } from "@/sanity/lib/queries";
 
 const COMPONENTE_META: Record<string, { label: string; color: string; bg: string }> = {
   ecosistemico:        { label: "Ecosistémico",      color: "var(--forest)",        bg: "var(--forest-lt)"       },
@@ -29,22 +14,51 @@ const COMPONENTE_META: Record<string, { label: string; color: string; bg: string
   "laboratorio-datos": { label: "Laboratorio Datos",  color: "var(--comp-lab)",      bg: "var(--comp-lab-bg)"     },
 };
 
-export async function generateStaticParams() {
-  const slugs: Array<{ slug: string }> = await client.fetch(slugsQuery);
-  return slugs.map(({ slug }) => ({ slug }));
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type Articulo = any;
+
+function EstadoSimple({ mensaje }: { mensaje: string }) {
+  return (
+    <>
+      <SiteNav />
+      <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center", padding: "8rem 1.5rem" }}>
+        <p style={{ fontFamily: "var(--font-body)", color: "var(--text-muted)", fontSize: "var(--t-lg)" }}>{mensaje}</p>
+      </main>
+    </>
+  );
 }
 
-export default async function ActualizacionPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const item = await client.fetch(actualizacionBySlugQuery, { slug });
+export default function ArticuloDetalle({ slug }: { slug: string }) {
+  const [item, setItem] = useState<Articulo | null>(null);
+  const [estado, setEstado] = useState<"cargando" | "listo" | "no-encontrado">("cargando");
 
-  if (!item) {
-    return (
-      <div style={{ minHeight: "100vh", display: "flex", alignItems: "center", justifyContent: "center" }}>
-        <p style={{ fontFamily: "var(--font-body)", color: "var(--text-muted)" }}>Actualización no encontrada.</p>
-      </div>
-    );
-  }
+  useEffect(() => {
+    let active = true;
+    setEstado("cargando");
+    browserClient
+      .fetch<Articulo>(actualizacionBySlugQuery, { slug })
+      .then((data) => {
+        if (!active) return;
+        if (!data) {
+          setEstado("no-encontrado");
+          return;
+        }
+        setItem(data);
+        setEstado("listo");
+        if (typeof document !== "undefined") {
+          document.title = `${data.titulo} — IIAP Investigaciones`;
+        }
+      })
+      .catch(() => {
+        if (active) setEstado("no-encontrado");
+      });
+    return () => {
+      active = false;
+    };
+  }, [slug]);
+
+  if (estado === "cargando") return <EstadoSimple mensaje="Cargando actualización…" />;
+  if (estado === "no-encontrado" || !item) return <EstadoSimple mensaje="Actualización no encontrada." />;
 
   const meta  = COMPONENTE_META[item.componente] ?? { label: item.componente, color: "var(--forest)", bg: "rgba(26,92,58,.1)" };
   const fecha = new Date(item.fechaPublicacion).toLocaleDateString("es-CO", {
@@ -121,6 +135,7 @@ export default async function ActualizacionPage({ params }: { params: Promise<{ 
               </time>
               {item.autores && item.autores.length > 0 && (
                 <div style={{ display: "flex", flexWrap: "wrap", gap: ".75rem" }}>
+                  {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                   {item.autores.map((a: any, i: number) => (
                     <div key={i} style={{ display: "flex", alignItems: "center", gap: ".5rem" }}>
                       {a.foto && (
@@ -233,6 +248,7 @@ export default async function ActualizacionPage({ params }: { params: Promise<{ 
                 Documentos
               </h2>
               <div style={{ display: "flex", flexDirection: "column", gap: ".5rem" }}>
+                {/* eslint-disable-next-line @typescript-eslint/no-explicit-any */}
                 {item.documentos.map((doc: any, i: number) => (
                   <a key={i} href={doc.url} target="_blank" rel="noopener noreferrer" style={{
                     display: "flex", alignItems: "center", gap: ".75rem",
