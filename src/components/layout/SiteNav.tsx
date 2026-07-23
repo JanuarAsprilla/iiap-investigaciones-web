@@ -99,7 +99,7 @@ export default function SiteNav() {
       <style>{`
         /* ── Reserva de la columna del riel (solo escritorio) ── */
         @media (min-width: 1025px) {
-          #main-content { padding-left: 76px; }
+          #main-content { padding-left: 80px; }
           .sb-rail { display: flex; }
           .sb-fab  { display: none; }
         }
@@ -110,24 +110,29 @@ export default function SiteNav() {
 
         /* ── Ítems del riel ── */
         .sb-item {
-          display: flex; flex-direction: column; align-items: center; gap: 5px;
-          width: 62px; padding: 9px 2px; border-radius: var(--r-md);
+          display: flex; flex-direction: column; align-items: center; gap: 6px;
+          width: 66px; padding: 10px 2px 9px; border-radius: var(--r-md);
           text-decoration: none; color: var(--text-muted);
-          font-family: var(--font-ui); position: relative;
-          transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease);
+          font-family: var(--font-ui); position: relative; cursor: pointer;
+          transition: background var(--dur-fast) var(--ease), color var(--dur-fast) var(--ease), box-shadow var(--dur-fast) var(--ease);
         }
         .sb-item:hover { background: var(--forest-lt); color: var(--forest); }
         .sb-item:focus-visible { outline: 2px solid var(--forest); outline-offset: 2px; }
-        .sb-item[data-active="true"] { background: var(--forest-lt); color: var(--forest); }
-        .sb-item[data-active="true"]::after {
-          content: ""; position: absolute; top: 7px; right: 9px;
-          width: 5px; height: 5px; border-radius: 50%;
-          background: var(--amber); box-shadow: 0 0 6px rgba(232,150,15,.55);
+        .sb-item[data-active="true"] {
+          background: var(--forest-lt); color: var(--forest);
+          box-shadow: inset 0 0 0 1px rgba(26,92,58,.14);
         }
-        .sb-item svg { width: 21px; height: 21px; }
+        .sb-item[data-active="true"]::after {
+          content: ""; position: absolute; top: 8px; right: 10px;
+          width: 5px; height: 5px; border-radius: 50%;
+          background: var(--amber); box-shadow: 0 0 7px rgba(232,150,15,.6);
+        }
+        .sb-item svg { width: 22px; height: 22px; }
+        /* Icono activo con un leve trazo más marcado para jerarquía */
+        .sb-item[data-active="true"] svg { stroke-width: 1.7; }
         .sb-label {
-          font-size: .5rem; font-weight: 700; letter-spacing: .05em;
-          text-transform: uppercase; line-height: 1.12; text-align: center;
+          font-size: .5625rem; font-weight: 700; letter-spacing: .04em;
+          text-transform: uppercase; line-height: 1.1; text-align: center;
         }
 
         /* ── Cajón móvil ── */
@@ -173,39 +178,15 @@ export default function SiteNav() {
         aria-label="Navegación de módulos"
         style={{
           position: "fixed", top: 0, left: 0, bottom: 0, zIndex: 100,
-          width: "76px",
-          flexDirection: "column", alignItems: "center",
-          padding: "16px 0 14px",
-          background: "rgba(244,241,235,.85)",
-          backdropFilter: "blur(16px) saturate(160%)",
-          WebkitBackdropFilter: "blur(16px) saturate(160%)",
-          borderRight: "1px solid var(--border-subtle)",
-          boxShadow: "1px 0 0 rgba(0,0,0,.02), 6px 0 24px rgba(26,92,58,.05)",
+          width: "80px",
+          flexDirection: "column", alignItems: "center", justifyContent: "center",
+          padding: "18px 0",
+          background: "transparent",
         }}
       >
-        {/* Marca */}
-        <Link
-          href="/"
-          aria-label="Inicio — IIAP Investigaciones"
-          style={{ display: "flex", flexDirection: "column", alignItems: "center", gap: "4px", textDecoration: "none", marginBottom: "6px" }}
-        >
-          <span aria-hidden="true" style={{
-            width: "8px", height: "8px", background: "var(--amber)",
-            borderRadius: "1px", transform: "rotate(45deg)",
-            boxShadow: "0 0 7px rgba(232,150,15,.5)",
-          }} />
-          <span style={{
-            fontFamily: "var(--font-display)", fontSize: "1.15rem",
-            letterSpacing: ".1em", color: "var(--forest)", lineHeight: 1,
-          }}>
-            IIAP
-          </span>
-        </Link>
-
-        <span aria-hidden="true" style={{ width: "34px", height: "1px", background: "var(--border-subtle)", margin: "4px 0 10px" }} />
-
-        {/* Módulos */}
-        <div style={{ display: "flex", flexDirection: "column", gap: "3px", flex: 1, justifyContent: "center", overflowY: "auto", width: "100%", alignItems: "center" }}>
+        {/* Bloque único: módulos + editorial. Sin panel de fondo: los botones
+            flotan sobre el lienzo. */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "4px", alignItems: "center", width: "100%", maxHeight: "100%", overflowY: "auto" }}>
           {MODULOS.map(({ href, label, Icon }) => {
             const active = isActive(pathname, href);
             return (
@@ -222,22 +203,20 @@ export default function SiteNav() {
               </Link>
             );
           })}
+
+          {/* Editorial (CMS) — parte del mismo bloque, debajo de los módulos */}
+          <a
+            href={STUDIO_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="sb-item"
+            title="Área editorial (gestión de contenido)"
+            aria-label="Área editorial"
+          >
+            <IcEditorial />
+            <span className="sb-label">Editorial</span>
+          </a>
         </div>
-
-        <span aria-hidden="true" style={{ width: "34px", height: "1px", background: "var(--border-subtle)", margin: "10px 0 8px" }} />
-
-        {/* Editorial (CMS) */}
-        <a
-          href={STUDIO_URL}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="sb-item"
-          title="Área editorial (gestión de contenido)"
-          aria-label="Área editorial"
-        >
-          <IcEditorial />
-          <span className="sb-label">Editorial</span>
-        </a>
       </nav>
 
       {/* ══════════ BOTÓN FLOTANTE (móvil) ══════════ */}
