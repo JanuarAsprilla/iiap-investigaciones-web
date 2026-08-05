@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
-import { Bebas_Neue, Crimson_Text, Inter } from "next/font/google";
+import { Bebas_Neue, Crimson_Text, Inter, Lato } from "next/font/google";
 import { SITE_URL, SITE_NAME, IS_INDEXABLE } from "@/lib/site";
+import InstitutionalHeader from "@/components/layout/InstitutionalHeader";
+import InstitutionalFooter from "@/components/layout/InstitutionalFooter";
 // @ts-ignore: Allow importing global CSS without type declarations
 import "./globals.css";
 
@@ -21,6 +23,14 @@ const crimsonText = Crimson_Text({
 
 const inter = Inter({
   variable: "--font-inter",
+  subsets: ["latin"],
+  display: "swap",
+});
+
+// Tipografía exclusiva del header/footer institucionales (clon de iiap.org.co).
+const lato = Lato({
+  weight: ["400", "700"],
+  variable: "--font-lato",
   subsets: ["latin"],
   display: "swap",
 });
@@ -108,13 +118,15 @@ export default function RootLayout({
   return (
     <html
       lang="es"
-      className={`${bebasNeue.variable} ${crimsonText.variable} ${inter.variable}`}
+      className={`${bebasNeue.variable} ${crimsonText.variable} ${inter.variable} ${lato.variable}`}
     >
       <body className="min-h-screen antialiased">
         <a href="#main-content" className="skip-link">
           Saltar al contenido
         </a>
-        {children}
+        <InstitutionalHeader />
+        <div style={{ paddingTop: "156px", position: "relative" }}>{children}</div>
+        <InstitutionalFooter />
       </body>
     </html>
   );
