@@ -13,7 +13,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 /* ── Iconos de línea (20px, stroke currentColor) ── */
 const IcInicio = () => (
@@ -75,6 +75,11 @@ const MODULOS = [
 ];
 
 const STUDIO_URL = "https://iiap-investigaciones.sanity.studio";
+const RAIL_MARGIN = 14;
+
+type RailOffset = { top: string; transform: string; maxHeight: string };
+const RAIL_DEFAULT_MAX_HEIGHT = "calc(100vh - 28px)";
+const RAIL_CENTERED: RailOffset = { top: "50%", transform: "translateY(-50%)", maxHeight: RAIL_DEFAULT_MAX_HEIGHT };
 
 function isActive(pathname: string, href: string): boolean {
   if (href === "/") return pathname === "/";
@@ -84,6 +89,9 @@ function isActive(pathname: string, href: string): boolean {
 export default function SiteNav() {
   const pathname = usePathname();
   const [menuOpen, setMenuOpen] = useState(false);
+  const railRef = useRef<HTMLElement>(null);
+  const railNaturalHeight = useRef<number | null>(null);
+  const [railOffset, setRailOffset] = useState<RailOffset>(RAIL_CENTERED);
 
   // Cerrar el cajón al cambiar de ruta.
   useEffect(() => { setMenuOpen(false); }, [pathname]);
@@ -93,6 +101,49 @@ export default function SiteNav() {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
+
+  // El riel es position:fixed y por defecto queda centrado en el viewport.
+  // Si ese centrado invadiría el footer institucional, se ancla justo
+  // encima del footer en vez de superponerse a su contenido.
+  useEffect(() => {
+    function updateRailOffset() {
+      const rail = railRef.current;
+      const footer = document.getElementById("inst-foot");
+      if (!rail || !footer) return;
+
+      // Altura natural (sin recortar) del riel, medida una sola vez: una vez
+      // que el propio cálculo empieza a limitar maxHeight, offsetHeight ya
+      // no refleja el contenido completo.
+      if (railNaturalHeight.current === null) {
+        railNaturalHeight.current = rail.scrollHeight;
+      }
+      const naturalHeight = railNaturalHeight.current;
+
+      const viewportHeight = window.innerHeight;
+      const footerTop = footer.getBoundingClientRect().top;
+
+      // Límite inferior real: el borde superior del footer (o el viewport,
+      // lo que esté más arriba), con un margen de aire.
+      const availableBottom = Math.min(viewportHeight, footerTop) - RAIL_MARGIN;
+      const height = Math.min(naturalHeight, Math.max(80, availableBottom - RAIL_MARGIN));
+      const centeredTop = viewportHeight / 2 - height / 2;
+      const top = Math.min(Math.max(RAIL_MARGIN, centeredTop), availableBottom - height);
+
+      if (height < naturalHeight || top !== centeredTop) {
+        setRailOffset({ top: `${top}px`, transform: "none", maxHeight: `${height}px` });
+      } else {
+        setRailOffset(RAIL_CENTERED);
+      }
+    }
+
+    updateRailOffset();
+    window.addEventListener("scroll", updateRailOffset, { passive: true });
+    window.addEventListener("resize", updateRailOffset);
+    return () => {
+      window.removeEventListener("scroll", updateRailOffset);
+      window.removeEventListener("resize", updateRailOffset);
+    };
+  }, []);
 
   return (
     <>
@@ -177,11 +228,12 @@ export default function SiteNav() {
 
       {/* ══════════ RIEL (escritorio) ══════════ */}
       <nav
+        ref={railRef}
         className="sb-rail"
         aria-label="Navegación de módulos"
         style={{
-          position: "fixed", left: "14px", top: "50%", transform: "translateY(-50%)", zIndex: 100,
-          maxHeight: "calc(100vh - 28px)",
+          position: "fixed", left: "14px", zIndex: 100,
+          ...railOffset,
           flexDirection: "column", alignItems: "center", justifyContent: "center",
           padding: "10px 8px",
           /* Vidrio esmerilado: translúcido + blur que deja ver el sitio detrás */
