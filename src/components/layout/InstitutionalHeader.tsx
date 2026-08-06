@@ -87,15 +87,20 @@ export default function InstitutionalHeader() {
 
         /* ── Barra principal ──
               display:none no se puede animar, así que la contracción usa
-              max-height + opacity (mismo efecto visual que el "drop" del
-              sitio real, pero con una transición suave en vez de un salto). */
+              height + opacity (mismo efecto visual que el "drop" del sitio
+              real, pero con una transición suave en vez de un salto).
+              height (no max-height): sus únicos hijos son flotados/absolutos
+              (.ih-side es float:right, .ih-logo es position:absolute), así
+              que ninguno aporta a una altura "auto" — con max-height la caja
+              colapsaría a 0 y el contenido flotado se pintaría fuera de ella,
+              detrás de .ih-menu. height fija la caja sin depender de eso. */
         #inst-head .ih-main {
           overflow: visible; width: 100%;
-          max-height: 44px; opacity: 1;
+          height: 44px; opacity: 1;
           background: #2E2E2E;
-          transition: max-height .45s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
+          transition: height .45s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
         }
-        #inst-head.scrolled .ih-main { max-height: 0; opacity: 0; overflow: hidden; }
+        #inst-head.scrolled .ih-main { height: 0; opacity: 0; overflow: hidden; }
 
         #inst-head .ih-logo {
           position: absolute; z-index: 1;
