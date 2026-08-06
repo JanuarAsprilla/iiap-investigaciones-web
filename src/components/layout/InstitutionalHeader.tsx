@@ -90,12 +90,12 @@ export default function InstitutionalHeader() {
               max-height + opacity (mismo efecto visual que el "drop" del
               sitio real, pero con una transición suave en vez de un salto). */
         #inst-head .ih-main {
-          overflow: hidden; width: 100%;
+          overflow: visible; width: 100%;
           max-height: 44px; opacity: 1;
           background: #2E2E2E;
           transition: max-height .45s cubic-bezier(0.4, 0, 0.2, 1), opacity .3s ease;
         }
-        #inst-head.scrolled .ih-main { max-height: 0; opacity: 0; }
+        #inst-head.scrolled .ih-main { max-height: 0; opacity: 0; overflow: hidden; }
 
         #inst-head .ih-logo {
           position: absolute; z-index: 1;
@@ -116,7 +116,7 @@ export default function InstitutionalHeader() {
         }
         #inst-head.scrolled .ih-logo img { width: 44px; height: 44px; top: 8px; }
         #inst-head .ih-logo sup {
-          display: block; overflow: hidden; line-height: 22px; max-height: 22px; opacity: 1;
+          display: block; overflow: hidden; line-height: 22px; max-height: 44px; opacity: 1;
           font-weight: bold; font-style: normal; font-size: 14px; color: #fff;
           transition: max-height .35s ease, opacity .25s ease;
         }
