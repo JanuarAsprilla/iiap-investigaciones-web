@@ -16,11 +16,6 @@ import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
 /* ── Iconos de línea (20px, stroke currentColor) ── */
-const IcInicio = () => (
-  <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
-    <path d="M2.5 10L10 3l7.5 7" /><path d="M4.5 8.5V16h4v-4.5h3V16h4V8.5" />
-  </svg>
-);
 const IcPlaneacion = () => (
   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 2.5h6l4 4V17.5H5z" /><path d="M11 2.5V6.5h4" /><path d="M7.5 10.5h5M7.5 13.5h5" />
@@ -66,7 +61,6 @@ const IcClose = () => (
 );
 
 const MODULOS = [
-  { href: "/",             label: "Inicio",       Icon: IcInicio },
   { href: "/planeacion",   label: "Planeación",   Icon: IcPlaneacion },
   { href: "/centros",      label: "Centros",      Icon: IcCentros },
   { href: "/componentes",  label: "Componentes",  Icon: IcComponentes },
