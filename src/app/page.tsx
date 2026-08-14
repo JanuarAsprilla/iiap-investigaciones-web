@@ -39,38 +39,26 @@ export default function HomePage() {
 
       <main id="main-content">
 
-        {/* ════════════════════════════════════════
-            HERO — Split Layout Warm
-        ════════════════════════════════════════ */}
         <section aria-labelledby="portal-heading" className="hero-section">
 
-          {/* Columna izquierda — contenido */}
           <div className="hero-inner">
-
-            {/* Eyebrow */}
             <p className="hero-eye anim-1">
               Instituto de Investigaciones Ambientales del Pacífico
             </p>
 
-            {/* Heading */}
             <h1 id="portal-heading" className="hero-h1 anim-2">
               SUBDIRECCIÓN
               <br />
               <span className="hero-gold-word">INVESTIGACIONES</span>
             </h1>
 
-            {/* Descriptor */}
             <p className="hero-desc anim-3">
               Ciencia básica, experimental y aplicada desde el Chocó Biogeográfico.
               Generamos conocimiento científico y tradicional para la conservación de la biodiversidad,
               el desarrollo sostenible y las políticas públicas de la región.
             </p>
-
-
-
           </div>
 
-          {/* Columna derecha — foto */}
           <div className="hero-frame-wrap" aria-hidden="true">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -83,9 +71,6 @@ export default function HomePage() {
 
         </section>
 
-        {/* ════════════════════════════════════════
-            PORTAL — 3 cards
-        ════════════════════════════════════════ */}
         <div
           style={{
             background: "var(--bg)",
@@ -97,12 +82,10 @@ export default function HomePage() {
             aria-label="Secciones del portal de investigación"
             className="portal-section"
           >
-            {/* Header */}
             <div className="portal-meta">
               <h2 className="portal-meta-title">Cuatro ejes estratégicos</h2>
             </div>
 
-            {/* Escenario 3D */}
             <div className="cards-stage">
               {portalSections.map((section, i) => (
                 <div
@@ -117,7 +100,6 @@ export default function HomePage() {
           </section>
         </div>
 
-        {/* ── Footer ── */}
         <footer
           style={{
             borderTop: "1px solid var(--border-subtle)",

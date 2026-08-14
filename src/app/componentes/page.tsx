@@ -8,7 +8,6 @@ import TalentoSection      from "../grupos/_sections/TalentoSection";
 import AudiovisualSection  from "../grupos/_sections/AudiovisualSection";
 import TimelineSection     from "../grupos/_sections/TimelineSection";
 
-/* Carousel background images for the hero */
 const heroBgs = [
   "/assets/grupos/componente-ecosistemico.webp",
   "/assets/grupos/componente-ambiental.webp",
@@ -32,9 +31,6 @@ export default function ComponentesPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ════════════════════════════════════════
-            HERO — Carousel
-        ════════════════════════════════════════ */}
         <section
           aria-labelledby="comp-page-heading"
           style={{
@@ -141,22 +137,12 @@ export default function ComponentesPage() {
           </div>
         </section>
 
-        {/* ── Componentes flip-cards ── */}
         <ComponentesSection />
-
-        {/* ── Equipo de investigación ── */}
         <EstructuraSection />
-
-        {/* ── Talento humano ── */}
         <TalentoSection />
-
-        {/* ── Audiovisual ── */}
         <AudiovisualSection />
-
-        {/* ── Proceso de investigación ── */}
         <TimelineSection />
 
-        {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>

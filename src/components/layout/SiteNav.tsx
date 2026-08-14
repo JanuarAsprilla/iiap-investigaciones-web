@@ -1,21 +1,9 @@
 "use client";
 
-/**
- * SiteNav — Navegación lateral (sidebar) del portal.
- *
- * Sustituye al antiguo navbar superior para NO competir con el navbar
- * institucional del sitio que embebe este portal (iiap.org.co/investigacion).
- * Es un riel poco invasivo: ocupa su propia columna a la izquierda (el
- * contenido va al lado, nunca debajo) y en móvil se colapsa en un botón
- * "Módulos" que abre un cajón. Hereda por completo el sistema de diseño
- * (crema/bosque/ámbar, Inter para UI, curvas expo).
- */
-
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
 
-/* ── Iconos de línea (20px, stroke currentColor) ── */
 const IcPlaneacion = () => (
   <svg viewBox="0 0 20 20" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
     <path d="M5 2.5h6l4 4V17.5H5z" /><path d="M11 2.5V6.5h4" /><path d="M7.5 10.5h5M7.5 13.5h5" />
@@ -87,27 +75,23 @@ export default function SiteNav() {
   const railNaturalHeight = useRef<number | null>(null);
   const [railOffset, setRailOffset] = useState<RailOffset>(RAIL_CENTERED);
 
-  // Cerrar el cajón al cambiar de ruta.
   useEffect(() => { setMenuOpen(false); }, [pathname]);
 
-  // Bloquear scroll del fondo con el cajón abierto (solo móvil).
   useEffect(() => {
     document.body.style.overflow = menuOpen ? "hidden" : "";
     return () => { document.body.style.overflow = ""; };
   }, [menuOpen]);
 
-  // El riel es position:fixed y por defecto queda centrado en el viewport.
-  // Si ese centrado invadiría el footer institucional, se ancla justo
-  // encima del footer en vez de superponerse a su contenido.
+  // Ancla el riel centrado en el viewport, salvo que eso lo superponga
+  // con el footer institucional: en ese caso lo sube y recorta su alto.
   useEffect(() => {
     function updateRailOffset() {
       const rail = railRef.current;
       const footer = document.getElementById("inst-foot");
       if (!rail || !footer) return;
 
-      // Altura natural (sin recortar) del riel, medida una sola vez: una vez
-      // que el propio cálculo empieza a limitar maxHeight, offsetHeight ya
-      // no refleja el contenido completo.
+      // Se mide una sola vez: una vez que maxHeight empieza a recortar,
+      // scrollHeight ya no refleja el alto completo del contenido.
       if (railNaturalHeight.current === null) {
         railNaturalHeight.current = rail.scrollHeight;
       }
@@ -115,9 +99,6 @@ export default function SiteNav() {
 
       const viewportHeight = window.innerHeight;
       const footerTop = footer.getBoundingClientRect().top;
-
-      // Límite inferior real: el borde superior del footer (o el viewport,
-      // lo que esté más arriba), con un margen de aire.
       const availableBottom = Math.min(viewportHeight, footerTop) - RAIL_MARGIN;
       const height = Math.min(naturalHeight, Math.max(80, availableBottom - RAIL_MARGIN));
       const centeredTop = viewportHeight / 2 - height / 2;
@@ -142,9 +123,6 @@ export default function SiteNav() {
   return (
     <>
       <style>{`
-        /* ── Riel de vidrio flotante (solo escritorio). Se reserva una franja
-              a la izquierda para que el vidrio flote SIN tapar el contenido:
-              el texto empieza después del riel. ── */
         @media (min-width: 1025px) {
           #main-content { padding-left: 120px; }
           .sb-rail { display: flex; }
@@ -155,10 +133,6 @@ export default function SiteNav() {
           .sb-fab  { display: inline-flex; }
         }
 
-        /* ── Ítems del riel: en reposo SIN fondo (transparentes, sin contorno)
-              para que no se note ninguna caja ni diferencia de color; dejan ver
-              el lienzo general. El verde solo aparece en hover / módulo activo,
-              y envuelve icono Y texto por completo. ── */
         .sb-item {
           display: flex; flex-direction: column; align-items: center; gap: 6px;
           width: 84px; padding: 11px 6px 10px; border-radius: var(--r-md);
@@ -183,7 +157,6 @@ export default function SiteNav() {
           white-space: nowrap;
         }
 
-        /* ── Cajón móvil ── */
         .sb-backdrop {
           position: fixed; inset: 0; z-index: 110;
           background: rgba(13,59,36,.38);
@@ -220,7 +193,6 @@ export default function SiteNav() {
         }
       `}</style>
 
-      {/* ══════════ RIEL (escritorio) ══════════ */}
       <nav
         ref={railRef}
         className="sb-rail"
@@ -230,7 +202,6 @@ export default function SiteNav() {
           ...railOffset,
           flexDirection: "column", alignItems: "center", justifyContent: "center",
           padding: "10px 8px",
-          /* Vidrio esmerilado: translúcido + blur que deja ver el sitio detrás */
           background: "rgba(244,241,235,0.5)",
           backdropFilter: "blur(20px) saturate(180%)",
           WebkitBackdropFilter: "blur(20px) saturate(180%)",
@@ -239,7 +210,6 @@ export default function SiteNav() {
           boxShadow: "0 16px 48px rgba(13,59,36,.16), inset 0 1px 0 rgba(255,255,255,.5)",
         }}
       >
-        {/* Bloque único: módulos + editorial, flotando dentro del vidrio */}
         <div style={{ display: "flex", flexDirection: "column", gap: "6px", alignItems: "center", width: "100%", maxHeight: "100%", overflowY: "auto" }}>
           {MODULOS.map(({ href, label, Icon }) => {
             const active = isActive(pathname, href);
@@ -258,7 +228,6 @@ export default function SiteNav() {
             );
           })}
 
-          {/* Editorial (CMS) — parte del mismo bloque, debajo de los módulos */}
           <a
             href={STUDIO_URL}
             target="_blank"
@@ -273,7 +242,6 @@ export default function SiteNav() {
         </div>
       </nav>
 
-      {/* ══════════ BOTÓN FLOTANTE (móvil) ══════════ */}
       <button
         className="sb-fab"
         aria-label={menuOpen ? "Cerrar módulos" : "Abrir módulos"}
@@ -295,7 +263,6 @@ export default function SiteNav() {
         Módulos
       </button>
 
-      {/* ══════════ CAJÓN (móvil) ══════════ */}
       {menuOpen && (
         <>
           <div className="sb-backdrop" onClick={() => setMenuOpen(false)} aria-hidden="true" />

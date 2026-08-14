@@ -1,9 +1,6 @@
-/* Componentes de Investigación — 5 equal flip cards */
-
 import { componentesInvestigacion } from "@/data/grupos";
 import type { ComponenteInvestigacion } from "@/lib/types";
 
-/* ── Flip Card ── */
 function FlipCard({ comp }: { comp: ComponenteInvestigacion }) {
   return (
     <div
@@ -20,7 +17,6 @@ function FlipCard({ comp }: { comp: ComponenteInvestigacion }) {
     >
       <div className="flip-card-inner">
 
-        {/* ── FRONT FACE ── */}
         <div className="flip-card-face flip-card-front">
           <div className="flip-shimmer-bar" aria-hidden="true" />
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -32,7 +28,6 @@ function FlipCard({ comp }: { comp: ComponenteInvestigacion }) {
           </div>
         </div>
 
-        {/* ── BACK FACE ── */}
         <div className="flip-card-face flip-card-back">
           <div className="flip-shimmer-bar" aria-hidden="true" />
           <div className="flip-back-body">
@@ -55,7 +50,6 @@ function FlipCard({ comp }: { comp: ComponenteInvestigacion }) {
   );
 }
 
-/* ── Section ── */
 export default function ComponentesSection({
   titulo = "COMPONENTES",
   subtitulo = "Pase el cursor sobre cada componente para descubrir su misión científica",
@@ -70,7 +64,6 @@ export default function ComponentesSection({
     >
       <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
-        {/* Header — centered */}
         <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,4vw,3.5rem)" }}>
           <h2 id="comp-heading" className="sec-h2">{titulo}</h2>
           <p className="sec-sub" style={{ marginTop: ".5rem" }}>
@@ -78,7 +71,6 @@ export default function ComponentesSection({
           </p>
         </div>
 
-        {/* 5-equal-card grid */}
         <div id="comp-grid">
           {componentesInvestigacion.map((comp) => (
             <FlipCard key={comp.id} comp={comp} />
@@ -88,7 +80,6 @@ export default function ComponentesSection({
       </div>
 
       <style>{`
-        /* ── Equal 5-card grid ── */
         #comp-grid {
           display: grid;
           grid-template-columns: repeat(5, 1fr);
@@ -96,7 +87,6 @@ export default function ComponentesSection({
           height: 400px;
         }
 
-        /* ── Flip Card System ── */
         .flip-card-root { perspective: 1100px; cursor: pointer; height: 100%; }
         .flip-card-inner {
           position: relative; width: 100%; height: 100%;
@@ -119,7 +109,6 @@ export default function ComponentesSection({
           transform: rotateY(180deg);
         }
 
-        /* photo + overlay */
         .flip-bg-img {
           position: absolute; inset: 0;
           width: 100%; height: 100%;
@@ -130,7 +119,6 @@ export default function ComponentesSection({
           background: linear-gradient(170deg, rgba(13,59,36,.12) 0%, rgba(13,59,36,.52) 40%, rgba(13,59,36,.92) 100%);
         }
 
-        /* Front info block */
         .flip-front-info {
           position: absolute; bottom: 0; left: 0; right: 0;
           padding: clamp(1.2rem,2.5vw,1.8rem); z-index: 2;
@@ -146,7 +134,6 @@ export default function ComponentesSection({
           color: #fff; letter-spacing: .04em; line-height: .95;
         }
 
-        /* Back body */
         .flip-back-body {
           height: 100%; display: flex; flex-direction: column;
           justify-content: center;
@@ -171,7 +158,6 @@ export default function ComponentesSection({
           background: var(--amber); flex-shrink: 0;
         }
 
-        /* ── Amber shimmer bar ── */
         .flip-shimmer-bar {
           position: absolute; top: 0; left: 0; right: 0; height: 3px;
           background: linear-gradient(to right, var(--amber) 0%, rgba(255,255,255,.7) 40%, var(--amber-d) 60%, var(--amber) 100%);
@@ -180,7 +166,6 @@ export default function ComponentesSection({
         }
         @keyframes shimr { 0%{background-position:100% 0} 100%{background-position:-100% 0} }
 
-        /* ── Responsive ── */
         @media(max-width:1100px){
           #comp-grid{ grid-template-columns:repeat(3,1fr) !important; height:auto !important; }
           .flip-card-root{ height:320px; }

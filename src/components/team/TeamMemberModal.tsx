@@ -27,7 +27,6 @@ interface Props {
 export default function TeamMemberModal({ persona, onClose }: Props) {
   const [closing, setClosing] = useState(false);
 
-  /* Close on Escape */
   useEffect(() => {
     const handler = (e: KeyboardEvent) => {
       if (e.key === "Escape") handleClose();
@@ -36,7 +35,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
     return () => document.removeEventListener("keydown", handler);
   });
 
-  /* Lock body scroll */
   useEffect(() => {
     const prev = document.body.style.overflow;
     document.body.style.overflow = "hidden";
@@ -70,7 +68,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
     >
       <div className="cm-box" style={{ maxWidth: "900px" }}>
 
-        {/* ── Image side ── */}
         <div className="cm-img" style={{ minHeight: 360, position: "relative" }}>
           {persona.imagen ? (
             <Image
@@ -92,7 +89,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
               </span>
             </div>
           )}
-          {/* Component accent at bottom of image */}
           <div
             aria-hidden="true"
             style={{
@@ -102,10 +98,8 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
           />
         </div>
 
-        {/* ── Content side ── */}
         <div className="cm-body" style={{ gap: 0 }}>
 
-          {/* Close button */}
           <button
             onClick={handleClose}
             aria-label="Cerrar perfil"
@@ -121,7 +115,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
             </svg>
           </button>
 
-          {/* Role tag */}
           <span
             className="cm-tag"
             style={{ background: `color-mix(in srgb, ${accentColor} 12%, transparent)`, color: accentColor, borderColor: "transparent" }}
@@ -129,7 +122,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
             {roleTag}
           </span>
 
-          {/* Name */}
           <h2 id="tm-modal-name" className="cm-title" style={{ marginBottom: ".3rem" }}>
             {persona.nombre.toUpperCase()}
           </h2>
@@ -141,19 +133,16 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
 
           <div className="cm-divider" style={{ marginBottom: ".85rem" }} />
 
-          {/* Cargo */}
           <p style={{ fontFamily: "var(--font-ui)", fontSize: ".68rem", fontWeight: 700, letterSpacing: "1.8px", textTransform: "uppercase", color: "var(--text-muted)", marginBottom: ".3rem" }}>
             {persona.cargo}
           </p>
 
-          {/* Especialidad */}
           {persona.especialidad && (
             <p style={{ fontFamily: "var(--font-body)", fontStyle: "italic", fontSize: ".95rem", color: accentColor, marginBottom: ".9rem" }}>
               {persona.especialidad}
             </p>
           )}
 
-          {/* Bio */}
           {persona.bio ? (
             <p className="cm-desc" style={{ fontSize: ".95rem", marginBottom: "1rem" }}>
               {persona.bio}
@@ -164,7 +153,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
             </p>
           )}
 
-          {/* Research areas */}
           {persona.areas && persona.areas.length > 0 && (
             <div className="cm-areas" style={{ marginBottom: "1rem" }}>
               {persona.areas.map((area) => (
@@ -173,7 +161,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
             </div>
           )}
 
-          {/* Logros */}
           {persona.logros && persona.logros.length > 0 && (
             <ul className="cm-logros" style={{ marginBottom: "1.1rem" }}>
               {persona.logros.map((logro) => (
@@ -185,7 +172,6 @@ export default function TeamMemberModal({ persona, onClose }: Props) {
             </ul>
           )}
 
-          {/* ORCID / CVLaC */}
           {(persona.orcid || persona.cvlac) && (
             <div style={{ display: "flex", gap: ".6rem", flexWrap: "wrap", marginTop: "auto", paddingTop: ".5rem" }}>
               {persona.orcid && (

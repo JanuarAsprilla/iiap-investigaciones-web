@@ -1,21 +1,9 @@
 "use client";
 
-/* ─────────────────────────────────────────────────────────
-   PROCESO DE INVESTIGACIÓN — alternating timeline
-   Layout: 3-col grid  [left-slot | node | right-slot]
-
-   Even steps (01, 03, 05) → left = photo · right = text
-   Odd  steps (02, 04)     → left = text  · right = photo
-
-   Bug fixed: previously gridColumn was swapped on each div
-   which does nothing — CSS grid ignores DOM order when
-   grid-column is explicit, so photo always landed at col 1.
-   Fix: columns are fixed (1, 2, 3) and content is swapped.
-
-   Mobile: single column, photo always first via CSS order.
-───────────────────────────────────────────────────────── */
-
 import { useEffect, useRef } from "react";
+
+// Grid columns stay fixed (1, 2, 3); which content goes in which column is
+// swapped instead, since CSS grid ignores DOM order once grid-column is explicit.
 
 const pasos = [
   {
@@ -114,7 +102,6 @@ export default function TimelineSection() {
         overflow: "hidden",
       }}
     >
-      {/* ── Ambient background mesh ── */}
       <div
         aria-hidden="true"
         style={{
@@ -129,7 +116,6 @@ export default function TimelineSection() {
         }}
       />
 
-      {/* ── Section header ── */}
       <div
         style={{
           textAlign: "center",
@@ -207,7 +193,6 @@ export default function TimelineSection() {
         </p>
       </div>
 
-      {/* ── Steps list ── */}
       <div
         style={{
           maxWidth: "1300px",
@@ -216,7 +201,6 @@ export default function TimelineSection() {
           position: "relative",
         }}
       >
-        {/* Vertical amber thread — always at true 50% of container */}
         <div
           aria-hidden="true"
           style={{
@@ -243,10 +227,6 @@ export default function TimelineSection() {
               data-odd={!isEven ? "true" : undefined}
               style={{
                 display: "grid",
-                /*
-                 * Columns are ALWAYS 1 = left, 2 = center-node, 3 = right.
-                 * Content is swapped, not columns — that's the fix.
-                 */
                 gridTemplateColumns: "1fr 80px 1fr",
                 alignItems: "center",
                 marginBottom:
@@ -256,7 +236,6 @@ export default function TimelineSection() {
                 transition: `opacity .7s ease ${delay}, transform .7s cubic-bezier(.25,1,.5,1) ${delay}`,
               }}
             >
-              {/* ── Col 1: photo on even, text on odd ── */}
               <div>
                 {isEven ? (
                   <PanelPhoto paso={paso} />
@@ -265,7 +244,6 @@ export default function TimelineSection() {
                 )}
               </div>
 
-              {/* ── Col 2: step node (always center) ── */}
               <div
                 style={{
                   display: "flex",
@@ -304,7 +282,6 @@ export default function TimelineSection() {
                 </div>
               </div>
 
-              {/* ── Col 3: text on even, photo on odd ── */}
               <div>
                 {isEven ? (
                   <PanelText paso={paso} align="left" />
@@ -317,7 +294,6 @@ export default function TimelineSection() {
         })}
       </div>
 
-      {/* ── Responsive overrides ── */}
       <style>{`
         @media (max-width: 720px) {
           [data-panel] {
@@ -326,14 +302,10 @@ export default function TimelineSection() {
           [data-panel] > div {
             grid-column: 1 !important;
           }
-          /* Hide center node on mobile */
           [data-panel] > div:nth-child(2) {
             display: none !important;
           }
-          /*
-           * Odd panels: DOM order is [text][node][photo]
-           * but we want photo first on mobile, so reorder.
-           */
+          /* Odd panels are [text][node][photo] in the DOM; photo goes first on mobile. */
           [data-panel][data-odd="true"] > div:nth-child(1) { order: 2; }
           [data-panel][data-odd="true"] > div:nth-child(3) { order: 1; }
         }
@@ -342,9 +314,6 @@ export default function TimelineSection() {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   Photo panel
-───────────────────────────────────────────────────────── */
 function PanelPhoto({ paso }: { paso: (typeof pasos)[0] }) {
   return (
     <div
@@ -372,7 +341,6 @@ function PanelPhoto({ paso }: { paso: (typeof pasos)[0] }) {
         }}
       />
 
-      {/* Dark overlay */}
       <div
         aria-hidden="true"
         style={{
@@ -383,7 +351,6 @@ function PanelPhoto({ paso }: { paso: (typeof pasos)[0] }) {
         }}
       />
 
-      {/* Ghost step number — bottom-right, clipped at container edge */}
       <p
         aria-hidden="true"
         style={{
@@ -403,7 +370,6 @@ function PanelPhoto({ paso }: { paso: (typeof pasos)[0] }) {
         {paso.num}
       </p>
 
-      {/* Tag chip */}
       <span
         style={{
           position: "absolute",
@@ -428,11 +394,6 @@ function PanelPhoto({ paso }: { paso: (typeof pasos)[0] }) {
   );
 }
 
-/* ─────────────────────────────────────────────────────────
-   Text panel
-   align="left"  → text on right side, reads left-to-right
-   align="right" → text on left side, reads toward center
-───────────────────────────────────────────────────────── */
 function PanelText({
   paso,
   align,
@@ -449,7 +410,6 @@ function PanelText({
         textAlign: align,
       }}
     >
-      {/* Step badge */}
       <span
         style={{
           fontFamily: "var(--font-ui)",
@@ -465,7 +425,6 @@ function PanelText({
         PASO {paso.num}
       </span>
 
-      {/* Title */}
       <h3
         style={{
           fontFamily: "var(--font-display)",
@@ -479,7 +438,6 @@ function PanelText({
         {paso.titulo}
       </h3>
 
-      {/* Amber accent divider — solid end faces the center node */}
       <div
         aria-hidden="true"
         style={{
@@ -493,7 +451,6 @@ function PanelText({
         }}
       />
 
-      {/* Short description */}
       <p
         style={{
           fontFamily: "var(--font-body)",
@@ -508,7 +465,6 @@ function PanelText({
         {paso.desc}
       </p>
 
-      {/* Detail — accent border on center-facing edge */}
       <p
         style={{
           fontFamily: "var(--font-body)",

@@ -40,7 +40,6 @@ export default function PortalCard3D({
           cursor: "pointer",
         }}
       >
-        {/* ── Imagen de fondo ── */}
         <div
           style={{
             position: "absolute",
@@ -64,13 +63,11 @@ export default function PortalCard3D({
           />
         </div>
 
-        {/* ── Gradiente base ── */}
         <div
           className="grad-up"
           style={{ position: "absolute", inset: 0, borderRadius: "20px" }}
         />
 
-        {/* ── Acento ámbar inferior radial ── */}
         <div
           style={{
             position: "absolute",
@@ -81,7 +78,7 @@ export default function PortalCard3D({
           }}
         />
 
-        {/* ── Shimmer lateral — aparece en hover via parent ── */}
+        {/* Shimmer activado por :hover en el padre .portal-card-wrap */}
         <div
           style={{
             position: "absolute",
@@ -94,7 +91,6 @@ export default function PortalCard3D({
           }}
         />
 
-        {/* ── Contenido ── */}
         <div
           style={{
             position: "relative",
@@ -106,7 +102,6 @@ export default function PortalCard3D({
             padding: "clamp(1.5rem, 3vw, 2.5rem)",
           }}
         >
-          {/* Título — eyebrow removed, heading lleva todo el peso */}
           <h2
             style={{
               fontFamily: "var(--font-display)",
@@ -120,7 +115,6 @@ export default function PortalCard3D({
             {label}
           </h2>
 
-          {/* Descripción */}
           <p
             style={{
               fontFamily: "var(--font-body)",
@@ -134,7 +128,7 @@ export default function PortalCard3D({
             {description}
           </p>
 
-          {/* CTA — hover handled by .portal-cta-btn + parent .portal-card-wrap:hover */}
+          {/* Hover manejado por .portal-cta-btn junto con .portal-card-wrap:hover */}
           <div className="portal-cta-btn">
             Explorar
             <svg
@@ -152,7 +146,6 @@ export default function PortalCard3D({
           </div>
         </div>
 
-        {/* ── Marco exterior ── */}
         <div
           style={{
             position: "absolute",

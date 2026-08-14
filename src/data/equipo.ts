@@ -1,7 +1,7 @@
 import type { Investigador } from "@/lib/types";
 
 export const equipo: Investigador[] = [
-  // ── Dirección ────────────────────────────────
+  // Dirección
   {
     id: "william-klinger",
     nombre: "William",
@@ -34,7 +34,7 @@ export const equipo: Investigador[] = [
       "Diseño del modelo de monitoreo ecosistémico participativo",
     ],
   },
-  // ── Coordinadores ────────────────────────────
+  // Coordinadores
   {
     id: "carlos-ariel",
     nombre: "Carlos Ariel",
@@ -120,7 +120,7 @@ export const equipo: Investigador[] = [
       "Integración de datos de campo con análisis multitemporal de imágenes satelitales",
     ],
   },
-  // ── Investigadores ───────────────────────────
+  // Investigadores
   {
     id: "robinson",
     nombre: "Robinson",

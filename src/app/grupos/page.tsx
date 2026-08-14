@@ -5,7 +5,6 @@ import SiteNav from "@/components/layout/SiteNav";
 import ComponentesSection   from "./_sections/ComponentesSection";
 import GruposSection        from "./_sections/GruposSection";
 
-/* Carousel background images for the hero */
 const heroBgs = [
   "/assets/grupos/componente-ecosistemico.webp",
   "/assets/grupos/componente-sociocultural.webp",
@@ -16,7 +15,6 @@ const heroBgs = [
 export default function GruposPage() {
   const [bgIndex, setBgIndex] = useState(0);
 
-  /* Auto-cycle every 4 s */
   useEffect(() => {
     const id = setInterval(() => {
       setBgIndex((prev) => (prev + 1) % heroBgs.length);
@@ -30,9 +28,6 @@ export default function GruposPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ════════════════════════════════════════
-            HERO — Carousel background + Forest overlay
-        ════════════════════════════════════════ */}
         <section
           aria-labelledby="grupos-heading"
           style={{
@@ -40,7 +35,6 @@ export default function GruposPage() {
             padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)",
           }}
         >
-          {/* ── Carousel images — crossfade ── */}
           {heroBgs.map((src, i) => (
             <div
               key={src}
@@ -57,7 +51,6 @@ export default function GruposPage() {
             />
           ))}
 
-          {/* ── Dark forest overlay ── */}
           <div
             aria-hidden="true"
             style={{
@@ -67,7 +60,6 @@ export default function GruposPage() {
             }}
           />
 
-          {/* ── Amber glow ── */}
           <div
             aria-hidden="true"
             style={{
@@ -77,7 +69,6 @@ export default function GruposPage() {
             }}
           />
 
-          {/* ── Content ── */}
           <div style={{ position: "relative", zIndex: 1, maxWidth: "1400px", margin: "0 auto" }}>
             <span
               style={{
@@ -122,7 +113,6 @@ export default function GruposPage() {
               científico con las comunidades étnicas del Chocó Biogeográfico.
             </p>
 
-            {/* Carousel indicator dots */}
             <div style={{ display: "flex", gap: "8px" }} aria-hidden="true">
               {heroBgs.map((_, i) => (
                 <button
@@ -145,14 +135,12 @@ export default function GruposPage() {
           </div>
         </section>
 
-        {/* ── Sections ── */}
         <ComponentesSection
           titulo="GRUPOS DE INVESTIGACIÓN"
           subtitulo="Colectivos especializados que lideran la generación de conocimiento en el Pacífico colombiano"
         />
         <GruposSection />
 
-        {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>

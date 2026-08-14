@@ -23,7 +23,7 @@ export default function ModalGallery({ images, alt }: Props) {
     setIdx((i) => (i + dir + count) % count);
   }, [count]);
 
-  /* Auto-advance — pauses on hover and on video slides */
+  // Se pausa en hover y en slides de video
   useEffect(() => {
     if (count <= 1 || paused || currentIsVideo) return;
     const id = setInterval(() => go(1), SLIDE_MS);
@@ -36,7 +36,6 @@ export default function ModalGallery({ images, alt }: Props) {
       onMouseEnter={() => setPaused(true)}
       onMouseLeave={() => setPaused(false)}
     >
-      {/* ── Media ── */}
       {currentIsVideo ? (
         <video
           key={current}
@@ -61,7 +60,6 @@ export default function ModalGallery({ images, alt }: Props) {
 
       {count > 1 && (
         <>
-          {/* ── Progress bar (pauses on hover / video) ── */}
           {!currentIsVideo && (
             <div style={{
               position: "absolute", bottom: 0, left: 0, right: 0,
@@ -80,7 +78,6 @@ export default function ModalGallery({ images, alt }: Props) {
             </div>
           )}
 
-          {/* ── Prev button ── */}
           <button
             onClick={(e) => { e.stopPropagation(); go(-1); }}
             aria-label="Anterior"
@@ -92,7 +89,6 @@ export default function ModalGallery({ images, alt }: Props) {
             </svg>
           </button>
 
-          {/* ── Next button ── */}
           <button
             onClick={(e) => { e.stopPropagation(); go(1); }}
             aria-label="Siguiente"
@@ -104,7 +100,6 @@ export default function ModalGallery({ images, alt }: Props) {
             </svg>
           </button>
 
-          {/* ── Dot strip ── */}
           <div style={{
             position: "absolute", bottom: "1rem", left: "50%",
             transform: "translateX(-50%)",
@@ -126,7 +121,6 @@ export default function ModalGallery({ images, alt }: Props) {
             ))}
           </div>
 
-          {/* ── Counter badge ── */}
           <span style={{
             position: "absolute", top: ".7rem", right: ".8rem",
             fontFamily: "var(--font-ui)", fontSize: ".56rem", fontWeight: 700,
@@ -151,13 +145,11 @@ export default function ModalGallery({ images, alt }: Props) {
           to   { width: 100%; }
         }
 
-        /* Glass nav buttons */
         .gal-btn {
           position: absolute; top: 50%; transform: translateY(-50%);
           width: 44px; height: 44px; border-radius: 50%;
           background: rgba(9,40,25,.58);
           backdrop-filter: blur(12px) saturate(1.3);
-          /* taste-skill liquid glass: inner highlight simulates edge refraction */
           border: 1.5px solid rgba(255,255,255,.18);
           box-shadow: 0 4px 16px rgba(0,0,0,.28),
                       inset 0 1px 0 rgba(255,255,255,.12);

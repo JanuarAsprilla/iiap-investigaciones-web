@@ -1,5 +1,3 @@
-/* Audiovisual — YouTube embed in a warm editorial frame */
-
 export default function AudiovisualSection() {
   return (
     <section
@@ -10,12 +8,10 @@ export default function AudiovisualSection() {
         position: "relative", overflow: "hidden",
       }}
     >
-      {/* Ambient */}
       <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 30% 60%,rgba(232,150,15,.14) 0%,transparent 55%)", pointerEvents: "none" }} />
 
       <div style={{ maxWidth: "1000px", margin: "0 auto", position: "relative", zIndex: 1 }}>
 
-        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "clamp(2rem,4vw,3.5rem)" }}>
           <span
             style={{
@@ -45,7 +41,6 @@ export default function AudiovisualSection() {
           </p>
         </div>
 
-        {/* Video frame */}
         <div
           style={{
             position: "relative",
@@ -56,7 +51,6 @@ export default function AudiovisualSection() {
             aspectRatio: "16/9",
           }}
         >
-          {/* Amber corner accents */}
           <div aria-hidden="true" style={{ position: "absolute", top: 0, left: 0, width: "32px", height: "32px", borderTop: "3px solid var(--amber)", borderLeft: "3px solid var(--amber)", zIndex: 2, pointerEvents: "none" }} />
           <div aria-hidden="true" style={{ position: "absolute", top: 0, right: 0, width: "32px", height: "32px", borderTop: "3px solid var(--amber)", borderRight: "3px solid var(--amber)", zIndex: 2, pointerEvents: "none" }} />
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, width: "32px", height: "32px", borderBottom: "3px solid var(--amber)", borderLeft: "3px solid var(--amber)", zIndex: 2, pointerEvents: "none" }} />
@@ -74,7 +68,6 @@ export default function AudiovisualSection() {
           />
         </div>
 
-        {/* Caption */}
         <p style={{ textAlign: "center", fontFamily: "var(--font-ui)", fontSize: ".68rem", color: "rgba(255,255,255,.45)", letterSpacing: "1.5px", textTransform: "uppercase", marginTop: "1.25rem" }}>
           Canal oficial IIAP — YouTube
         </p>

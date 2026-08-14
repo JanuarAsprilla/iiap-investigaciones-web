@@ -1,7 +1,3 @@
-// ─────────────────────────────────────────────
-//  IIAP Investigaciones — Tipos globales
-// ─────────────────────────────────────────────
-
 export interface DocumentoPlanificacion {
   id: string;
   titulo: string;

@@ -72,7 +72,6 @@ export default function InstitutionalHeader() {
           min-width: 300px; max-width: 1600px; width: 90%;
         }
 
-        /* ── Franja gov.co ── */
         #inst-head .ih-mark {
           overflow: hidden; display: block;
           padding: 8px 0; width: 100%;
@@ -85,15 +84,12 @@ export default function InstitutionalHeader() {
         }
         #inst-head .ih-mark img { display: block; border: none; width: auto; height: 36px; }
 
-        /* ── Barra principal ──
-              display:none no se puede animar, así que la contracción usa
-              height + opacity (mismo efecto visual que el "drop" del sitio
-              real, pero con una transición suave en vez de un salto).
-              height (no max-height): sus únicos hijos son flotados/absolutos
-              (.ih-side es float:right, .ih-logo es position:absolute), así
-              que ninguno aporta a una altura "auto" — con max-height la caja
-              colapsaría a 0 y el contenido flotado se pintaría fuera de ella,
-              detrás de .ih-menu. height fija la caja sin depender de eso. */
+        /* display:none no se puede animar, así que la contracción usa height + opacity
+           (mismo efecto visual que el "drop" del sitio real, con transición suave).
+           Se usa height y no max-height porque los únicos hijos de .ih-main son
+           flotados/absolutos (.ih-side float:right, .ih-logo position:absolute), así
+           que ninguno aporta a una altura "auto": con max-height la caja colapsaría a 0
+           y el contenido flotado se pintaría fuera de ella, detrás de .ih-menu. */
         #inst-head .ih-main {
           overflow: visible; width: 100%;
           height: 44px; opacity: 1;
@@ -186,7 +182,6 @@ export default function InstitutionalHeader() {
         }
         #inst-head .ih-lang-list a:hover { background: #FEFEFE; }
 
-        /* ── Menú institucional ── */
         #inst-head .ih-menu {
           position: relative; display: block;
           width: 100%; height: 60px; background: #3E3E3E;

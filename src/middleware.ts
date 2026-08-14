@@ -1,24 +1,12 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
-/**
- * Middleware: security headers only.
- *
- * ⚠️ WHY NO NONCE HERE:
- * This app uses static generation (○ SSG). The HTML is pre-built at build time
- * and served as static files. A per-request nonce injected here would never
- * match the script tags in the pre-built HTML — the browser would block them,
- * preventing React hydration and all client-side interactivity.
- *
- * CSP is configured in next.config.ts where it can be applied consistently
- * to the pre-built content. The 'unsafe-inline' allowance is required because
- * Next.js App Router injects inline scripts for RSC payload and hydration
- * bootstrapping that cannot be hashed at build time.
- *
- * If this app ever migrates to full SSR (force-dynamic), re-introduce nonces.
- */
+// No nonce: the app is statically generated, so script tags are baked into
+// the pre-built HTML at build time and a per-request nonce would never match
+// them. 'unsafe-inline' is required because Next.js injects inline RSC/
+// hydration scripts that can't be hashed at build time.
 export function middleware(request: NextRequest) {
-  // Sanity Studio manages its own CSP — skip our headers there
+  // Sanity Studio manages its own CSP
   if (request.nextUrl.pathname.startsWith("/studio")) {
     return NextResponse.next();
   }
@@ -29,9 +17,7 @@ export function middleware(request: NextRequest) {
 
   const csp = [
     "default-src 'self'",
-    // 'unsafe-inline' required for Next.js App Router SSG:
-    //   __NEXT_DATA__, RSC bootstrap, and hydration scripts are inline.
-    // 'unsafe-eval' only in dev (webpack source maps).
+    // 'unsafe-eval' only in dev, for webpack source maps
     isDev
       ? "script-src 'self' 'unsafe-inline' 'unsafe-eval'"
       : "script-src 'self' 'unsafe-inline'",

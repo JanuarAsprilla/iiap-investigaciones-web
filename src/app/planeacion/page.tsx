@@ -11,12 +11,9 @@ const heroBgs = [
   "/assets/planeacion/poa-2026.webp",
 ];
 
-/* ──────────────────────────────────────────────
-   Modal — Diagrama PICIA (Warm Light)
-─────────────────────────────────────────────── */
-/* Safe URL helper — allow local /docs/*.pdf paths and https: origins */
+// Allows only same-origin /docs/*.pdf paths (no traversal) or https: URLs, to prevent
+// javascript: or other unsafe schemes from being used as download links.
 function safePdfUrl(raw: string): string {
-  // Same-origin local PDF (e.g. /docs/PICIA-2023-2026.pdf) — sin traversal
   if (/^\/docs\/[\w.-]+\.pdf$/i.test(raw)) return raw;
   try {
     const parsed = new URL(raw);
@@ -87,9 +84,6 @@ function DiagramaModal({ onClose, closing }: { onClose: () => void; closing?: bo
   );
 }
 
-/* ──────────────────────────────────────────────
-   Page
-─────────────────────────────────────────────── */
 export default function PlaneacionPage() {
   const [diagramaOpen,    setDiagramaOpen]    = useState(false);
   const [diagramaClosing, setDiagramaClosing] = useState(false);
@@ -112,12 +106,10 @@ export default function PlaneacionPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero — Editorial split con carrusel ── */}
         <section
           aria-labelledby="plan-heading"
           style={{ padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)", position: "relative", overflow: "hidden" }}
         >
-          {/* Carousel layers */}
           {heroBgs.map((src, i) => (
             <div key={src} aria-hidden="true" style={{
               position: "absolute", inset: 0,
@@ -127,10 +119,8 @@ export default function PlaneacionPage() {
               transition: "opacity 1.6s ease-in-out",
             }} />
           ))}
-          {/* Overlay — forest dark keeps text legible */}
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(7,26,14,.92) 0%, rgba(13,59,36,.85) 60%, rgba(9,40,25,.90) 100%)" }} />
 
-          {/* ── Subtle grid lines ── */}
           <svg aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: .06, pointerEvents: "none" }} preserveAspectRatio="xMidYMid slice">
             <defs>
               <pattern id="plan-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
@@ -140,14 +130,11 @@ export default function PlaneacionPage() {
             <rect width="100%" height="100%" fill="url(#plan-grid)"/>
           </svg>
 
-          {/* ── Amber glow top-right ── */}
           <div aria-hidden="true" style={{ position: "absolute", top: "-10%", right: "-5%", width: "55%", height: "140%", background: "radial-gradient(ellipse at 70% 30%, rgba(232,150,15,.16) 0%, transparent 60%)", pointerEvents: "none" }} />
-          {/* ── Deep shadow bottom-left ── */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, width: "60%", height: "50%", background: "radial-gradient(ellipse at 0% 100%, rgba(0,0,0,.45) 0%, transparent 70%)", pointerEvents: "none" }} />
 
           <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
 
-            {/* Eyebrow */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: ".75rem", marginBottom: "1.75rem" }}>
               <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
               <span style={{ fontFamily: "var(--font-ui)", fontSize: ".65rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)" }}>
@@ -176,13 +163,11 @@ export default function PlaneacionPage() {
             </p>
           </div>
 
-          {/* ── Bottom fade — más largo para transición suave ── */}
           <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "140px", background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 30%, rgba(244,241,235,.3) 70%, transparent 100%)", pointerEvents: "none" }} />
 
           <style>{`@keyframes shimBar{0%{background-position:0%}100%{background-position:200%}}`}</style>
         </section>
 
-        {/* ── Documentos de Planificación ── */}
         <section
           aria-labelledby="docs-heading"
           style={{ padding: "clamp(4rem,7vw,7rem) clamp(1.25rem,4vw,3rem)" }}
@@ -228,7 +213,6 @@ export default function PlaneacionPage() {
                     el.style.borderColor = "var(--border-subtle)";
                   }}
                 >
-                  {/* Visual header — portada real del documento como fondo */}
                   <div
                     style={{
                       position: "relative",
@@ -240,7 +224,6 @@ export default function PlaneacionPage() {
                       background: "var(--forest-d)",
                     }}
                   >
-                    {/* Portada del documento como fondo */}
                     {/* eslint-disable-next-line @next/next/no-img-element */}
                     <img
                       src={doc.imagen}
@@ -253,7 +236,6 @@ export default function PlaneacionPage() {
                         objectPosition: "center top",
                       }}
                     />
-                    {/* Gradient overlay for legibility */}
                     <div
                       aria-hidden="true"
                       style={{
@@ -263,7 +245,6 @@ export default function PlaneacionPage() {
                       }}
                     />
 
-                    {/* Amber shimmer bar */}
                     <div
                       style={{
                         position: "absolute",
@@ -276,7 +257,6 @@ export default function PlaneacionPage() {
                       }}
                     />
 
-                    {/* Card visual content */}
                     <div
                       style={{
                         textAlign: "center",
@@ -313,7 +293,6 @@ export default function PlaneacionPage() {
                     </div>
                   </div>
 
-                  {/* Body */}
                   <div style={{ padding: "clamp(1.5rem,3vw,2.25rem)" }}>
                     <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,2.5vw,1.75rem)", color: "var(--forest)", letterSpacing: ".04em", marginBottom: ".5rem", lineHeight: 1.1 }}>
                       {doc.subtitulo}
@@ -365,7 +344,6 @@ export default function PlaneacionPage() {
 
         </section>
 
-        {/* ── Diagrama PICIA ── */}
         <section
           aria-labelledby="diagrama-heading"
           style={{
@@ -377,7 +355,6 @@ export default function PlaneacionPage() {
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div style={{ padding: "clamp(3rem,5vw,5rem) 0 clamp(2rem,4vw,3rem)" }}>
 
-              {/* Header + expand button — centered */}
               <div style={{ textAlign: "center", marginBottom: "2rem" }}>
                 <p className="sec-eyebrow">PICIA 2023–2026</p>
                 <h2 id="diagrama-heading" className="sec-h2">
@@ -423,7 +400,6 @@ export default function PlaneacionPage() {
                 </button>
               </div>
 
-              {/* Diagram image — clickable */}
               <button
                 onClick={() => setDiagramaOpen(true)}
                 style={{
@@ -473,7 +449,6 @@ export default function PlaneacionPage() {
           </div>
         </section>
 
-        {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>

@@ -1,5 +1,3 @@
-/* Comunidad Digital — social media grid */
-
 const redes = [
   {
     nombre: "Facebook",
@@ -92,7 +90,6 @@ export default function ComunidadSection() {
     >
       <div style={{ maxWidth: "1100px", margin: "0 auto" }}>
 
-        {/* Header */}
         <div style={{ textAlign: "center", marginBottom: "clamp(2.5rem,4vw,4rem)" }}>
           <p className="sec-eyebrow">Presencia Digital</p>
           <h2 id="social-heading" className="sec-h2">COMUNIDAD DIGITAL</h2>
@@ -101,7 +98,6 @@ export default function ComunidadSection() {
           </p>
         </div>
 
-        {/* Social grid */}
         <div
           id="soc-grid"
           style={{
@@ -143,7 +139,6 @@ export default function ComunidadSection() {
                 el.style.borderColor = "var(--border-subtle)";
               }}
             >
-              {/* Icon circle */}
               <div
                 style={{
                   width: "56px", height: "56px",
@@ -158,7 +153,6 @@ export default function ComunidadSection() {
                 {red.icon}
               </div>
 
-              {/* Name */}
               <div style={{ textAlign: "center" }}>
                 <p style={{ fontFamily: "var(--font-ui)", fontSize: ".85rem", fontWeight: 700, color: "var(--text)", marginBottom: ".2rem" }}>
                   {red.nombre}
@@ -168,7 +162,6 @@ export default function ComunidadSection() {
                 </p>
               </div>
 
-              {/* Follow CTA */}
               <span style={{ fontFamily: "var(--font-ui)", fontSize: ".62rem", fontWeight: 700, letterSpacing: "1.5px", textTransform: "uppercase", color: "var(--forest)" }}>
                 Seguir ↗
               </span>

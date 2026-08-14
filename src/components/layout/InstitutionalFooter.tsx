@@ -7,9 +7,6 @@
  * (Colombia.co + GOV.CO, distinta de la del header) y el panel legal.
  * Enlaces institucionales sin ruta local (mapa del sitio, términos,
  * protección de datos, suscripción) son absolutos a iiap.org.co.
- *
- * Se omite el crédito "Powered by Bontris" del sitio real: es el CMS
- * propietario del sitio original, no aplica a este stack Next.js.
  */
 
 const REAL_SITE = "https://iiap.org.co";

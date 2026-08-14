@@ -58,7 +58,6 @@ export default function TalentoSection() {
       >
         <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
 
-          {/* ── Header ── */}
           <div style={{
             display: "flex",
             justifyContent: "space-between",
@@ -89,7 +88,6 @@ export default function TalentoSection() {
               </h2>
             </div>
 
-            {/* Stat callout */}
             <div style={{
               borderTop: "2px solid var(--amber)", paddingTop: ".75rem",
               minWidth: "140px",
@@ -112,7 +110,6 @@ export default function TalentoSection() {
             </div>
           </div>
 
-          {/* ── Investigators grid ── */}
           <div style={{
             display: "grid",
             gridTemplateColumns: "repeat(auto-fill, minmax(min(100%, 180px), 1fr))",
@@ -122,8 +119,6 @@ export default function TalentoSection() {
               <InvestigadorCard key={p.id} persona={p} onClick={() => setSelected(p)} />
             ))}
           </div>
-
-
         </div>
       </section>
 

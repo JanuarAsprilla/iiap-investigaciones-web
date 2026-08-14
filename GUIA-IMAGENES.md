@@ -26,7 +26,7 @@ Esta guía te dice **dónde está cada foto** del sitio y **qué archivo abrir**
 3. **Para poner una foto nueva:**
    - Copia tu foto dentro de la carpeta que corresponda.
    - Nómbrala en minúsculas, con guiones, sin acentos ni espacios. Ej: `sala-reuniones-1.webp`.
-   - Ideal en formato **`.webp`** (más liviano). Si tu foto es `.jpg`/`.png`/`.HEIC`, conviértela antes en https://squoosh.app (arrastra la foto → “WebP” → descarga). *(O me pasas las fotos y las convierto yo en lote, como hicimos antes.)*
+   - Ideal en formato **`.webp`** (más liviano). Si tu foto es `.jpg`/`.png`/`.HEIC`, conviértela antes en https://squoosh.app (arrastra la foto → “WebP” → descarga).
    - Abre el archivo indicado abajo y reemplaza la ruta vieja por la tuya.
    - Guarda. Con `npm run dev` corriendo, el cambio se ve al instante.
 
@@ -129,4 +129,4 @@ galeria: [
 
 ## 4. Consejo de rendimiento
 
-Mantén cada imagen **≤ 1920 px de ancho** y en `.webp`. Evita fotos de varios MB: el sitio se entrega al IIAP y debe cargar rápido. Cuando tengas un lote nuevo de fotos, puedo convertirlas y ubicarlas por ti como hicimos con las instalaciones.
+Mantén cada imagen **≤ 1920 px de ancho** y en `.webp`. Evita fotos de varios MB: el sitio se entrega al IIAP y debe cargar rápido.

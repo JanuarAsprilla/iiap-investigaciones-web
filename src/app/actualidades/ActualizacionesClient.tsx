@@ -58,12 +58,10 @@ export default function ActualizacionesClient() {
       <SiteNav />
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero con carrusel ── */}
         <section
           aria-labelledby="actualidades-heading"
           style={{ position: "relative", overflow: "hidden", padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)" }}
         >
-          {/* Carousel layers */}
           {heroBgs.map((src, i) => (
             <div
               key={src}
@@ -77,7 +75,6 @@ export default function ActualizacionesClient() {
               }}
             />
           ))}
-          {/* Forest overlay */}
           <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(150deg, rgba(9,40,25,.88) 0%, rgba(13,59,36,.82) 60%, rgba(26,92,58,.78) 100%)" }} />
           <div aria-hidden="true" style={{
             position: "absolute", inset: 0,
@@ -113,7 +110,6 @@ export default function ActualizacionesClient() {
           </div>
         </section>
 
-        {/* ── Filtros como etiquetas ── */}
         <div
           style={{
             padding: "clamp(1.5rem,3vw,2.5rem) clamp(1.25rem,4vw,3rem) 0",
@@ -179,7 +175,6 @@ export default function ActualizacionesClient() {
           </div>
         </div>
 
-        {/* ── Grid ── */}
         <section style={{ padding: "clamp(3rem,5vw,5rem) clamp(1.25rem,4vw,3rem)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
             {loading ? (
@@ -217,7 +212,6 @@ export default function ActualizacionesClient() {
           </div>
         </section>
 
-        {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>

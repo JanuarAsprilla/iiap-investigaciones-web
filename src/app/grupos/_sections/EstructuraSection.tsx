@@ -4,7 +4,6 @@ import { directivos, coordinadores, gestores } from "@/data/equipo";
 import type { Investigador } from "@/lib/types";
 import TeamMemberModal from "@/components/team/TeamMemberModal";
 
-/* ── Hero Portrait Card (Director / Subdirector) ── */
 function OrgHeroCard({ persona, size = "lg" }: { persona: Investigador; size?: "lg" | "md" }) {
   return (
     <div className={`org-hero-card org-hero-${size}`}>
@@ -20,7 +19,6 @@ function OrgHeroCard({ persona, size = "lg" }: { persona: Investigador; size?: "
   );
 }
 
-/* ── Small Portrait Card (Coordinadores) ── */
 function OrgSmCard({ persona }: { persona: Investigador }) {
   return (
     <div className="org-sm-card">
@@ -67,7 +65,6 @@ export default function EstructuraSection() {
       >
         <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
 
-          {/* Header — centered */}
           <div style={{ textAlign: "center", marginBottom: "clamp(3rem,5vw,5rem)" }}>
             <p className="sec-eyebrow">Liderazgo Científico</p>
             <h2 id="org-heading" className="sec-h2">EQUIPO DE INVESTIGACIÓN</h2>
@@ -77,10 +74,8 @@ export default function EstructuraSection() {
             </p>
           </div>
 
-          {/* Org tree */}
           <div style={{ display: "flex", flexDirection: "column", alignItems: "center" }}>
 
-            {/* ── DIRECTOR ── */}
             <p className="org-level-label">Dirección General</p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
@@ -94,7 +89,6 @@ export default function EstructuraSection() {
 
             <Connector />
 
-            {/* ── SUBDIRECTOR ── */}
             <p className="org-level-label">Subdirección de Investigaciones</p>
             <div style={{ display: "flex", justifyContent: "center" }}>
               <button
@@ -109,7 +103,6 @@ export default function EstructuraSection() {
             <Connector />
             <SpreadLine />
 
-            {/* ── COORDINADORES ── */}
             <p className="org-level-label">Coordinadores de Componente</p>
             <div id="org-coords">
               {coordinadores.map((p) => (
@@ -127,7 +120,6 @@ export default function EstructuraSection() {
             <Connector />
             <SpreadLine />
 
-            {/* ── GESTORES ── */}
             <p className="org-level-label">Gestores Subregionales</p>
             <div id="org-gestores">
               {gestores.map((p) => (
@@ -157,7 +149,6 @@ export default function EstructuraSection() {
           }
           .org-card-btn:focus-visible { outline: 2px solid var(--forest); outline-offset: 4px; border-radius: 18px; }
 
-          /* ── Hero Card ── */
           .org-hero-card {
             position: relative; border-radius: 18px; overflow: hidden;
             border: 2px solid rgba(232,150,15,.45);
@@ -187,7 +178,6 @@ export default function EstructuraSection() {
             color: #fff; letter-spacing: .04em; line-height: 1.0;
           }
 
-          /* ── Small Card ── */
           #org-coords {
             display: grid; grid-template-columns: repeat(5,1fr); gap: 12px; width: 100%;
           }
@@ -217,7 +207,6 @@ export default function EstructuraSection() {
           }
           .org-sm-nombre { font-family: var(--font-ui); font-size: .80rem; font-weight: 700; color: #fff; line-height: 1.25; }
 
-          /* ── Connectors ── */
           .org-connector { display: flex; justify-content: center; padding: .6rem 0; }
           .org-connector-line { width: 2px; height: 32px; background: linear-gradient(to bottom, var(--amber), var(--forest)); }
           .org-spread { width: 100%; display: flex; justify-content: center; margin-bottom: .85rem; }
@@ -226,12 +215,10 @@ export default function EstructuraSection() {
             background: linear-gradient(to right, transparent 5%, var(--border-active) 50%, transparent 95%);
           }
 
-          /* ── Gestores grid ── */
           #org-gestores {
             display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; width: 100%; max-width: 740px;
           }
 
-          /* ── Responsive ── */
           @media(max-width:1000px){
             #org-coords { grid-template-columns: repeat(3,1fr) !important; }
             #org-gestores { grid-template-columns: repeat(3,1fr) !important; }

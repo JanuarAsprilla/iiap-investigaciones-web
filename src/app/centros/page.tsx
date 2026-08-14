@@ -7,9 +7,6 @@ import type { InstalacionCentro, Bioespacio } from "@/lib/types";
 import ReconocimientoSection from "../grupos/_sections/ReconocimientoSection";
 import ModalGallery from "@/components/ui/ModalGallery";
 
-/* ─────────────────────────────────────────
-   Modal Instalación — Warm Light
-───────────────────────────────────────── */
 function InstalacionModal({ inst, onClose, closing }: { inst: InstalacionCentro; onClose: () => void; closing?: boolean }) {
   const images = inst.galeria && inst.galeria.length > 0 ? inst.galeria : [inst.imagen];
   return (
@@ -23,7 +20,6 @@ function InstalacionModal({ inst, onClose, closing }: { inst: InstalacionCentro;
           <h3 className="cm-title">{inst.nombre}</h3>
           <div className="cm-divider" />
 
-          {/* Cantidad destacada */}
           {inst.cantidad && (
             <div style={{
               display: "inline-flex", alignItems: "center", gap: ".75rem",
@@ -83,9 +79,6 @@ function InstalacionModal({ inst, onClose, closing }: { inst: InstalacionCentro;
   );
 }
 
-/* ─────────────────────────────────────────
-   Modal Bioespacio — Warm Light
-───────────────────────────────────────── */
 function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: () => void; closing?: boolean }) {
   const images = bio.galeria && bio.galeria.length > 0 ? bio.galeria : [bio.imagen];
   return (
@@ -99,7 +92,6 @@ function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: 
           <h3 className="cm-title">{bio.nombre}</h3>
           <div className="cm-divider" />
 
-          {/* Tipo badge */}
           <div style={{
             display: "inline-block",
             background: "var(--forest-lt)", border: "1px solid var(--border)",
@@ -113,7 +105,6 @@ function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: 
 
           <p className="cm-desc">{bio.detalle}</p>
 
-          {/* Métricas: extensión y especies */}
           {(bio.extension || bio.especies) && (
             <div style={{
               display: "grid",
@@ -155,9 +146,6 @@ function BioespacioModal({ bio, onClose, closing }: { bio: Bioespacio; onClose: 
   );
 }
 
-/* ─────────────────────────────────────────
-   Page
-───────────────────────────────────────── */
 const heroBgs = [
   "/assets/bioespacios/piscitanques/piscitanques-1.webp",
   "/assets/bioespacios/sendero/sendero-1.webp",
@@ -165,7 +153,6 @@ const heroBgs = [
   "/assets/bioespacios/vivero-experimental/vivero-experimental-1.webp",
 ];
 
-/* Biodiversidad — fauna del Chocó Biogeográfico (registros de campo y fototrampeo) */
 const faunaGaleria = [
   { src: "/assets/bioespacios/fauna/fauna-1.webp", cat: "Anfibios",     label: "Ranas endémicas del bosque húmedo" },
   { src: "/assets/bioespacios/fauna/fauna-3.webp", cat: "Avifauna",     label: "Aves del dosel tropical" },
@@ -205,7 +192,6 @@ export default function CentrosPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero — Carousel ── */}
         <section
           aria-labelledby="centros-heading"
           style={{ position: "relative", overflow: "hidden", padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)" }}
@@ -233,7 +219,6 @@ export default function CentrosPage() {
                 </div>
               ))}
             </div>
-            {/* Carousel dots */}
             <div style={{ display: "flex", gap: "8px" }} aria-hidden="true">
               {heroBgs.map((_, i) => (
                 <button key={i} onClick={() => setBgIndex(i)} style={{ width: i === bgIndex ? "24px" : "8px", height: "8px", borderRadius: "999px", background: i === bgIndex ? "var(--amber)" : "rgba(255,255,255,.35)", border: "none", cursor: "pointer", transition: "width .4s var(--ease), background .3s", padding: 0 }} aria-label={`Imagen ${i + 1}`} />
@@ -244,7 +229,6 @@ export default function CentrosPage() {
 
         <ReconocimientoSection />
 
-        {/* ── Instalaciones ── */}
         <section aria-labelledby="instalaciones-heading" style={{ padding: "clamp(4rem,7vw,7rem) clamp(1.25rem,4vw,3rem)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto" }}>
             <div style={{ marginBottom: "clamp(2.5rem,4vw,4rem)", textAlign: "center" }}>
@@ -284,7 +268,6 @@ export default function CentrosPage() {
           </div>
         </section>
 
-        {/* ── Bioespacios ── */}
         <section aria-labelledby="bioespacios-heading" style={{ padding: "0 clamp(1.25rem,4vw,3rem) clamp(5rem,8vw,8rem)", borderTop: "1px solid var(--border-subtle)", background: "var(--surface)" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div style={{ padding: "clamp(3rem,5vw,5rem) 0 clamp(2rem,3.5vw,3.5rem)", textAlign: "center" }}>
@@ -334,7 +317,6 @@ export default function CentrosPage() {
           }`}</style>
         </section>
 
-        {/* ── Biodiversidad (Fauna) ── */}
         <section aria-labelledby="fauna-heading" style={{ padding: "0 clamp(1.25rem,4vw,3rem) clamp(5rem,8vw,8rem)", borderTop: "1px solid var(--border-subtle)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1200px", margin: "0 auto" }}>
             <div style={{ padding: "clamp(3rem,5vw,5rem) 0 clamp(2rem,3.5vw,3.5rem)", textAlign: "center" }}>
@@ -388,7 +370,6 @@ export default function CentrosPage() {
           `}</style>
         </section>
 
-        {/* ── Footer ── */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", gap: "1rem", flexWrap: "wrap" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>

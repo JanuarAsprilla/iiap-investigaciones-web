@@ -70,7 +70,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
       <SiteNav />
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        {/* ── Hero con imagen ── */}
         <section style={{
           position: "relative", overflow: "hidden",
           minHeight: item.imagenPrincipal ? "55vh" : "auto",
@@ -94,7 +93,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
           )}
 
           <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto" }}>
-            {/* Back link */}
             <Link href="/actualidades" style={{
               display: "inline-flex", alignItems: "center", gap: ".4rem",
               fontFamily: "var(--font-ui)", fontSize: ".72rem", fontWeight: 700,
@@ -106,7 +104,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
               ← Actualidades
             </Link>
 
-            {/* Badge */}
             <div style={{ marginBottom: "1rem" }}>
               <span style={{
                 display: "inline-block",
@@ -128,7 +125,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
               {item.titulo}
             </h1>
 
-            {/* Meta row */}
             <div style={{ display: "flex", flexWrap: "wrap", gap: "1.5rem", alignItems: "center" }}>
               <time style={{ fontFamily: "var(--font-ui)", fontSize: ".8rem", color: "rgba(255,255,255,.65)", textTransform: "capitalize" }}>
                 {fecha}
@@ -162,10 +158,7 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
           </div>
         </section>
 
-        {/* ── Cuerpo ── */}
         <div style={{ maxWidth: "860px", margin: "0 auto", padding: "clamp(2.5rem,4vw,4rem) clamp(1.25rem,4vw,3rem)" }}>
-
-          {/* Resumen destacado */}
           <p style={{
             fontFamily: "var(--font-body)",
             fontSize: "clamp(1.05rem,1.5vw,1.2rem)",
@@ -178,7 +171,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
             {item.resumen}
           </p>
 
-          {/* Portable text body */}
           {item.cuerpo && (
             <div style={{
               fontFamily: "var(--font-body)",
@@ -220,7 +212,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
             </div>
           )}
 
-          {/* Galería */}
           {item.galeria && item.galeria.length > 0 && (
             <section style={{ marginTop: "3rem" }}>
               <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem,2vw,1.6rem)", color: "var(--forest)", marginBottom: "1.25rem" }}>
@@ -241,7 +232,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
             </section>
           )}
 
-          {/* Documentos adjuntos */}
           {item.documentos && item.documentos.length > 0 && (
             <section style={{ marginTop: "3rem" }}>
               <h2 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.2rem,2vw,1.6rem)", color: "var(--forest)", marginBottom: "1.25rem" }}>
@@ -267,7 +257,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
             </section>
           )}
 
-          {/* Etiquetas */}
           {item.etiquetas && item.etiquetas.length > 0 && (
             <div style={{ marginTop: "3rem", display: "flex", flexWrap: "wrap", gap: ".5rem" }}>
               {item.etiquetas.map((tag: string) => (
@@ -284,7 +273,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
             </div>
           )}
 
-          {/* Back link */}
           <div style={{ marginTop: "4rem", paddingTop: "2rem", borderTop: "1px solid var(--border-subtle)" }}>
             <Link href="/actualidades" style={{
               display: "inline-flex", alignItems: "center", gap: ".5rem",
@@ -297,7 +285,6 @@ export default function ArticuloDetalle({ slug }: { slug: string }) {
           </div>
         </div>
 
-        {/* Footer */}
         <footer style={{ borderTop: "1px solid var(--border-subtle)", padding: "1.5rem clamp(1.25rem,4vw,3rem)", background: "var(--bg)" }}>
           <div style={{ maxWidth: "1400px", margin: "0 auto", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
             <p style={{ fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "var(--text-muted)" }}>
