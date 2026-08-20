@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import SiteNav from "@/components/layout/SiteNav";
+import ModuleHero from "@/components/ui/ModuleHero";
 import ActualizacionCard, { ActualizacionCardData } from "@/components/actualidades/ActualizacionCard";
 import { browserClient } from "@/sanity/browser";
 import { actualizacionesQuery } from "@/sanity/lib/queries";
@@ -25,7 +26,6 @@ export default function ActualizacionesClient() {
   const [items, setItems] = useState<ActualizacionCardData[]>([]);
   const [loading, setLoading] = useState(true);
   const [filtro, setFiltro] = useState<string>("all");
-  const [bgIndex, setBgIndex] = useState(0);
 
   useEffect(() => {
     let active = true;
@@ -44,11 +44,6 @@ export default function ActualizacionesClient() {
     };
   }, []);
 
-  useEffect(() => {
-    const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 5000);
-    return () => clearInterval(id);
-  }, []);
-
   const visible = filtro === "all"
     ? items
     : items.filter((i) => i.componente === filtro);
@@ -58,57 +53,15 @@ export default function ActualizacionesClient() {
       <SiteNav />
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        <section
-          aria-labelledby="actualidades-heading"
-          style={{ position: "relative", overflow: "hidden", padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)" }}
-        >
-          {heroBgs.map((src, i) => (
-            <div
-              key={src}
-              aria-hidden="true"
-              style={{
-                position: "absolute", inset: 0,
-                backgroundImage: `url(${src})`,
-                backgroundSize: "cover", backgroundPosition: "center",
-                opacity: i === bgIndex ? 1 : 0,
-                transition: "opacity 1.4s ease-in-out",
-              }}
-            />
-          ))}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(150deg, rgba(9,40,25,.88) 0%, rgba(13,59,36,.82) 60%, rgba(26,92,58,.78) 100%)" }} />
-          <div aria-hidden="true" style={{
-            position: "absolute", inset: 0,
-            background: "radial-gradient(ellipse at 80% 40%, rgba(232,150,15,.13) 0%, transparent 55%)",
-          }} />
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "1400px", margin: "0 auto" }}>
-            <span style={{
-              display: "inline-block",
-              background: "linear-gradient(135deg, var(--amber), var(--amber-d))",
-              color: "var(--forest-d)",
-              fontFamily: "var(--font-ui)", fontSize: ".72rem", fontWeight: 800,
-              letterSpacing: "2px", textTransform: "uppercase",
-              padding: ".3rem 1.1rem", borderRadius: "var(--r-pill)",
-              marginBottom: "1.25rem",
-            }}>
-              Novedades del IIAP
-            </span>
-            <h1 id="actualidades-heading" style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "var(--t-4xl)",
-              lineHeight: .9, color: "#fff",
-              letterSpacing: ".01em", marginBottom: "1rem",
-            }}>
-              ACTUALIDADES
-            </h1>
-            <p style={{
-              fontFamily: "var(--font-body)", fontSize: "var(--t-lg)",
-              color: "rgba(255,255,255,.78)", maxWidth: "52ch", lineHeight: 1.75,
-            }}>
-              Avances, resultados y noticias de nuestros cuatro componentes de investigación
-              y el Laboratorio de Datos del IIAP.
-            </p>
-          </div>
-        </section>
+        <ModuleHero
+          headingId="actualidades-heading"
+          eyebrow="Novedades del IIAP"
+          backgrounds={heroBgs}
+          gradient="linear-gradient(150deg, rgba(9,40,25,.88) 0%, rgba(13,59,36,.82) 60%, rgba(26,92,58,.78) 100%)"
+          radialGradient="radial-gradient(ellipse at 80% 40%, rgba(232,150,15,.13) 0%, transparent 55%)"
+          heading="ACTUALIDADES"
+          description="Avances, resultados y noticias de nuestros cuatro componentes de investigación y el Laboratorio de Datos del IIAP."
+        />
 
         <div
           style={{

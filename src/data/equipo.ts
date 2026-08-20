@@ -141,8 +141,8 @@ export const equipo: Investigador[] = [
     id: "silvio",
     nombre: "Silvio",
     apellido: "",
-    rol: "investigador",
-    cargo: "Investigador",
+    rol: "auxiliar",
+    cargo: "Apoyo Subdirección de Investigaciones",
     imagen: "/assets/investigadores/silvio.webp",
   },
   {
@@ -181,8 +181,8 @@ export const equipo: Investigador[] = [
     id: "ana",
     nombre: "Ana",
     apellido: "",
-    rol: "investigador",
-    cargo: "Investigadora",
+    rol: "auxiliar",
+    cargo: "Apoyo Subdirección de Investigaciones",
     imagen: "/assets/investigadores/ana.webp",
   },
   {
@@ -257,6 +257,14 @@ export const equipo: Investigador[] = [
     cargo: "Investigador",
     imagen: "/assets/investigadores/jovanny-pino.webp",
   },
+  {
+    id: "fairi",
+    nombre: "Fairi",
+    apellido: "",
+    rol: "investigador",
+    cargo: "Investigadora",
+    imagen: "/assets/investigadores/fairi.webp",
+  },
 ];
 
 export const gestores: import("@/lib/types").Investigador[] = [
@@ -285,14 +293,6 @@ export const gestores: import("@/lib/types").Investigador[] = [
 
     imagen: "/assets/investigadores/cesar-quinones.webp",
   },
-  {
-    id: "fairi",
-    nombre: "Fairi",
-    apellido: "",
-    rol: "investigador",
-    cargo: "Investigadora",
-    imagen: "/assets/investigadores/fairi.webp",
-  },
 ];
 
 export const directivos = equipo.filter((i) =>
@@ -300,3 +300,4 @@ export const directivos = equipo.filter((i) =>
 );
 export const coordinadores = equipo.filter((i) => i.rol === "coordinador");
 export const investigadores = equipo.filter((i) => i.rol === "investigador");
+export const auxiliares = equipo.filter((i) => i.rol === "auxiliar");

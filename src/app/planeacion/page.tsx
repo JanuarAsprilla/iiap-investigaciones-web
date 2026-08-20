@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import SiteNav from "@/components/layout/SiteNav";
+import ModuleHero from "@/components/ui/ModuleHero";
 import { documentosPlanificacion } from "@/data/planificacion";
 
 const heroBgs = [
@@ -87,12 +88,6 @@ function DiagramaModal({ onClose, closing }: { onClose: () => void; closing?: bo
 export default function PlaneacionPage() {
   const [diagramaOpen,    setDiagramaOpen]    = useState(false);
   const [diagramaClosing, setDiagramaClosing] = useState(false);
-  const [bgIndex, setBgIndex] = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 5000);
-    return () => clearInterval(id);
-  }, []);
 
   const closeDiagrama = () => {
     setDiagramaClosing(true);
@@ -106,67 +101,15 @@ export default function PlaneacionPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        <section
-          aria-labelledby="plan-heading"
-          style={{ padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)", position: "relative", overflow: "hidden" }}
-        >
-          {heroBgs.map((src, i) => (
-            <div key={src} aria-hidden="true" style={{
-              position: "absolute", inset: 0,
-              backgroundImage: `url(${src})`,
-              backgroundSize: "cover", backgroundPosition: "center",
-              opacity: i === bgIndex ? 1 : 0,
-              transition: "opacity 1.6s ease-in-out",
-            }} />
-          ))}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(155deg, rgba(7,26,14,.92) 0%, rgba(13,59,36,.85) 60%, rgba(9,40,25,.90) 100%)" }} />
-
-          <svg aria-hidden="true" style={{ position: "absolute", inset: 0, width: "100%", height: "100%", opacity: .06, pointerEvents: "none" }} preserveAspectRatio="xMidYMid slice">
-            <defs>
-              <pattern id="plan-grid" x="0" y="0" width="60" height="60" patternUnits="userSpaceOnUse">
-                <path d="M60 0 L0 0 0 60" fill="none" stroke="rgba(232,150,15,1)" strokeWidth="0.5"/>
-              </pattern>
-            </defs>
-            <rect width="100%" height="100%" fill="url(#plan-grid)"/>
-          </svg>
-
-          <div aria-hidden="true" style={{ position: "absolute", top: "-10%", right: "-5%", width: "55%", height: "140%", background: "radial-gradient(ellipse at 70% 30%, rgba(232,150,15,.16) 0%, transparent 60%)", pointerEvents: "none" }} />
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, width: "60%", height: "50%", background: "radial-gradient(ellipse at 0% 100%, rgba(0,0,0,.45) 0%, transparent 70%)", pointerEvents: "none" }} />
-
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "860px", margin: "0 auto", textAlign: "center" }}>
-
-            <div style={{ display: "flex", alignItems: "center", justifyContent: "center", gap: ".75rem", marginBottom: "1.75rem" }}>
-              <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
-              <span style={{ fontFamily: "var(--font-ui)", fontSize: ".65rem", fontWeight: 800, letterSpacing: "3px", textTransform: "uppercase", color: "var(--amber)" }}>
-                Planeación Institucional
-              </span>
-              <div style={{ width: "28px", height: "2px", background: "var(--amber)" }} aria-hidden="true" />
-            </div>
-
-            <h1 id="plan-heading" style={{
-              fontFamily: "var(--font-display)",
-              fontSize: "clamp(4.5rem,10vw,9rem)",
-              lineHeight: .88, color: "#fff",
-              letterSpacing: "-.01em", marginBottom: "1.75rem",
-            }}>
-              MARCO<br />
-              <span style={{ color: "var(--amber)" }}>ESTRATÉGICO</span>
-            </h1>
-
-            <p style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "clamp(1.05rem,1.5vw,1.2rem)",
-              color: "rgba(255,255,255,.72)",
-              maxWidth: "56ch", lineHeight: 1.85, margin: "0 auto",
-            }}>
-              Los instrumentos que orientan la investigación ambiental en el IIAP, se articulan con los planes y políticas sectoriales, así como con los instrumentos de planificación territorial y comunitaria, fortaleciendo la gestión integral del conocimiento en el Chocó Biogeográfico.
-            </p>
-          </div>
-
-          <div aria-hidden="true" style={{ position: "absolute", bottom: 0, left: 0, right: 0, height: "140px", background: "linear-gradient(to top, var(--bg) 0%, var(--bg) 30%, rgba(244,241,235,.3) 70%, transparent 100%)", pointerEvents: "none" }} />
-
-          <style>{`@keyframes shimBar{0%{background-position:0%}100%{background-position:200%}}`}</style>
-        </section>
+        <ModuleHero
+          headingId="plan-heading"
+          eyebrow="Planeación Institucional"
+          backgrounds={heroBgs}
+          gradient="linear-gradient(155deg, rgba(7,26,14,.92) 0%, rgba(13,59,36,.85) 60%, rgba(9,40,25,.90) 100%)"
+          radialGradient="radial-gradient(ellipse at 70% 30%, rgba(232,150,15,.16) 0%, transparent 60%)"
+          heading={<>MARCO<br /><span style={{ color: "var(--amber)" }}>ESTRATÉGICO</span></>}
+          description="Los instrumentos que orientan la investigación ambiental en el IIAP, se articulan con los planes y políticas sectoriales, así como con los instrumentos de planificación territorial y comunitaria, fortaleciendo la gestión integral del conocimiento en el Chocó Biogeográfico."
+        />
 
         <section
           aria-labelledby="docs-heading"
