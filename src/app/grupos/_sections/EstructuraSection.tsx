@@ -1,6 +1,6 @@
 "use client";
 import { useState } from "react";
-import { directivos, coordinadores, gestores } from "@/data/equipo";
+import { directivos, coordinadores, gestores, auxiliares } from "@/data/equipo";
 import type { Investigador } from "@/lib/types";
 import TeamMemberModal from "@/components/team/TeamMemberModal";
 
@@ -99,6 +99,26 @@ export default function EstructuraSection() {
                 <OrgHeroCard persona={directivos[1]} size="md" />
               </button>
             </div>
+
+            {auxiliares.length > 0 && (
+              <>
+                <Connector />
+
+                <p className="org-level-label">Apoyo Subdirección de Investigaciones</p>
+                <div id="org-auxiliares">
+                  {auxiliares.map((p) => (
+                    <button
+                      key={p.id}
+                      className="org-card-btn"
+                      onClick={() => setSelected(p)}
+                      aria-label={`Ver perfil de ${p.nombre} ${p.apellido}`}
+                    >
+                      <OrgSmCard persona={p} />
+                    </button>
+                  ))}
+                </div>
+              </>
+            )}
 
             <Connector />
             <SpreadLine />
@@ -218,6 +238,10 @@ export default function EstructuraSection() {
           #org-gestores {
             display: grid; grid-template-columns: repeat(3,1fr); gap: 12px; width: 100%; max-width: 740px;
           }
+          #org-auxiliares {
+            display: grid; grid-template-columns: repeat(2,1fr); gap: 12px; width: 100%; max-width: 500px;
+            margin-bottom: 1rem;
+          }
 
           @media(max-width:1000px){
             #org-coords { grid-template-columns: repeat(3,1fr) !important; }
@@ -229,6 +253,7 @@ export default function EstructuraSection() {
             .org-hero-md { width: 230px; height: 280px; }
             #org-coords { grid-template-columns: repeat(2,1fr) !important; }
             #org-gestores { grid-template-columns: repeat(3,1fr) !important; }
+            #org-auxiliares { grid-template-columns: repeat(2,1fr) !important; max-width: 100%; }
             .org-sm-card { height: 220px; }
             .org-spread-line { width: 95%; }
           }

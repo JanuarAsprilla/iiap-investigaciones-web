@@ -1,7 +1,8 @@
 "use client";
 
-import { useState, useCallback, useEffect } from "react";
+import { useState, useCallback } from "react";
 import SiteNav from "@/components/layout/SiteNav";
+import ModuleHero from "@/components/ui/ModuleHero";
 import { infoCentro, instalaciones, bioespacios } from "@/data/centros";
 import type { InstalacionCentro, Bioespacio } from "@/lib/types";
 import ReconocimientoSection from "../grupos/_sections/ReconocimientoSection";
@@ -166,12 +167,6 @@ export default function CentrosPage() {
   const [modalBio,    setModalBio]    = useState<Bioespacio | null>(null);
   const [closingInst, setClosingInst] = useState(false);
   const [closingBio,  setClosingBio]  = useState(false);
-  const [bgIndex,     setBgIndex]     = useState(0);
-
-  useEffect(() => {
-    const id = setInterval(() => setBgIndex((p) => (p + 1) % heroBgs.length), 4000);
-    return () => clearInterval(id);
-  }, []);
 
   const openInst  = useCallback((i: InstalacionCentro) => setModalInst(i), []);
   const openBio   = useCallback((b: Bioespacio) => setModalBio(b), []);
@@ -192,26 +187,14 @@ export default function CentrosPage() {
 
       <main id="main-content" style={{ background: "var(--bg)", minHeight: "100vh" }}>
 
-        <section
-          aria-labelledby="centros-heading"
-          style={{ position: "relative", overflow: "hidden", padding: "clamp(7rem,12vh,10rem) clamp(1.25rem,4vw,3rem) clamp(4rem,7vh,6rem)" }}
-        >
-          {heroBgs.map((src, i) => (
-            <div key={src} aria-hidden="true" style={{ position: "absolute", inset: 0, backgroundImage: `url(${src})`, backgroundSize: "cover", backgroundPosition: "center", opacity: i === bgIndex ? 1 : 0, transition: "opacity 1.4s ease-in-out", willChange: i === bgIndex ? "opacity" : "auto" }} />
-          ))}
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "linear-gradient(150deg,rgba(13,59,36,.85) 0%,rgba(9,40,25,.90) 100%)" }} />
-          <div aria-hidden="true" style={{ position: "absolute", inset: 0, background: "radial-gradient(ellipse at 20% 50%,rgba(232,150,15,.12) 0%,transparent 55%)", pointerEvents: "none" }} />
-
-          <div style={{ position: "relative", zIndex: 1, maxWidth: "1400px", margin: "0 auto" }}>
-            <span style={{ display: "inline-block", background: "linear-gradient(135deg,var(--amber),var(--amber-d))", color: "var(--forest-d)", fontFamily: "var(--font-ui)", fontSize: ".72rem", fontWeight: 800, letterSpacing: "2px", textTransform: "uppercase", padding: ".3rem 1.1rem", borderRadius: "var(--r-pill)", marginBottom: "1.25rem" }}>
-              Infraestructura Científica
-            </span>
-            <h1 id="centros-heading" style={{ fontFamily: "var(--font-display)", fontSize: "var(--t-4xl)", lineHeight: .9, color: "#fff", letterSpacing: ".01em", marginBottom: "1.25rem" }}>
-              CENTRO<br /><span style={{ color: "var(--amber)" }}>EXPERIMENTAL</span>
-            </h1>
-            <p style={{ fontFamily: "var(--font-body)", fontSize: "var(--t-lg)", color: "rgba(255,255,255,.78)", maxWidth: "55ch", lineHeight: 1.75, marginBottom: "2rem" }}>
-              {infoCentro.descripcion}
-            </p>
+        <ModuleHero
+          headingId="centros-heading"
+          eyebrow="Infraestructura Científica"
+          backgrounds={heroBgs}
+          radialGradient="radial-gradient(ellipse at 20% 50%, rgba(232,150,15,.12) 0%, transparent 55%)"
+          heading={<>CENTRO<br /><span style={{ color: "var(--amber)" }}>EXPERIMENTAL</span></>}
+          description={infoCentro.descripcion}
+          extra={
             <div style={{ display: "flex", gap: ".75rem", flexWrap: "wrap", marginBottom: "2rem" }}>
               {[infoCentro.ubicacion, infoCentro.horario].map((label) => (
                 <div key={label} style={{ background: "rgba(255,255,255,.10)", border: "1px solid rgba(255,255,255,.20)", borderRadius: "var(--r-pill)", padding: ".4rem 1.1rem", fontFamily: "var(--font-ui)", fontSize: "var(--t-xs)", color: "rgba(255,255,255,.85)", backdropFilter: "blur(8px)" }}>
@@ -219,13 +202,8 @@ export default function CentrosPage() {
                 </div>
               ))}
             </div>
-            <div style={{ display: "flex", gap: "8px" }} aria-hidden="true">
-              {heroBgs.map((_, i) => (
-                <button key={i} onClick={() => setBgIndex(i)} style={{ width: i === bgIndex ? "24px" : "8px", height: "8px", borderRadius: "999px", background: i === bgIndex ? "var(--amber)" : "rgba(255,255,255,.35)", border: "none", cursor: "pointer", transition: "width .4s var(--ease), background .3s", padding: 0 }} aria-label={`Imagen ${i + 1}`} />
-              ))}
-            </div>
-          </div>
-        </section>
+          }
+        />
 
         <ReconocimientoSection />
 
