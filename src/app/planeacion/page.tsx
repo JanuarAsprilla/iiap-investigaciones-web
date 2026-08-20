@@ -136,6 +136,9 @@ export default function PlaneacionPage() {
                 <article
                   key={doc.id}
                   style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    height: "100%",
                     background: "var(--surface)",
                     border: "1px solid var(--border-subtle)",
                     borderRadius: "var(--r-xl)",
@@ -160,6 +163,7 @@ export default function PlaneacionPage() {
                     style={{
                       position: "relative",
                       height: "280px",
+                      flexShrink: 0,
                       overflow: "hidden",
                       display: "flex",
                       alignItems: "flex-end",
@@ -236,7 +240,7 @@ export default function PlaneacionPage() {
                     </div>
                   </div>
 
-                  <div style={{ padding: "clamp(1.5rem,3vw,2.25rem)" }}>
+                  <div style={{ display: "flex", flexDirection: "column", flex: 1, padding: "clamp(1.5rem,3vw,2.25rem)" }}>
                     <h3 style={{ fontFamily: "var(--font-display)", fontSize: "clamp(1.3rem,2.5vw,1.75rem)", color: "var(--forest)", letterSpacing: ".04em", marginBottom: ".5rem", lineHeight: 1.1 }}>
                       {doc.subtitulo}
                     </h3>
@@ -253,6 +257,8 @@ export default function PlaneacionPage() {
                         display: "inline-flex",
                         alignItems: "center",
                         gap: "8px",
+                        alignSelf: "flex-start",
+                        marginTop: "auto",
                         fontFamily: "var(--font-ui)",
                         fontSize: ".72rem",
                         fontWeight: 700,
